@@ -22,20 +22,8 @@
                         </group>
                     </group>
                     <group>
-                        <group string="Skills Requeridos">
-                            <field name="required_skill_ids" widget="many2many_tags"/>
-                        </group>
                         <group string="Instancia Kubernetes">
                             <field name="creates_k8s_instance"/>
-                            <field name="k8s_template_id"
-                                   invisible="not creates_k8s_instance"/>
-                        </group>
-                    </group>
-                    <group>
-                        <group string="Automatización N8N">
-                            <field name="is_n8n_service"/>
-                            <field name="n8n_workflow_template_id"
-                                   invisible="not is_n8n_service"/>
                         </group>
                     </group>
                 </page>

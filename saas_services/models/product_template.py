@@ -33,30 +33,9 @@ class ProductTemplate(models.Model):
         help='El cliente debe solicitar cotización en lugar de comprar directamente'
     )
 
-    # === SKILLS REQUERIDOS ===
-    required_skill_ids = fields.Many2many(
-        'saas.skill',
-        string='Skills Requeridos',
-        help='Colaboradores con estos skills pueden trabajar este servicio'
-    )
-
     # === CONFIGURACIÓN DE INSTANCIA K8S ===
+    # Nota: El campo creates_k8s_instance es procesado por k8s_saas si está instalado
     creates_k8s_instance = fields.Boolean(
         string='Crea Instancia K8s',
         help='Al confirmar, se crea una instancia de Odoo en Kubernetes'
-    )
-    k8s_template_id = fields.Many2one(
-        'k8s.instance.template',
-        string='Template de Instancia',
-        help='Configuración base para la instancia'
-    )
-
-    # === CONFIGURACIÓN DE N8N ===
-    is_n8n_service = fields.Boolean(
-        string='Es Servicio N8N',
-        help='Este producto está relacionado con automatizaciones N8N'
-    )
-    n8n_workflow_template_id = fields.Char(
-        string='Template N8N ID',
-        help='ID del workflow template en N8N'
     )
