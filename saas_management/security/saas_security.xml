@@ -3,16 +3,14 @@
     <data noupdate="0">
         <!-- SaaS Manager Group -->
         <record id="group_saas_manager" model="res.groups">
-            <field name="name">SaaS Manager</field>
-            <field name="category_id" ref="base.module_category_services"/>
+            <field name="name">SaaS Management / Manager</field>
             <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
             <field name="comment">Full access to SaaS management features including clients and instances</field>
         </record>
 
         <!-- SaaS User Group -->
         <record id="group_saas_user" model="res.groups">
-            <field name="name">SaaS User</field>
-            <field name="category_id" ref="base.module_category_services"/>
+            <field name="name">SaaS Management / User</field>
             <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
             <field name="comment">Basic access to view SaaS clients and instances</field>
         </record>
