@@ -18,10 +18,3 @@ class SaleOrderLine(models.Model):
         related='product_id.creates_k8s_instance',
         store=True
     )
-
-    # === ASIGNACIÓN ===
-    assigned_collaborator_id = fields.Many2one(
-        'saas.collaborator',
-        string='Colaborador Asignado',
-        help='Colaborador que trabajará esta línea específica'
-    )

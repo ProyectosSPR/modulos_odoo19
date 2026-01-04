@@ -33,15 +33,6 @@
     </div>
     {% endif %}
 
-    {% if object.saas_instance_ids %}
-    <div style="margin: 20px 0; padding: 15px; background-color: #e8f5e9; border-left: 4px solid #28a745; border-radius: 4px;">
-        <h3 style="margin: 0 0 10px 0; color: #28a745;">Tu instancia de Odoo</h3>
-        <p style="margin: 0;">
-            Estamos preparando tu instancia de Odoo. Te notificaremos cuando esté lista.
-        </p>
-    </div>
-    {% endif %}
-
     <div style="margin: 20px 0; padding: 15px; background-color: #fff3cd; border-left: 4px solid #ffc107; border-radius: 4px;">
         <h3 style="margin: 0 0 10px 0; color: #856404;">Accede a tu portal</h3>
         <p style="margin: 0 0 10px 0;">
