@@ -217,7 +217,7 @@
                 <separator/>
                 <filter string="Con Saldo Pendiente" name="with_balance" domain="[('balance', '>', 0)]"/>
                 <separator/>
-                <group expand="0" string="Agrupar Por">
+                <group>
                     <filter string="Estado" name="group_state" context="{'group_by': 'state'}"/>
                     <filter string="Nivel" name="group_level" context="{'group_by': 'skill_level'}"/>
                     <filter string="Disponibilidad" name="group_availability" context="{'group_by': 'availability'}"/>

@@ -147,7 +147,7 @@
                 <filter string="Trial" name="trial" domain="[('state', '=', 'trial')]"/>
                 <filter string="Active" name="active" domain="[('state', '=', 'active')]"/>
                 <filter string="Suspended" name="suspended" domain="[('state', '=', 'suspended')]"/>
-                <group expand="0" string="Group By">
+                <group>
                     <filter string="Client" name="group_client" context="{'group_by': 'client_id'}"/>
                     <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
                     <filter string="Odoo Version" name="group_version" context="{'group_by': 'odoo_version'}"/>

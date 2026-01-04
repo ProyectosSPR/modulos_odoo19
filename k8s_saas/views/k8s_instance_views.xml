@@ -165,7 +165,7 @@
                 <separator/>
                 <filter string="No Eliminadas" name="not_deleted" domain="[('state', '!=', 'deleted')]"/>
                 <separator/>
-                <group expand="0" string="Agrupar Por">
+                <group>
                     <filter string="Estado" name="group_state" context="{'group_by': 'state'}"/>
                     <filter string="Cluster" name="group_cluster" context="{'group_by': 'cluster_id'}"/>
                     <filter string="Cliente" name="group_partner" context="{'group_by': 'partner_id'}"/>

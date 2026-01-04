@@ -110,7 +110,7 @@
                         domain="[('date', '>=', (context_today() - relativedelta(months=1, day=1)).strftime('%Y-%m-%d')),
                                  ('date', '&lt;', (context_today() - relativedelta(day=1)).strftime('%Y-%m-%d'))]"/>
                 <separator/>
-                <group expand="0" string="Agrupar Por">
+                <group>
                     <filter string="Colaborador" name="group_collaborator" context="{'group_by': 'collaborator_id'}"/>
                     <filter string="Estado" name="group_state" context="{'group_by': 'state'}"/>
                     <filter string="Método de Pago" name="group_method" context="{'group_by': 'payment_method'}"/>

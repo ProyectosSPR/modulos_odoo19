@@ -94,7 +94,7 @@
                 <separator/>
                 <filter string="Archivados" name="archived" domain="[('active', '=', False)]"/>
                 <separator/>
-                <group expand="0" string="Agrupar Por">
+                <group>
                     <filter string="Categoría" name="group_category" context="{'group_by': 'category'}"/>
                 </group>
             </search>

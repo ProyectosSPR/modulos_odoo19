@@ -138,7 +138,7 @@
                 <filter string="This Month" name="this_month"
                         domain="[('date', '&gt;=', (context_today() - relativedelta(day=1)).strftime('%Y-%m-%d')),
                                  ('date', '&lt;=', (context_today() + relativedelta(day=31)).strftime('%Y-%m-%d'))]"/>
-                <group expand="0" string="Group By">
+                <group>
                     <filter string="Instance" name="group_instance" context="{'group_by': 'instance_id'}"/>
                     <filter string="Client" name="group_client" context="{'group_by': 'client_id'}"/>
                     <filter string="Date" name="group_date" context="{'group_by': 'date'}"/>

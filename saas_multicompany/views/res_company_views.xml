@@ -100,7 +100,7 @@
                 <filter string="Template Companies" name="template_companies"
                         domain="[('is_saas_template', '=', True)]"/>
                 <separator/>
-                <group expand="0" string="Group By">
+                <group>
                     <filter string="SaaS Client" name="group_client"
                             context="{'group_by': 'saas_client_id'}"/>
                 </group>
