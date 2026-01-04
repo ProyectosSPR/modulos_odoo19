@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Subscription security groups -->
+<data noupdate="0">
 
+    <!-- Privilege for Subscription groups -->
+    <record model="res.groups.privilege" id="res_groups_privilege_subscription">
+        <field name="name">Subscription</field>
+        <field name="sequence">52</field>
+    </record>
+
+    <!-- User Group -->
     <record id="group_subscription_user" model="res.groups">
-        <field name="name">Subscription / User</field>
+        <field name="name">User</field>
+        <field name="sequence">10</field>
+        <field name="privilege_id" ref="res_groups_privilege_subscription"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
     </record>
 
+    <!-- Manager Group -->
     <record id="group_subscription_manager" model="res.groups">
-        <field name="name">Subscription / Administrator</field>
+        <field name="name">Administrator</field>
+        <field name="sequence">20</field>
+        <field name="privilege_id" ref="res_groups_privilege_subscription"/>
         <field name="implied_ids" eval="[(4, ref('group_subscription_user'))]"/>
-        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        <field name="user_ids" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
     </record>
+
+</data>
 </odoo>
