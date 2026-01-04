@@ -4,5 +4,5 @@
               name="N8N"
               sequence="50"
               action="action_n8n_workflow_instance"
-              web_icon="n8n-sales,static/description/icon.png"/>
+              web_icon="n8n_sales,static/description/icon.png"/>
 </odoo>
