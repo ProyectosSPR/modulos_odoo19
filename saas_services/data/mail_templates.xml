@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Email de confirmación de servicio con link de cita -->
+        <record id="email_service_confirmation" model="mail.template">
+            <field name="name">SaaS Services: Confirmación de Servicio</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="subject">Tu servicio ha sido confirmado - {{ object.name }}</field>
+            <field name="email_from">{{ (object.company_id.email or user.email) }}</field>
+            <field name="email_to">{{ object.partner_id.email }}</field>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px; font-size: 13px;">
+    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        Hola <strong>{{ object.partner_id.name }}</strong>,
+    </p>
+    <br/>
+    <p>
+        Gracias por tu compra. Tu orden <strong>{{ object.name }}</strong> ha sido confirmada.
+    </p>
+
+    {% if object.appointment_invite_url %}
+    <div style="margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-left: 4px solid #007bff; border-radius: 4px;">
+        <h3 style="margin: 0 0 10px 0; color: #007bff;">Agenda tu reunión inicial</h3>
+        <p style="margin: 0 0 15px 0;">
+            Para comenzar con tu servicio, necesitamos agendar una reunión inicial.
+            Selecciona el horario que mejor te convenga:
+        </p>
+        <a href="{{ object.appointment_invite_url }}"
+           style="display: inline-block; padding: 12px 24px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+            Agendar Cita
+        </a>
+    </div>
+    {% endif %}
+
+    {% if object.saas_instance_ids %}
+    <div style="margin: 20px 0; padding: 15px; background-color: #e8f5e9; border-left: 4px solid #28a745; border-radius: 4px;">
+        <h3 style="margin: 0 0 10px 0; color: #28a745;">Tu instancia de Odoo</h3>
+        <p style="margin: 0;">
+            Estamos preparando tu instancia de Odoo. Te notificaremos cuando esté lista.
+        </p>
+    </div>
+    {% endif %}
+
+    <div style="margin: 20px 0; padding: 15px; background-color: #fff3cd; border-left: 4px solid #ffc107; border-radius: 4px;">
+        <h3 style="margin: 0 0 10px 0; color: #856404;">Accede a tu portal</h3>
+        <p style="margin: 0 0 10px 0;">
+            Puedes ver el estado de tu proyecto y servicios en cualquier momento:
+        </p>
+        <a href="/my/orders/{{ object.id }}"
+           style="color: #007bff; text-decoration: none;">
+            Ver mi orden en el portal
+        </a>
+    </div>
+
+    <br/>
+    <p>
+        Si tienes alguna pregunta, no dudes en contactarnos.
+    </p>
+    <br/>
+    <p>
+        Saludos,<br/>
+        <strong>{{ object.company_id.name }}</strong>
+    </p>
+</div>
+            </field>
+        </record>
+
+    </data>
+</odoo>

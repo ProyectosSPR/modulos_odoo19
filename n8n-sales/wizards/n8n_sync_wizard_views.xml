@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_n8n_sync_wizard_form" model="ir.ui.view">
+        <field name="name">n8n.sync.wizard.form</field>
+        <field name="model">n8n.sync.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Configurar y Sincronizar Workflow">
+                <field name="workflow_instance_id" invisible="1"/>
+
+                <div class="alert alert-info" role="alert">
+                    <h4>Instrucciones</h4>
+                    <ol class="mb-0">
+                        <li>Accede a tu cuenta de N8N y genera una API Key (Settings → API)</li>
+                        <li>Ingresa tu API Key de N8N abajo</li>
+                        <li>Ingresa las credenciales de TU Odoo (donde se conectará la automatización)</li>
+                        <li>Click en "Sincronizar"</li>
+                    </ol>
+                </div>
+
+                <group string="1. Tu API Key de N8N">
+                    <field name="n8n_api_key" password="True" placeholder="Pega aquí tu API Key de N8N..."/>
+                </group>
+
+                <group string="2. Conexión a tu Odoo">
+                    <field name="odoo_url" placeholder="https://miempresa.odoo.com"/>
+                    <field name="odoo_db" placeholder="nombre_base_de_datos"/>
+                    <field name="odoo_user" placeholder="admin@miempresa.com"/>
+                    <field name="odoo_password" password="True" placeholder="Contraseña o API Key"/>
+                </group>
+
+                <footer>
+                    <button name="action_synchronize" string="Sincronizar" type="object" class="btn-primary" data-hotkey="q"/>
+                    <button string="Cancelar" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Default Cluster Configuration (empty, to be configured by admin) -->
+        <record id="default_cluster" model="k8s.cluster">
+            <field name="name">Cluster Principal</field>
+            <field name="connection_type">kubeconfig</field>
+            <field name="default_namespace">default</field>
+            <field name="db_host">postgres</field>
+            <field name="db_port">5432</field>
+            <field name="db_admin_user">postgres</field>
+            <field name="odoo_image">odoo:19.0</field>
+            <field name="default_workers">2</field>
+            <field name="default_memory_limit">2Gi</field>
+            <field name="default_cpu_limit">1000m</field>
+            <field name="state">draft</field>
+            <field name="active" eval="False"/>
+        </record>
+
+        <!-- Cron Job to Refresh Instance Status -->
+        <record id="ir_cron_refresh_instances" model="ir.cron">
+            <field name="name">K8s: Actualizar Estado de Instancias</field>
+            <field name="model_id" ref="model_k8s_instance"/>
+            <field name="state">code</field>
+            <field name="code">model.cron_refresh_all_instances()</field>
+            <field name="interval_number">5</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

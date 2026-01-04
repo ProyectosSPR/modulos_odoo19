@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Main Menu -->
+    <menuitem id="k8s_saas_menu_root"
+              name="Kubernetes SaaS"
+              web_icon="k8s_saas,static/description/icon.png"
+              sequence="50"/>
+
+    <!-- Instancias -->
+    <menuitem id="k8s_saas_menu_instances"
+              name="Instancias"
+              parent="k8s_saas_menu_root"
+              action="k8s_instance_action"
+              sequence="10"/>
+
+    <!-- Configuración -->
+    <menuitem id="k8s_saas_menu_config"
+              name="Configuración"
+              parent="k8s_saas_menu_root"
+              sequence="100"
+              groups="base.group_system"/>
+
+    <menuitem id="k8s_saas_menu_clusters"
+              name="Clusters"
+              parent="k8s_saas_menu_config"
+              action="k8s_cluster_action"
+              sequence="10"/>
+
+</odoo>

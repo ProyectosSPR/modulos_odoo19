@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_k8s_cluster_manager,k8s.cluster.manager,model_k8s_cluster,group_k8s_manager,1,1,1,1
+access_k8s_instance_user,k8s.instance.user,model_k8s_instance,group_k8s_user,1,0,0,0
+access_k8s_instance_manager,k8s.instance.manager,model_k8s_instance,group_k8s_manager,1,1,1,1

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Los menús principales se heredan de sale_management -->
+    <!-- Aquí solo agregamos filtros y vistas específicas si es necesario -->
+</odoo>

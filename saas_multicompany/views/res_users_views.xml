@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vista heredada para usuarios SaaS - Oculta Access Rights -->
+    <record id="view_users_form_saas_simplified" model="ir.ui.view">
+        <field name="name">res.users.form.saas.simplified</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <!-- Ocultar la pestaña de Access Rights para usuarios SaaS (mostrar solo a admins) -->
+            <page name="access_rights" position="attributes">
+                <attribute name="groups">base.group_system</attribute>
+            </page>
+
+            <!-- Ocultar botones de estadísticas de permisos para usuarios SaaS -->
+            <button name="action_show_groups" position="attributes">
+                <attribute name="groups">base.group_system</attribute>
+            </button>
+            <button name="action_show_accesses" position="attributes">
+                <attribute name="groups">base.group_system</attribute>
+            </button>
+            <button name="action_show_rules" position="attributes">
+                <attribute name="groups">base.group_system</attribute>
+            </button>
+        </field>
+    </record>
+</odoo>

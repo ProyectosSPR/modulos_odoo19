@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="multi_file_attach_xmls_wizard_form_view">
+        <field name="name">multi.file.attach.xmls.wizard.form</field>
+        <field name="model">multi.file.attach.xmls.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Importar XMLs">
+                <group>
+                    <field name="xml_files" widget="many2many_binary" string="Archivos XML"
+                           options="{'accepted_file_extensions': '.xml'}"/>
+                </group>
+                <footer>
+                    <button string="Importar" name="action_import_xmls" type="object" class="btn-primary"/>
+                    <button string="Cancelar" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Subscriptions List -->
+    <template id="portal_my_subscriptions" name="My Subscriptions">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Mis Suscripciones</t>
+            </t>
+
+            <t t-if="not subscriptions">
+                <div class="alert alert-info" role="alert">
+                    No tienes suscripciones actualmente.
+                </div>
+            </t>
+
+            <t t-if="subscriptions">
+                <div class="card">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Referencia</th>
+                                <th>Fecha Inicio</th>
+                                <th>Próximo Cobro</th>
+                                <th>Monto Recurrente</th>
+                                <th>Estado</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="subscriptions" t-as="subscription">
+                                <tr>
+                                    <td>
+                                        <a t-attf-href="/my/subscription/#{subscription.id}">
+                                            <t t-esc="subscription.name"/>
+                                        </a>
+                                    </td>
+                                    <td t-esc="subscription.date_order" t-options="{'widget': 'date'}"/>
+                                    <td t-esc="subscription.next_invoice_date" t-options="{'widget': 'date'}"/>
+                                    <td>
+                                        <t t-esc="subscription.recurring_monthly" t-options="{'widget': 'monetary', 'display_currency': subscription.currency_id}"/>
+                                        <small class="text-muted">/mes</small>
+                                    </td>
+                                    <td>
+                                        <span t-attf-class="badge #{subscription.subscription_state == '3_progress' and 'bg-success' or subscription.subscription_state == '4_paused' and 'bg-warning' or 'bg-secondary'}">
+                                            <t t-if="subscription.subscription_state == '3_progress'">Activa</t>
+                                            <t t-elif="subscription.subscription_state == '4_paused'">Pausada</t>
+                                            <t t-elif="subscription.subscription_state == '6_churn'">Cancelada</t>
+                                            <t t-else="" t-esc="subscription.subscription_state"/>
+                                        </span>
+                                    </td>
+                                    <td class="text-end">
+                                        <a t-attf-href="/my/subscription/#{subscription.id}" class="btn btn-sm btn-primary">
+                                            Ver Detalles
+                                        </a>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="d-flex justify-content-center mt-4">
+                    <t t-call="portal.pager"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- Subscription Detail -->
+    <template id="portal_subscription_detail" name="Subscription Detail">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="False"/>
+
+            <div class="container py-4">
+                <!-- Header -->
+                <div class="row mb-4">
+                    <div class="col-md-8">
+                        <h2 t-esc="subscription.name"/>
+                        <p class="text-muted">
+                            Creada el <t t-esc="subscription.date_order" t-options="{'widget': 'date'}"/>
+                        </p>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <span t-attf-class="badge fs-5 #{subscription.subscription_state == '3_progress' and 'bg-success' or 'bg-warning'}">
+                            <t t-if="subscription.subscription_state == '3_progress'">Activa</t>
+                            <t t-elif="subscription.subscription_state == '4_paused'">Pausada</t>
+                            <t t-else="" t-esc="subscription.subscription_state"/>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Summary Cards -->
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <h6 class="text-muted">Monto Mensual</h6>
+                                <h3>
+                                    <t t-esc="subscription.recurring_monthly" t-options="{'widget': 'monetary', 'display_currency': subscription.currency_id}"/>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <h6 class="text-muted">Próximo Cobro</h6>
+                                <h3 t-esc="subscription.next_invoice_date" t-options="{'widget': 'date'}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <h6 class="text-muted">Plan de Recurrencia</h6>
+                                <h3 t-if="subscription.recurrence_id" t-esc="subscription.recurrence_id.name"/>
+                                <h3 t-else="">-</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Productos y Servicios</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <table class="table mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Producto</th>
+                                    <th class="text-center">Cantidad</th>
+                                    <th class="text-end">Precio</th>
+                                    <th class="text-end">Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="subscription.order_line" t-as="line">
+                                    <tr>
+                                        <td>
+                                            <strong t-esc="line.product_id.name"/>
+                                            <t t-if="line.name != line.product_id.name">
+                                                <br/>
+                                                <small class="text-muted" t-esc="line.name"/>
+                                            </t>
+                                        </td>
+                                        <td class="text-center" t-esc="line.product_uom_qty"/>
+                                        <td class="text-end">
+                                            <t t-esc="line.price_unit" t-options="{'widget': 'monetary', 'display_currency': subscription.currency_id}"/>
+                                        </td>
+                                        <td class="text-end">
+                                            <t t-esc="line.price_subtotal" t-options="{'widget': 'monetary', 'display_currency': subscription.currency_id}"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                            <tfoot class="table-light">
+                                <tr>
+                                    <td colspan="3" class="text-end"><strong>Total</strong></td>
+                                    <td class="text-end">
+                                        <strong>
+                                            <t t-esc="subscription.amount_total" t-options="{'widget': 'monetary', 'display_currency': subscription.currency_id}"/>
+                                        </strong>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Linked Instances -->
+                <t t-if="instances">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Instancias Vinculadas</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <table class="table mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Instancia</th>
+                                        <th>URL</th>
+                                        <th>Estado</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="instances" t-as="instance">
+                                        <tr>
+                                            <td t-esc="instance.name"/>
+                                            <td>
+                                                <a t-if="instance.url" t-att-href="instance.url" target="_blank">
+                                                    <t t-esc="instance.url"/>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <span t-attf-class="badge #{instance.state == 'running' and 'bg-success' or 'bg-warning'}">
+                                                    <t t-esc="instance.state"/>
+                                                </span>
+                                            </td>
+                                            <td class="text-end">
+                                                <a t-if="instance.state == 'running' and instance.url"
+                                                   t-att-href="instance.url" target="_blank"
+                                                   class="btn btn-sm btn-primary">
+                                                    <i class="fa fa-external-link"></i> Abrir
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+
+                <!-- Linked Projects -->
+                <t t-if="projects">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Proyectos Vinculados</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <table class="table mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Proyecto</th>
+                                        <th>Tareas</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="projects" t-as="project">
+                                        <tr>
+                                            <td t-esc="project.name"/>
+                                            <td>
+                                                <span class="badge bg-secondary" t-esc="project.task_count"/>
+                                            </td>
+                                            <td class="text-end">
+                                                <a t-attf-href="/my/project/#{project.id}" class="btn btn-sm btn-outline-primary">
+                                                    Ver Proyecto
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+
+                <!-- Actions -->
+                <div class="text-center">
+                    <a href="/my/subscriptions" class="btn btn-secondary">
+                        <i class="fa fa-arrow-left"></i> Volver a Suscripciones
+                    </a>
+                    <a href="/appointment" class="btn btn-primary">
+                        <i class="fa fa-calendar"></i> Agendar Cita
+                    </a>
+                </div>
+
+            </div>
+        </t>
+    </template>
+
+</odoo>

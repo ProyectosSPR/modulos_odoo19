@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Heredar vista de producto para agregar campos de servicio -->
+    <record id="product_template_form_view_saas" model="ir.ui.view">
+        <field name="name">product.template.form.saas.services</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales']" position="after">
+                <page string="Configuración SaaS" name="saas_config"
+                      invisible="type != 'service'">
+                    <group>
+                        <group string="Categoría de Servicio">
+                            <field name="service_category"/>
+                            <field name="requires_quotation"/>
+                        </group>
+                        <group string="Agendamiento de Citas">
+                            <field name="require_appointment"/>
+                            <field name="appointment_type_id"
+                                   invisible="not require_appointment"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Skills Requeridos">
+                            <field name="required_skill_ids" widget="many2many_tags"/>
+                        </group>
+                        <group string="Instancia Kubernetes">
+                            <field name="creates_k8s_instance"/>
+                            <field name="k8s_template_id"
+                                   invisible="not creates_k8s_instance"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Automatización N8N">
+                            <field name="is_n8n_service"/>
+                            <field name="n8n_workflow_template_id"
+                                   invisible="not is_n8n_service"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

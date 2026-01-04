@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Instances List -->
+    <template id="portal_my_instances" name="My Instances">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Mis Instancias Odoo</t>
+            </t>
+
+            <t t-if="not instances">
+                <div class="alert alert-info" role="alert">
+                    <h5>No tienes instancias activas</h5>
+                    <p class="mb-0">
+                        Las instancias Odoo se crean automáticamente cuando contratas un plan de hosting.
+                        <a href="/contactus">Contáctanos</a> para más información.
+                    </p>
+                </div>
+            </t>
+
+            <t t-if="instances">
+                <div class="row">
+                    <t t-foreach="instances" t-as="instance">
+                        <div class="col-lg-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0" t-esc="instance.name"/>
+                                    <span t-attf-class="badge #{instance.state == 'running' and 'bg-success' or 'bg-warning'}">
+                                        <t t-if="instance.state == 'running'">
+                                            <i class="fa fa-check-circle"></i> En Ejecución
+                                        </t>
+                                        <t t-elif="instance.state == 'stopped'">
+                                            <i class="fa fa-pause-circle"></i> Detenida
+                                        </t>
+                                        <t t-else="" t-esc="instance.state"/>
+                                    </span>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-sm table-borderless mb-0">
+                                        <tr>
+                                            <td class="text-muted" style="width: 40%;">URL:</td>
+                                            <td>
+                                                <t t-if="instance.url">
+                                                    <a t-att-href="instance.url" target="_blank" t-esc="instance.url"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <span class="text-muted">No configurada</span>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted">Versión Odoo:</td>
+                                            <td t-esc="instance.odoo_version"/>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted">Base de Datos:</td>
+                                            <td t-esc="instance.db_name"/>
+                                        </tr>
+                                        <tr t-if="instance.subscription_id">
+                                            <td class="text-muted">Suscripción:</td>
+                                            <td>
+                                                <a t-attf-href="/my/subscription/#{instance.subscription_id.id}">
+                                                    <t t-esc="instance.subscription_id.name"/>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr t-if="instance.created_date">
+                                            <td class="text-muted">Creada:</td>
+                                            <td t-esc="instance.created_date" t-options="{'widget': 'datetime'}"/>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="card-footer bg-transparent">
+                                    <div class="d-flex justify-content-between">
+                                        <a t-attf-href="/my/instance/#{instance.id}" class="btn btn-outline-secondary btn-sm">
+                                            <i class="fa fa-info-circle"></i> Detalles
+                                        </a>
+                                        <t t-if="instance.state == 'running' and instance.url">
+                                            <a t-att-href="instance.url" target="_blank" class="btn btn-primary btn-sm">
+                                                <i class="fa fa-external-link"></i> Abrir Odoo
+                                            </a>
+                                        </t>
+                                        <t t-elif="instance.state == 'stopped'">
+                                            <span class="btn btn-secondary btn-sm disabled">
+                                                <i class="fa fa-pause"></i> Instancia Detenida
+                                            </span>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+
+                <div class="d-flex justify-content-center mt-4">
+                    <t t-call="portal.pager"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- Instance Detail -->
+    <template id="portal_instance_detail" name="Instance Detail">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="False"/>
+
+            <div class="container py-4">
+                <!-- Header -->
+                <div class="row mb-4">
+                    <div class="col-md-8">
+                        <h2 t-esc="instance.name"/>
+                        <p class="text-muted">
+                            <t t-if="instance.url">
+                                <a t-att-href="instance.url" target="_blank" t-esc="instance.url"/>
+                            </t>
+                        </p>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <span t-attf-class="badge fs-5 #{instance.state == 'running' and 'bg-success' or 'bg-warning'}">
+                            <t t-if="instance.state == 'running'">
+                                <i class="fa fa-check-circle"></i> En Ejecución
+                            </t>
+                            <t t-elif="instance.state == 'stopped'">
+                                <i class="fa fa-pause-circle"></i> Detenida
+                            </t>
+                            <t t-else="" t-esc="instance.state"/>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Info Cards -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                <h5 class="mb-0">Información General</h5>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-sm table-borderless">
+                                    <tr>
+                                        <td class="text-muted" style="width: 40%;">Versión Odoo:</td>
+                                        <td><strong t-esc="instance.odoo_version"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-muted">Base de Datos:</td>
+                                        <td><code t-esc="instance.db_name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-muted">Subdominio:</td>
+                                        <td t-esc="instance.subdomain"/></td>
+                                    </tr>
+                                    <tr t-if="instance.created_date">
+                                        <td class="text-muted">Fecha de Creación:</td>
+                                        <td t-esc="instance.created_date" t-options="{'widget': 'datetime'}"/>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                <h5 class="mb-0">Recursos Asignados</h5>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-sm table-borderless">
+                                    <tr>
+                                        <td class="text-muted" style="width: 40%;">Workers:</td>
+                                        <td><strong t-esc="instance.workers"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-muted">Memoria:</td>
+                                        <td t-esc="instance.memory_limit"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-muted">CPU:</td>
+                                        <td t-esc="instance.cpu_limit"/></td>
+                                    </tr>
+                                    <tr t-if="instance.pod_status">
+                                        <td class="text-muted">Estado del Pod:</td>
+                                        <td t-esc="instance.pod_status"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subscription Info -->
+                <t t-if="instance.subscription_id">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Suscripción Asociada</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <h6 t-esc="instance.subscription_id.name"/>
+                                    <p class="text-muted mb-0">
+                                        Próximo cobro: <t t-esc="instance.subscription_id.next_invoice_date" t-options="{'widget': 'date'}"/>
+                                    </p>
+                                </div>
+                                <div class="col-md-4 text-end">
+                                    <a t-attf-href="/my/subscription/#{instance.subscription_id.id}" class="btn btn-outline-primary">
+                                        Ver Suscripción
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+
+                <!-- Quick Access -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Acceso Rápido</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <t t-if="instance.state == 'running' and instance.url">
+                                    <a t-att-href="instance.url" target="_blank" class="btn btn-primary btn-lg w-100">
+                                        <i class="fa fa-sign-in fa-2x mb-2 d-block"></i>
+                                        Acceder a Odoo
+                                    </a>
+                                </t>
+                                <t t-else="">
+                                    <button class="btn btn-secondary btn-lg w-100" disabled="disabled">
+                                        <i class="fa fa-sign-in fa-2x mb-2 d-block"></i>
+                                        Instancia No Disponible
+                                    </button>
+                                </t>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <a t-if="instance.url" t-attf-href="#{instance.url}/web/database/manager" target="_blank"
+                                   class="btn btn-outline-secondary btn-lg w-100">
+                                    <i class="fa fa-database fa-2x mb-2 d-block"></i>
+                                    Gestor de BD
+                                </a>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <a href="/appointment" class="btn btn-outline-info btn-lg w-100">
+                                    <i class="fa fa-headphones fa-2x mb-2 d-block"></i>
+                                    Soporte Técnico
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="text-center">
+                    <a href="/my/instances" class="btn btn-secondary">
+                        <i class="fa fa-arrow-left"></i> Volver a Mis Instancias
+                    </a>
+                    <a href="/my/saas" class="btn btn-outline-primary">
+                        <i class="fa fa-dashboard"></i> Panel SaaS
+                    </a>
+                </div>
+
+            </div>
+        </t>
+    </template>
+
+</odoo>

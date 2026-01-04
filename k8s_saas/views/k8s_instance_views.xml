@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form View -->
+    <record id="k8s_instance_view_form" model="ir.ui.view">
+        <field name="name">k8s.instance.form</field>
+        <field name="model">k8s.instance</field>
+        <field name="arch" type="xml">
+            <form string="Instancia K8s">
+                <header>
+                    <button name="action_create_instance" type="object" string="Crear Instancia"
+                            invisible="state != 'draft'" class="oe_highlight"/>
+                    <button name="action_stop_instance" type="object" string="Detener"
+                            invisible="state != 'running'" confirm="¿Detener esta instancia?"/>
+                    <button name="action_start_instance" type="object" string="Iniciar"
+                            invisible="state != 'stopped'" class="oe_highlight"/>
+                    <button name="action_refresh_status" type="object" string="Actualizar Estado"
+                            invisible="state in ('draft', 'deleted')"/>
+                    <button name="action_delete_instance" type="object" string="Eliminar"
+                            invisible="state not in ('running', 'stopped', 'error')"
+                            confirm="¿Eliminar esta instancia? Esta acción no se puede deshacer."
+                            class="btn-danger"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,creating,running"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_url" type="object" class="oe_stat_button" icon="fa-external-link"
+                                invisible="not url or state != 'running'">
+                            <span class="o_stat_text">Abrir Odoo</span>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Error" bg_color="text-bg-danger" invisible="state != 'error'"/>
+                    <widget name="web_ribbon" title="Eliminado" bg_color="text-bg-secondary" invisible="state != 'deleted'"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Nombre de la Instancia"/>
+                        </h1>
+                        <h4 class="text-muted" invisible="not url">
+                            <field name="url" widget="url"/>
+                        </h4>
+                    </div>
+                    <group>
+                        <group string="General">
+                            <field name="partner_id"/>
+                            <field name="subscription_id"/>
+                            <field name="cluster_id"/>
+                            <field name="namespace"/>
+                        </group>
+                        <group string="Acceso">
+                            <field name="subdomain"/>
+                            <field name="technical_name"/>
+                            <field name="odoo_version"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Base de Datos" name="database">
+                            <group>
+                                <group>
+                                    <field name="db_name"/>
+                                    <field name="db_user"/>
+                                    <field name="db_password" password="True"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Recursos" name="resources">
+                            <group>
+                                <group>
+                                    <field name="workers"/>
+                                    <field name="memory_limit"/>
+                                    <field name="cpu_limit"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Kubernetes" name="k8s" invisible="state == 'draft'">
+                            <group>
+                                <group>
+                                    <field name="deployment_name"/>
+                                    <field name="service_name"/>
+                                    <field name="pod_status"/>
+                                </group>
+                                <group>
+                                    <field name="created_date"/>
+                                    <field name="last_accessed"/>
+                                </group>
+                            </group>
+                            <group string="Error" invisible="not error_message">
+                                <field name="error_message" nolabel="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="k8s_instance_view_list" model="ir.ui.view">
+        <field name="name">k8s.instance.list</field>
+        <field name="model">k8s.instance</field>
+        <field name="arch" type="xml">
+            <list string="Instancias" decoration-muted="state == 'deleted'">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="cluster_id"/>
+                <field name="subdomain"/>
+                <field name="odoo_version"/>
+                <field name="pod_status"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'running'"
+                       decoration-warning="state in ('creating', 'stopped')"
+                       decoration-danger="state == 'error'"
+                       decoration-info="state == 'draft'"
+                       decoration-muted="state == 'deleted'"/>
+                <button name="action_open_url" type="object" string="Abrir" icon="fa-external-link"
+                        invisible="state != 'running'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Kanban View -->
+    <record id="k8s_instance_view_kanban" model="ir.ui.view">
+        <field name="name">k8s.instance.kanban</field>
+        <field name="model">k8s.instance</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" class="o_kanban_small_column">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="url"/>
+                <field name="state"/>
+                <field name="pod_status"/>
+                <templates>
+                    <t t-name="card">
+                        <field class="fw-bold fs-5" name="name"/>
+                        <field name="partner_id"/>
+                        <div class="text-muted small" t-if="record.url.raw_value">
+                            <field name="subdomain"/>
+                        </div>
+                        <div class="mt-2">
+                            <span t-if="record.pod_status.raw_value" class="badge bg-secondary">
+                                <field name="pod_status"/>
+                            </span>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="k8s_instance_view_search" model="ir.ui.view">
+        <field name="name">k8s.instance.search</field>
+        <field name="model">k8s.instance</field>
+        <field name="arch" type="xml">
+            <search string="Instancias">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="cluster_id"/>
+                <field name="subdomain"/>
+                <separator/>
+                <filter string="En Ejecución" name="running" domain="[('state', '=', 'running')]"/>
+                <filter string="Detenidas" name="stopped" domain="[('state', '=', 'stopped')]"/>
+                <filter string="Con Error" name="error" domain="[('state', '=', 'error')]"/>
+                <separator/>
+                <filter string="No Eliminadas" name="not_deleted" domain="[('state', '!=', 'deleted')]"/>
+                <separator/>
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Estado" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Cluster" name="group_cluster" context="{'group_by': 'cluster_id'}"/>
+                    <filter string="Cliente" name="group_partner" context="{'group_by': 'partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="k8s_instance_action" model="ir.actions.act_window">
+        <field name="name">Instancias</field>
+        <field name="res_model">k8s.instance</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="k8s_instance_view_search"/>
+        <field name="context">{'search_default_not_deleted': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crear tu primera instancia Odoo
+            </p>
+            <p>
+                Despliega instancias Odoo automáticamente en tu cluster Kubernetes.
+            </p>
+        </field>
+    </record>
+
+</odoo>

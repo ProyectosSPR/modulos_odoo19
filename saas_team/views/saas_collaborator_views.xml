@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form View -->
+    <record id="saas_collaborator_view_form" model="ir.ui.view">
+        <field name="name">saas.collaborator.form</field>
+        <field name="model">saas.collaborator</field>
+        <field name="arch" type="xml">
+            <form string="Colaborador">
+                <header>
+                    <button name="action_schedule_interview" type="object" string="Agendar Entrevista"
+                            invisible="state != 'candidate'" class="oe_highlight"/>
+                    <button name="action_activate" type="object" string="Activar"
+                            invisible="state not in ('candidate', 'interview')" class="oe_highlight"/>
+                    <button name="action_pause" type="object" string="Pausar"
+                            invisible="state != 'active'"/>
+                    <button name="action_reactivate" type="object" string="Reactivar"
+                            invisible="state != 'paused'" class="oe_highlight"/>
+                    <button name="action_deactivate" type="object" string="Desactivar"
+                            invisible="state in ('inactive', 'candidate')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="candidate,interview,active"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_projects" type="object" class="oe_stat_button" icon="fa-folder">
+                            <field name="project_count" widget="statinfo" string="Proyectos"/>
+                        </button>
+                        <button name="action_view_timesheets" type="object" class="oe_stat_button" icon="fa-clock-o">
+                            <div class="o_stat_info">
+                                <span class="o_stat_value"><field name="hours_worked" widget="float_time"/></span>
+                                <span class="o_stat_text">Horas Totales</span>
+                            </div>
+                        </button>
+                        <button name="action_create_payment" type="object" class="oe_stat_button" icon="fa-money"
+                                invisible="balance &lt;= 0">
+                            <div class="o_stat_info">
+                                <span class="o_stat_value"><field name="balance" widget="monetary"/></span>
+                                <span class="o_stat_text">Saldo Pendiente</span>
+                            </div>
+                        </button>
+                    </div>
+                    <field name="image_128" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Nombre del Colaborador"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Información Básica">
+                            <field name="partner_id" context="{'show_email': True}"/>
+                            <field name="email" widget="email"/>
+                            <field name="phone" widget="phone"/>
+                            <field name="user_id"/>
+                        </group>
+                        <group string="Clasificación">
+                            <field name="skill_ids" widget="many2many_tags"
+                                   options="{'color_field': 'color'}"/>
+                            <field name="skill_level"/>
+                            <field name="availability"/>
+                            <field name="hours_per_week" invisible="availability not in ('part', 'hours')"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Compensación" name="compensation">
+                            <group>
+                                <group string="Tarifa">
+                                    <field name="rate_type"/>
+                                    <field name="rate_amount"/>
+                                    <field name="currency_id" groups="base.group_multi_currency"/>
+                                </group>
+                                <group string="Balance">
+                                    <field name="total_earned"/>
+                                    <field name="total_paid"/>
+                                    <field name="balance"/>
+                                </group>
+                            </group>
+                            <field name="payment_ids">
+                                <list editable="bottom">
+                                    <field name="date"/>
+                                    <field name="name"/>
+                                    <field name="amount"/>
+                                    <field name="payment_method"/>
+                                    <field name="state" widget="badge"
+                                           decoration-success="state == 'paid'"
+                                           decoration-warning="state == 'pending'"
+                                           decoration-danger="state == 'cancelled'"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Proyectos" name="projects">
+                            <field name="project_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="partner_id"/>
+                                    <field name="date_start"/>
+                                    <field name="stage_id"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Citas" name="appointments">
+                            <group>
+                                <field name="appointment_type_ids" widget="many2many_tags"/>
+                            </group>
+                        </page>
+                        <page string="Aplicación" name="application">
+                            <group>
+                                <group>
+                                    <field name="application_date"/>
+                                    <field name="application_source"/>
+                                    <field name="hire_date"/>
+                                    <field name="termination_date" invisible="state != 'inactive'"/>
+                                </group>
+                                <group>
+                                    <field name="rating" widget="priority"/>
+                                </group>
+                            </group>
+                            <group string="Notas de Aplicación">
+                                <field name="application_notes" nolabel="1"/>
+                            </group>
+                            <group string="CV/Portfolio">
+                                <field name="cv_attachment_ids" widget="many2many_binary" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Esta Semana" name="this_week">
+                            <group>
+                                <group>
+                                    <field name="hours_this_week" widget="float_time"/>
+                                    <field name="hours_per_week" string="Horas Disponibles"/>
+                                </group>
+                                <group>
+                                    <field name="task_count"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="saas_collaborator_view_list" model="ir.ui.view">
+        <field name="name">saas.collaborator.list</field>
+        <field name="model">saas.collaborator</field>
+        <field name="arch" type="xml">
+            <list string="Colaboradores" multi_edit="1">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="skill_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="skill_level"/>
+                <field name="availability"/>
+                <field name="hours_this_week" widget="float_time"/>
+                <field name="hours_per_week" widget="float_time"/>
+                <field name="balance" sum="Total Pendiente"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'active'"
+                       decoration-warning="state in ('candidate', 'interview', 'paused')"
+                       decoration-danger="state == 'inactive'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Kanban View -->
+    <record id="saas_collaborator_view_kanban" model="ir.ui.view">
+        <field name="name">saas.collaborator.kanban</field>
+        <field name="model">saas.collaborator</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" class="o_kanban_small_column">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="image_128"/>
+                <field name="email"/>
+                <field name="skill_ids"/>
+                <field name="skill_level"/>
+                <field name="hours_this_week"/>
+                <field name="balance"/>
+                <field name="state"/>
+                <templates>
+                    <t t-name="card">
+                        <aside>
+                            <field name="image_128" widget="image" options="{'preview_image': 'image_128'}"/>
+                        </aside>
+                        <main>
+                            <field class="fw-bold fs-5" name="name"/>
+                            <field name="email" widget="email"/>
+                            <div class="mt-1">
+                                <field name="skill_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            </div>
+                            <div class="d-flex justify-content-between mt-2">
+                                <span><i class="fa fa-clock-o"/> <field name="hours_this_week"/> hrs</span>
+                                <span class="badge bg-primary"><field name="balance" widget="monetary"/></span>
+                            </div>
+                        </main>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="saas_collaborator_view_search" model="ir.ui.view">
+        <field name="name">saas.collaborator.search</field>
+        <field name="model">saas.collaborator</field>
+        <field name="arch" type="xml">
+            <search string="Colaboradores">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="email"/>
+                <field name="skill_ids"/>
+                <separator/>
+                <filter string="Activos" name="active" domain="[('state', '=', 'active')]"/>
+                <filter string="Candidatos" name="candidates" domain="[('state', '=', 'candidate')]"/>
+                <filter string="En Entrevista" name="interview" domain="[('state', '=', 'interview')]"/>
+                <filter string="Pausados" name="paused" domain="[('state', '=', 'paused')]"/>
+                <filter string="Inactivos" name="inactive" domain="[('state', '=', 'inactive')]"/>
+                <separator/>
+                <filter string="Con Saldo Pendiente" name="with_balance" domain="[('balance', '>', 0)]"/>
+                <separator/>
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Estado" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Nivel" name="group_level" context="{'group_by': 'skill_level'}"/>
+                    <filter string="Disponibilidad" name="group_availability" context="{'group_by': 'availability'}"/>
+                    <filter string="Fuente" name="group_source" context="{'group_by': 'application_source'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="saas_collaborator_action" model="ir.actions.act_window">
+        <field name="name">Colaboradores</field>
+        <field name="res_model">saas.collaborator</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="saas_collaborator_view_search"/>
+        <field name="context">{'search_default_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crear tu primer colaborador
+            </p>
+            <p>
+                Registra colaboradores y freelancers para asignarles proyectos.
+            </p>
+        </field>
+    </record>
+
+    <!-- Action for candidates pipeline -->
+    <record id="saas_collaborator_candidates_action" model="ir.actions.act_window">
+        <field name="name">Pipeline de Candidatos</field>
+        <field name="res_model">saas.collaborator</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="saas_collaborator_view_search"/>
+        <field name="domain">[('state', 'in', ('candidate', 'interview'))]</field>
+        <field name="context">{}</field>
+    </record>
+
+</odoo>

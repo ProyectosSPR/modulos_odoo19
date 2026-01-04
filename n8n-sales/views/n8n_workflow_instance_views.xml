@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_n8n_workflow_instance_tree" model="ir.ui.view">
+        <field name="name">n8n.workflow.instance.list</field>
+        <field name="model">n8n.workflow.instance</field>
+        <field name="arch" type="xml">
+            <list string="Instancias de Workflow">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="product_id"/>
+                <field name="order_id"/>
+                <field name="is_extension" string="📦" widget="boolean"/>
+                <field name="merge_strategy" optional="show"/>
+                <field name="total_extensions_applied" string="🔄 Extensiones" optional="show"/>
+                <field name="last_extension_applied" string="Última Actualización" optional="show"/>
+                <field name="n8n_login_url" widget="url" string="🔗 Acceso N8N"/>
+                <field name="n8n_user_email" string="Email N8N"/>
+                <field name="state" widget="badge" decoration-warning="state == 'pending'" decoration-success="state == 'synced'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_n8n_workflow_instance_form" model="ir.ui.view">
+        <field name="name">n8n.workflow.instance.form</field>
+        <field name="model">n8n.workflow.instance</field>
+        <field name="arch" type="xml">
+            <form string="Instancia de Workflow">
+                <header>
+                    <button name="action_open_sync_wizard"
+                            string="Configurar y Sincronizar"
+                            type="object"
+                            class="oe_highlight"
+                            invisible="state == 'synced' or is_extension"
+                            data-hotkey="s"/>
+                    <button name="action_apply_extension_full_replace"
+                            string="Aplicar Extensión (Reemplazo Completo)"
+                            type="object"
+                            class="oe_highlight"
+                            invisible="not is_extension or state == 'synced' or merge_strategy != 'full_replace'"
+                            confirm="¿Estás seguro? Esto reemplazará completamente el workflow base del cliente."/>
+                    <button name="action_apply_extension_manual_merge"
+                            string="Aplicar Extensión (Merge Manual)"
+                            type="object"
+                            class="btn-warning"
+                            invisible="not is_extension or state == 'synced' or merge_strategy != 'manual_merge'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="pending,synced"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="action_open_sync_wizard"
+                                invisible="state != 'synced' or not total_extensions_applied"
+                                icon="fa-refresh">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value"><field name="total_extensions_applied"/></span>
+                                <span class="o_stat_text">Extensiones</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                        <h3 invisible="not last_extension_applied">
+                            <span class="badge badge-success">✅ Actualizado: <field name="last_extension_applied" nolabel="1"/></span>
+                        </h3>
+                    </div>
+                    <group>
+                        <group string="Información de Venta">
+                            <field name="partner_id"/>
+                            <field name="product_id"/>
+                            <field name="order_id"/>
+                        </group>
+                        <group string="Datos de N8N">
+                            <field name="n8n_user_id"/>
+                            <field name="template_workflow_id"/>
+                            <field name="n8n_instance_id" string="ID de Workflow Sincronizado"/>
+                            <field name="is_new_n8n_user" invisible="1"/>
+                        </group>
+                    </group>
+
+                    <!-- Información de Extensión -->
+                    <group string="⚙️ Información de Extensión" invisible="not is_extension">
+                        <group>
+                            <field name="is_extension" readonly="1"/>
+                            <field name="base_workflow_instance_id" readonly="1"/>
+                            <field name="has_modifications" widget="boolean_toggle" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="merge_strategy" readonly="1" widget="badge"
+                                   decoration-success="merge_strategy == 'full_replace'"
+                                   decoration-warning="merge_strategy == 'manual_merge'"/>
+                        </group>
+                    </group>
+
+                    <!-- Alerta de Extensión -->
+                    <div class="alert alert-info" role="alert" invisible="not is_extension or state == 'synced'">
+                        <h4 class="alert-heading">📦 Esta es una Extensión de Workflow</h4>
+                        <p><strong>Este workflow es una extensión de un workflow base existente.</strong></p>
+                        <hr/>
+                        <div invisible="merge_strategy != 'full_replace'">
+                            <p>✅ <strong>Sin modificaciones detectadas</strong> - Se puede aplicar reemplazo completo.</p>
+                            <p>Al aplicar la extensión, se reemplazará completamente el workflow base con esta nueva versión.</p>
+                        </div>
+                        <div invisible="merge_strategy != 'manual_merge'">
+                            <p>⚠️ <strong>Modificaciones detectadas</strong> - Se recomienda merge manual.</p>
+                            <p>Al aplicar la extensión, se añadirán solo los nodos nuevos sin conexiones, junto con instrucciones en un Sticky Note.</p>
+                        </div>
+                    </div>
+
+                    <!-- Banner de Actualización Exitosa -->
+                    <div class="alert alert-success" role="alert" invisible="not last_extension_applied">
+                        <h4 class="alert-heading">✅ Workflow Actualizado</h4>
+                        <p><strong>Este workflow ha sido actualizado con extensiones.</strong></p>
+                        <hr/>
+                        <table class="table table-sm table-borderless mb-0">
+                            <tr>
+                                <th width="200px">Última Extensión:</th>
+                                <td><strong><field name="last_extension_applied" nolabel="1"/></strong></td>
+                            </tr>
+                            <tr>
+                                <th>Fecha de Actualización:</th>
+                                <td><field name="extension_applied_date" nolabel="1" widget="datetime"/></td>
+                            </tr>
+                            <tr>
+                                <th>Método Aplicado:</th>
+                                <td>
+                                    <field name="extension_applied_strategy" nolabel="1" widget="badge"
+                                           decoration-success="extension_applied_strategy == 'full_replace'"
+                                           decoration-warning="extension_applied_strategy == 'manual_merge'"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Total de Actualizaciones:</th>
+                                <td><field name="total_extensions_applied" nolabel="1"/> extensiones aplicadas</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- SECCIÓN DE ACCESO A N8N - SIEMPRE VISIBLE -->
+                    <notebook>
+                        <page string="🔐 Acceso a N8N" name="access_info">
+                            <!-- Alerta para USUARIOS NUEVOS con URL de invitación -->
+                            <div class="alert alert-info" role="alert" invisible="not is_new_n8n_user or not n8n_invite_url">
+                                <h4 class="alert-heading">🎉 ¡Bienvenido a N8N!</h4>
+                                <p><strong>Se ha creado una cuenta nueva de N8N para ti.</strong></p>
+                                <p>Para empezar, sigue estos pasos:</p>
+                                <ol>
+                                    <li>Haz clic en el enlace de invitación abajo para activar tu cuenta</li>
+                                    <li>Configura tu contraseña personal</li>
+                                    <li>Una vez dentro, genera una API Key</li>
+                                    <li>Regresa aquí y usa el botón 'Configurar y Sincronizar'</li>
+                                </ol>
+                                <hr/>
+                                <field name="n8n_invite_url_clean" widget="url" string="🔗 Enlace de Invitación a N8N" nolabel="1" class="h5"/>
+                            </div>
+
+                            <!-- Alerta para USUARIOS NUEVOS sin URL de invitación (fallback con credenciales) -->
+                            <div class="alert alert-warning" role="alert" invisible="not is_new_n8n_user or n8n_invite_url">
+                                <h4 class="alert-heading">🎉 Credenciales de Acceso a N8N</h4>
+                                <p><strong>Se ha creado una cuenta nueva de N8N para ti.</strong></p>
+                                <p class="text-danger"><strong>⚠️ IMPORTANTE: Guarda estas credenciales. N8N no tiene configurado el correo para recuperación de contraseñas.</strong></p>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <table class="table table-bordered">
+                                            <tr invisible="not n8n_invite_url_clean">
+                                                <th width="30%">🔗 Link de Invitación:</th>
+                                                <td><field name="n8n_invite_url_clean" widget="url" nolabel="1"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th width="30%">URL de Login:</th>
+                                                <td><field name="n8n_login_url" widget="url" nolabel="1"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Email / Usuario:</th>
+                                                <td><span class="text-monospace font-weight-bold"><field name="n8n_user_email" nolabel="1"/></span></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Contraseña Inicial:</th>
+                                                <td><span class="text-monospace font-weight-bold text-danger"><field name="n8n_user_password" nolabel="1"/></span></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <p class="mb-0"><em>💡 Recomendación: Cambia tu contraseña después del primer acceso desde N8N (User Menu → Settings).</em></p>
+                            </div>
+
+                            <!-- Alerta para USUARIOS EXISTENTES -->
+                            <div class="alert alert-success" role="alert" invisible="is_new_n8n_user">
+                                <h4 class="alert-heading">👤 Acceso a tu cuenta de N8N</h4>
+                                <p><strong>Ya tienes una cuenta de N8N activa.</strong></p>
+                                <p invisible="not n8n_invite_url_clean" class="text-info"><strong>🔔 Aún no has aceptado la invitación. Usa el link de invitación abajo para configurar tu cuenta.</strong></p>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <table class="table table-bordered">
+                                            <tr invisible="not n8n_invite_url_clean">
+                                                <th width="30%">🔗 Link de Invitación:</th>
+                                                <td><field name="n8n_invite_url_clean" widget="url" nolabel="1"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th width="30%">URL de Login:</th>
+                                                <td><field name="n8n_login_url" widget="url" nolabel="1"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Email / Usuario:</th>
+                                                <td><span class="text-monospace font-weight-bold"><field name="n8n_user_email" nolabel="1"/></span></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Contraseña:</th>
+                                                <td><em>Usa tu contraseña personal de N8N</em></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <p class="mb-0">
+                                    <strong>Para sincronizar este workflow:</strong><br/>
+                                    1. <span invisible="not n8n_invite_url_clean">Si aún no aceptaste la invitación, haz clic en el link de invitación arriba<br/>2. </span>Accede a N8N con tu contraseña<br/>
+                                    <span invisible="not n8n_invite_url_clean">3</span><span invisible="n8n_invite_url_clean">2</span>. Si no tienes una API Key, genera una en N8N (Settings → API)<br/>
+                                    <span invisible="not n8n_invite_url_clean">4</span><span invisible="n8n_invite_url_clean">3</span>. Usa el botón 'Configurar y Sincronizar' con tu API Key
+                                </p>
+                            </div>
+                        </page>
+
+                        <page string="📄 Detalles Técnicos" name="technical_details" invisible="state != 'synced'">
+                            <group>
+                                <field name="template_json" widget="ace" options="{'mode': 'json'}" nolabel="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_n8n_workflow_instance" model="ir.actions.act_window">
+        <field name="name">Mis Automatizaciones</field>
+        <field name="res_model">n8n.workflow.instance</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

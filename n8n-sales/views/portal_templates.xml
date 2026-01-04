@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Agregar contador al home del portal -->
+    <template id="portal_my_home_n8n" name="Portal N8N" inherit_id="portal.portal_my_home" priority="50">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'fa fa-cogs'"/>
+                <t t-set="title">Mis Automatizaciones</t>
+                <t t-set="url" t-value="'/my/n8n'"/>
+                <t t-set="text">Gestiona tus workflows de N8N</t>
+                <t t-set="placeholder_count" t-value="'n8n_workflow_count'"/>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Breadcrumbs -->
+    <template id="portal_my_home_menu_n8n" name="Portal Menu N8N" inherit_id="portal.portal_breadcrumbs" priority="50">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'n8n_workflows'" class="breadcrumb-item active">Mis Automatizaciones</li>
+            <li t-if="page_name == 'n8n_workflow_detail'" class="breadcrumb-item">
+                <a href="/my/n8n">Mis Automatizaciones</a>
+            </li>
+            <li t-if="page_name == 'n8n_workflow_detail'" class="breadcrumb-item active" t-esc="workflow.name"/>
+            <li t-if="page_name == 'n8n_sync_form'" class="breadcrumb-item">
+                <a href="/my/n8n">Mis Automatizaciones</a>
+            </li>
+            <li t-if="page_name == 'n8n_sync_form'" class="breadcrumb-item">
+                <a t-attf-href="/my/n8n/#{workflow.id}" t-esc="workflow.name"/>
+            </li>
+            <li t-if="page_name == 'n8n_sync_form'" class="breadcrumb-item active">Sincronizar</li>
+        </xpath>
+    </template>
+
+    <!-- Lista de Workflows -->
+    <template id="portal_my_n8n_workflows" name="Mis Automatizaciones N8N">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Mis Automatizaciones N8N</t>
+            </t>
+
+            <t t-if="not workflows">
+                <div class="alert alert-info" role="alert">
+                    <h5>No tienes automatizaciones</h5>
+                    <p class="mb-0">
+                        Cuando compres un producto de automatización N8N, aparecerá aquí.
+                    </p>
+                </div>
+            </t>
+
+            <t t-if="workflows">
+                <div class="card">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Automatización</th>
+                                <th>Producto</th>
+                                <th>Fecha</th>
+                                <th>Estado</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="workflows" t-as="wf">
+                                <tr>
+                                    <td>
+                                        <a t-attf-href="/my/n8n/#{wf.id}">
+                                            <strong t-esc="wf.name"/>
+                                        </a>
+                                        <t t-if="wf.is_extension">
+                                            <span class="badge bg-info ms-1">Extensión</span>
+                                        </t>
+                                    </td>
+                                    <td t-esc="wf.product_id.name"/>
+                                    <td t-esc="wf.create_date" t-options="{'widget': 'date'}"/>
+                                    <td>
+                                        <span t-if="wf.state == 'pending'" class="badge bg-warning">
+                                            <i class="fa fa-clock-o"></i> Pendiente
+                                        </span>
+                                        <span t-if="wf.state == 'synced'" class="badge bg-success">
+                                            <i class="fa fa-check"></i> Sincronizado
+                                        </span>
+                                    </td>
+                                    <td class="text-end">
+                                        <a t-attf-href="/my/n8n/#{wf.id}" class="btn btn-sm btn-primary">
+                                            Ver Detalles
+                                        </a>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="d-flex justify-content-center mt-4">
+                    <t t-call="portal.pager"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- Detalle de Workflow -->
+    <template id="portal_n8n_workflow_detail" name="Detalle Workflow N8N">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="False"/>
+
+            <div class="container py-4">
+                <!-- Mensajes de éxito/error -->
+                <t t-if="request.params.get('success') == 'synced'">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>¡Éxito!</strong> Tu workflow ha sido sincronizado correctamente.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"/>
+                    </div>
+                </t>
+                <t t-if="request.params.get('success') == 'extension_applied'">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>¡Éxito!</strong> La extensión ha sido aplicada correctamente.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"/>
+                    </div>
+                </t>
+                <t t-if="request.params.get('error')">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Error:</strong> <t t-esc="request.params.get('error')"/>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"/>
+                    </div>
+                </t>
+
+                <!-- Header -->
+                <div class="row mb-4">
+                    <div class="col-md-8">
+                        <h2 t-esc="workflow.name"/>
+                        <p class="text-muted">
+                            Producto: <t t-esc="workflow.product_id.name"/>
+                            <t t-if="workflow.is_extension">
+                                <span class="badge bg-info ms-2">Extensión</span>
+                            </t>
+                        </p>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <span t-if="workflow.state == 'pending'" class="badge bg-warning fs-5">
+                            <i class="fa fa-clock-o"></i> Pendiente de Sincronizar
+                        </span>
+                        <span t-if="workflow.state == 'synced'" class="badge bg-success fs-5">
+                            <i class="fa fa-check"></i> Sincronizado
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Alerta para workflow pendiente -->
+                <t t-if="workflow.state == 'pending' and not workflow.is_extension">
+                    <div class="alert alert-warning" role="alert">
+                        <h4 class="alert-heading"><i class="fa fa-exclamation-triangle"></i> Acción Requerida</h4>
+                        <p>Este workflow está pendiente de sincronizar. Para activarlo, sigue estos pasos:</p>
+                        <ol>
+                            <li>Accede a tu cuenta de N8N usando las credenciales de abajo</li>
+                            <li>Genera una API Key en N8N (Settings → API)</li>
+                            <li>Haz clic en el botón "Sincronizar Workflow"</li>
+                            <li>Ingresa tu API Key y los datos de conexión a tu Odoo</li>
+                        </ol>
+                        <hr/>
+                        <a t-attf-href="/my/n8n/#{workflow.id}/sync" class="btn btn-warning btn-lg">
+                            <i class="fa fa-sync"></i> Sincronizar Workflow
+                        </a>
+                    </div>
+                </t>
+
+                <!-- Alerta para extensión pendiente -->
+                <t t-if="workflow.state == 'pending' and workflow.is_extension">
+                    <div class="alert alert-info" role="alert">
+                        <h4 class="alert-heading"><i class="fa fa-puzzle-piece"></i> Extensión Pendiente</h4>
+                        <p>Esta es una extensión para tu workflow base.
+                           <t t-if="workflow.base_workflow_instance_id">
+                               Workflow base: <strong t-esc="workflow.base_workflow_instance_id.name"/>
+                           </t>
+                        </p>
+                        <t t-if="workflow.merge_strategy == 'full_replace'">
+                            <p><span class="badge bg-success">Reemplazo Completo</span> - No se detectaron modificaciones en tu workflow base.</p>
+                        </t>
+                        <t t-if="workflow.merge_strategy == 'manual_merge'">
+                            <p><span class="badge bg-warning">Merge Manual</span> - Se detectaron modificaciones. Los nodos nuevos se añadirán sin conectar.</p>
+                        </t>
+                        <hr/>
+                        <form t-attf-action="/my/n8n/#{workflow.id}/apply-extension" method="POST">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fa fa-puzzle-piece"></i> Aplicar Extensión
+                            </button>
+                        </form>
+                    </div>
+                </t>
+
+                <!-- Credenciales de N8N -->
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="fa fa-key"></i> Acceso a N8N</h5>
+                    </div>
+                    <div class="card-body">
+                        <t t-if="workflow.is_new_n8n_user and workflow.n8n_invite_url_clean">
+                            <div class="alert alert-success">
+                                <h6><i class="fa fa-user-plus"></i> ¡Cuenta Nueva Creada!</h6>
+                                <p>Se ha creado una cuenta de N8N para ti. Usa el enlace de invitación para activarla:</p>
+                                <a t-att-href="workflow.n8n_invite_url_clean" target="_blank" class="btn btn-success">
+                                    <i class="fa fa-external-link"></i> Activar mi Cuenta N8N
+                                </a>
+                            </div>
+                        </t>
+
+                        <table class="table table-bordered">
+                            <tr t-if="workflow.n8n_invite_url_clean">
+                                <th style="width: 30%;">Link de Invitación</th>
+                                <td>
+                                    <a t-att-href="workflow.n8n_invite_url_clean" target="_blank">
+                                        <t t-esc="workflow.n8n_invite_url_clean"/>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>URL de Login</th>
+                                <td>
+                                    <a t-if="workflow.n8n_login_url" t-att-href="workflow.n8n_login_url" target="_blank">
+                                        <t t-esc="workflow.n8n_login_url"/>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Email / Usuario</th>
+                                <td><code t-esc="workflow.n8n_user_email"/></td>
+                            </tr>
+                            <tr t-if="workflow.is_new_n8n_user and workflow.n8n_user_password">
+                                <th>Contraseña Temporal</th>
+                                <td>
+                                    <code class="text-danger" t-esc="workflow.n8n_user_password"/>
+                                    <br/>
+                                    <small class="text-muted">⚠️ Cambia esta contraseña después del primer acceso</small>
+                                </td>
+                            </tr>
+                            <tr t-if="n8n_settings_url">
+                                <th>Generar API Key</th>
+                                <td>
+                                    <a t-att-href="n8n_settings_url" target="_blank" class="btn btn-sm btn-outline-primary">
+                                        <i class="fa fa-key"></i> Ir a Settings → API
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Información del Workflow (si está sincronizado) -->
+                <t t-if="workflow.state == 'synced'">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="fa fa-info-circle"></i> Información del Workflow</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table class="table table-sm">
+                                        <tr>
+                                            <th>ID en N8N:</th>
+                                            <td><code t-esc="workflow.n8n_instance_id"/></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Plantilla Base:</th>
+                                            <td t-esc="workflow.template_workflow_id"/>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-md-6">
+                                    <t t-if="workflow.total_extensions_applied">
+                                        <table class="table table-sm">
+                                            <tr>
+                                                <th>Extensiones Aplicadas:</th>
+                                                <td><span class="badge bg-info" t-esc="workflow.total_extensions_applied"/></td>
+                                            </tr>
+                                            <tr t-if="workflow.last_extension_applied">
+                                                <th>Última Extensión:</th>
+                                                <td t-esc="workflow.last_extension_applied"/>
+                                            </tr>
+                                            <tr t-if="workflow.extension_applied_date">
+                                                <th>Fecha:</th>
+                                                <td t-esc="workflow.extension_applied_date" t-options="{'widget': 'datetime'}"/>
+                                            </tr>
+                                        </table>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Acceso rápido -->
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <h5>Acceso Rápido</h5>
+                            <a t-if="workflow.n8n_login_url" t-att-href="workflow.n8n_login_url" target="_blank"
+                               class="btn btn-primary btn-lg me-2">
+                                <i class="fa fa-external-link"></i> Abrir N8N
+                            </a>
+                        </div>
+                    </div>
+                </t>
+
+                <!-- Información de la orden -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fa fa-shopping-cart"></i> Información de Compra</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-sm">
+                            <tr>
+                                <th style="width: 30%;">Orden:</th>
+                                <td>
+                                    <a t-if="workflow.order_id" t-attf-href="/my/orders/#{workflow.order_id.id}">
+                                        <t t-esc="workflow.order_id.name"/>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Producto:</th>
+                                <td t-esc="workflow.product_id.name"/>
+                            </tr>
+                            <tr>
+                                <th>Fecha:</th>
+                                <td t-esc="workflow.create_date" t-options="{'widget': 'datetime'}"/>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Botón volver -->
+                <div class="text-center">
+                    <a href="/my/n8n" class="btn btn-secondary">
+                        <i class="fa fa-arrow-left"></i> Volver a Mis Automatizaciones
+                    </a>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Formulario de Sincronización -->
+    <template id="portal_n8n_sync_form" name="Sincronizar Workflow N8N">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="False"/>
+
+            <div class="container py-4">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <!-- Mensajes de error -->
+                        <t t-if="error == 'missing_fields'">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Error:</strong> Todos los campos son obligatorios.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"/>
+                            </div>
+                        </t>
+                        <t t-if="error and error != 'missing_fields'">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Error:</strong> <t t-esc="error"/>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"/>
+                            </div>
+                        </t>
+
+                        <div class="card">
+                            <div class="card-header bg-primary text-white">
+                                <h4 class="mb-0"><i class="fa fa-sync"></i> Sincronizar Workflow</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="alert alert-info">
+                                    <h5>Instrucciones</h5>
+                                    <ol class="mb-0">
+                                        <li>Asegúrate de haber activado tu cuenta en N8N</li>
+                                        <li>Genera una API Key en N8N (Settings → API → Create API Key)</li>
+                                        <li>Ingresa tu API Key abajo</li>
+                                        <li>Ingresa los datos de conexión a <strong>TU Odoo</strong> (donde se conectará la automatización)</li>
+                                    </ol>
+                                </div>
+
+                                <form t-attf-action="/my/n8n/#{workflow.id}/sync" method="POST">
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                                    <h5 class="mt-4 mb-3">1. Tu API Key de N8N</h5>
+                                    <div class="mb-4">
+                                        <input type="password" name="n8n_api_key" class="form-control form-control-lg"
+                                               placeholder="Pega aquí tu API Key de N8N..." required="required"/>
+                                        <small class="text-muted">
+                                            Genera tu API Key en N8N: Settings → API → Create API Key
+                                        </small>
+                                    </div>
+
+                                    <h5 class="mb-3">2. Conexión a tu Odoo</h5>
+                                    <p class="text-muted">
+                                        Ingresa los datos de TU instancia de Odoo donde la automatización se conectará.
+                                    </p>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">URL de tu Odoo *</label>
+                                        <input type="url" name="odoo_url" class="form-control"
+                                               placeholder="https://miempresa.odoo.com" required="required"/>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Base de Datos *</label>
+                                        <input type="text" name="odoo_db" class="form-control"
+                                               placeholder="nombre_base_de_datos" required="required"/>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Usuario *</label>
+                                        <input type="text" name="odoo_user" class="form-control"
+                                               placeholder="admin@miempresa.com" required="required"/>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Contraseña / API Key *</label>
+                                        <input type="password" name="odoo_password" class="form-control"
+                                               placeholder="Tu contraseña o API Key de Odoo" required="required"/>
+                                    </div>
+
+                                    <hr/>
+
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary btn-lg">
+                                            <i class="fa fa-check"></i> Sincronizar Workflow
+                                        </button>
+                                        <a t-attf-href="/my/n8n/#{workflow.id}" class="btn btn-secondary">
+                                            Cancelar
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

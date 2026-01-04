@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Main Menu -->
+    <menuitem id="saas_team_menu_root"
+              name="Equipo SaaS"
+              web_icon="saas_team,static/description/icon.png"
+              sequence="45"/>
+
+    <!-- Colaboradores -->
+    <menuitem id="saas_team_menu_collaborators"
+              name="Colaboradores"
+              parent="saas_team_menu_root"
+              sequence="10"/>
+
+    <menuitem id="saas_team_menu_collaborators_all"
+              name="Todos los Colaboradores"
+              parent="saas_team_menu_collaborators"
+              action="saas_collaborator_action"
+              sequence="10"/>
+
+    <menuitem id="saas_team_menu_collaborators_candidates"
+              name="Pipeline de Candidatos"
+              parent="saas_team_menu_collaborators"
+              action="saas_collaborator_candidates_action"
+              sequence="20"/>
+
+    <!-- Pagos -->
+    <menuitem id="saas_team_menu_payments"
+              name="Pagos"
+              parent="saas_team_menu_root"
+              sequence="20"/>
+
+    <menuitem id="saas_team_menu_payments_all"
+              name="Todos los Pagos"
+              parent="saas_team_menu_payments"
+              action="saas_payment_action"
+              sequence="10"/>
+
+    <menuitem id="saas_team_menu_payments_pending"
+              name="Pendientes de Pago"
+              parent="saas_team_menu_payments"
+              action="saas_payment_pending_action"
+              sequence="20"/>
+
+    <!-- Configuración -->
+    <menuitem id="saas_team_menu_config"
+              name="Configuración"
+              parent="saas_team_menu_root"
+              sequence="100"
+              groups="base.group_system"/>
+
+    <menuitem id="saas_team_menu_skills"
+              name="Habilidades"
+              parent="saas_team_menu_config"
+              action="saas_skill_action"
+              sequence="10"/>
+
+</odoo>
