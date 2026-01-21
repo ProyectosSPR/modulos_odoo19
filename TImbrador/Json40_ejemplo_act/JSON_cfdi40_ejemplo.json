@@ -1,0 +1,89 @@
+{
+    "Comprobante": {
+        "Version": "4.0",
+        "Serie": "LC-J",
+        "Folio": "LC-10912",
+        "Fecha": "2024-11-21T12:31:17",
+        "NoCertificado": "30001000000500003416",
+        "SubTotal": "1.00",
+        "Moneda": "MXN",
+        "Total": "1.16",
+        "FormaPago":"01",
+        "TipoDeComprobante": "I",
+        "MetodoPago": "PUE",
+        "Exportacion":"01",
+        "LugarExpedicion": "80349",
+        "CfdiRelacionados": [
+          {
+            "TipoRelacion": "04",
+            "CfdiRelacionado": [
+              "1648AC42-28E4-4047-818A-199A6950FACC"
+            ]
+          },
+          {
+            "TipoRelacion": "02",
+            "CfdiRelacionado": [
+              "4a646b3f-27d5-41d5-9a38-39488b3929bb"
+            ]
+          }
+        ],
+        "Emisor":
+        {
+            "Rfc": "EKU9003173C9",
+            "Nombre": "ESCUELA KEMPER URGATE",
+            "RegimenFiscal": "601"
+        },
+        "Receptor":
+        {
+            "Rfc": "XAXX010101000",
+            "Nombre": "Publico en General",
+            "DomicilioFiscalReceptor":"80349",
+            "RegimenFiscalReceptor":"616",
+            "UsoCFDI": "S01"
+        },
+        "Conceptos":
+        [
+            {
+                "ClaveProdServ": "40142020",
+                "Cantidad": "1.0",
+                "ClaveUnidad": "MTR",
+                "Descripcion": "Base64 encoding schemes are commonly used when there is a need to encode binary data, especially when that data needs to be stored and transferred over media that are designed to deal with text. This encoding helps to ensure that the data remains intact without modification during transport. Base64 is used commonly in a number of applications including email via MIME, as well as storing complex data in XML or JSON.",
+                "ValorUnitario": "1.00",
+                "Importe": "1.00",
+                "ObjetoImp":"02",
+                "Impuestos":
+                {
+                    "Traslados":
+                    [
+                        {
+                            "Base": "1.00",
+                            "Impuesto": "002",
+                            "TipoFactor": "Tasa",
+                            "TasaOCuota": "0.160000",
+                            "Importe": "0.16"
+                        }
+                    ]
+                }
+            }
+        ],
+        "Impuestos":
+        {
+            "TotalImpuestosTrasladados": "0.16",
+            "Traslados":
+            [
+                {
+                    "Base":"1.00",
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "0.16"
+                }
+            ]
+        }
+    },
+    "CamposPDF": {
+    "tipoComprobante": "FACTURA",
+    "Comentarios": "Aquí van los comentarios de la factura"
+    },
+    "logo" : ""
+}

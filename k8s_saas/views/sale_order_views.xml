@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit Sale Order Form -->
+    <record id="sale_order_form_view_k8s" model="ir.ui.view">
+        <field name="name">sale.order.form.k8s</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_delivery']" position="after">
+                <button type="object"
+                        name="action_view_k8s_instances"
+                        class="oe_stat_button"
+                        icon="fa-server"
+                        invisible="k8s_instance_count == 0">
+                    <field name="k8s_instance_count" widget="statinfo" string="K8s Instancias"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Sale Order Line Tree - show K8s instance link -->
+    <record id="sale_order_line_tree_view_k8s" model="ir.ui.view">
+        <field name="name">sale.order.line.tree.k8s</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_uom_qty']" position="after">
+                <field name="k8s_instance_id" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

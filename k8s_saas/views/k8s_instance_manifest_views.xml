@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Tree View -->
+    <record id="k8s_instance_manifest_view_list" model="ir.ui.view">
+        <field name="name">k8s.instance.manifest.list</field>
+        <field name="model">k8s.instance.manifest</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="applied_date"/>
+                <field name="instance_id"/>
+                <field name="manifest_type" widget="badge"/>
+                <field name="k8s_resource_name"/>
+                <field name="k8s_namespace"/>
+                <field name="state" widget="badge" decoration-success="state == 'applied'"
+                       decoration-danger="state == 'error'" decoration-muted="state == 'deleted'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="k8s_instance_manifest_view_form" model="ir.ui.view">
+        <field name="name">k8s.instance.manifest.form</field>
+        <field name="model">k8s.instance.manifest</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_reapply" type="object" string="Re-aplicar"
+                            class="btn-primary" invisible="state != 'applied'"/>
+                    <button name="action_delete_from_cluster" type="object" string="Eliminar del Cluster"
+                            class="btn-danger" invisible="state not in ('applied',)"/>
+                    <field name="state" widget="statusbar" statusbar_visible="pending,applied,deleted"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="instance_id"/>
+                            <field name="template_id"/>
+                            <field name="manifest_type"/>
+                        </group>
+                        <group>
+                            <field name="k8s_resource_name"/>
+                            <field name="k8s_namespace"/>
+                            <field name="applied_date"/>
+                            <field name="deleted_date" invisible="not deleted_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="YAML Aplicado" name="yaml">
+                            <field name="yaml_applied" widget="ace" options="{'mode': 'yaml'}" readonly="1"/>
+                        </page>
+                        <page string="Errores" name="errors" invisible="not error_message">
+                            <field name="error_message" readonly="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="k8s_instance_manifest_action" model="ir.actions.act_window">
+        <field name="name">Manifiestos Aplicados</field>
+        <field name="res_model">k8s.instance.manifest</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No hay manifiestos aplicados
+            </p>
+        </field>
+    </record>
+
+</odoo>

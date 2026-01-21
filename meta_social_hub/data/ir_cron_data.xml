@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Cron job to sync WhatsApp conversations periodically -->
+    <record id="ir_cron_sync_whatsapp_conversations" model="ir.cron">
+        <field name="name">Meta Social Hub: Sync WhatsApp Conversations</field>
+        <field name="model_id" ref="model_meta_channel"/>
+        <field name="state">code</field>
+        <field name="code">
+# Sync all WhatsApp channels
+channels = env['meta.channel'].search([('channel_type', '=', 'whatsapp')])
+for channel in channels:
+    if channel.whatsapp_account_id:
+        channel.whatsapp_account_id._sync_conversations_to_meta_hub()
+        </field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">hours</field>
+        <field name="numbercall">-1</field>
+        <field name="active" eval="True"/>
+        <field name="doall" eval="False"/>
+    </record>
+
+    <!-- Cron job to update conversation statistics -->
+    <record id="ir_cron_update_conversation_stats" model="ir.cron">
+        <field name="name">Meta Social Hub: Update Conversation Statistics</field>
+        <field name="model_id" ref="model_meta_conversation"/>
+        <field name="state">code</field>
+        <field name="code">
+# Recompute stats for active conversations
+conversations = env['meta.conversation'].search([
+    ('state', 'in', ['new', 'open', 'pending'])
+])
+# Trigger recomputation by reading computed fields
+for conv in conversations:
+    _ = conv.unread_count
+    _ = conv.last_message_date
+        </field>
+        <field name="interval_number">15</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="active" eval="True"/>
+        <field name="doall" eval="False"/>
+    </record>
+
+    <!-- Cron job to send queued messages -->
+    <record id="ir_cron_send_queued_messages" model="ir.cron">
+        <field name="name">Meta Social Hub: Send Queued Messages</field>
+        <field name="model_id" ref="model_meta_message"/>
+        <field name="state">code</field>
+        <field name="code">
+# Send messages stuck in outgoing state
+messages = env['meta.message'].search([
+    ('state', '=', 'outgoing'),
+    ('create_date', '&gt;=', (datetime.datetime.now() - datetime.timedelta(hours=1)).strftime('%Y-%m-%d %H:%M:%S'))
+], limit=50)
+for msg in messages:
+    try:
+        msg.action_send()
+    except Exception as e:
+        msg.write({'state': 'failed', 'failure_reason': str(e)})
+        </field>
+        <field name="interval_number">5</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="active" eval="True"/>
+        <field name="doall" eval="False"/>
+    </record>
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menú Principal -->
+    <menuitem id="license_test_menu_root"
+              name="License Test Server"
+              web_icon="license_test_server,static/description/icon.png"
+              sequence="100"/>
+
+    <!-- Submenús -->
+    <menuitem id="license_test_menu_config"
+              name="Configuración"
+              parent="license_test_menu_root"
+              action="license_test_config_action"
+              sequence="10"/>
+
+    <menuitem id="license_test_menu_logs"
+              name="Solicitudes Recibidas"
+              parent="license_test_menu_root"
+              action="license_request_log_action"
+              sequence="20"/>
+</odoo>

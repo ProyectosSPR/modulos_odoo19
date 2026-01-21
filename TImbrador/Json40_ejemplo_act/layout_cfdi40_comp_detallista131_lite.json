@@ -1,0 +1,284 @@
+{
+  "Comprobante": {
+    "Version": "4.0",
+    "Serie": "",
+    "Folio": "",
+    "Fecha": "",
+    "FormaPago": "",
+    "NoCertificado": "",
+    "CondicionesDePago": "",
+    "SubTotal": "",
+    "Descuento": "",
+    "Moneda": "",
+    "TipoCambio": "",
+    "Total": "",
+    "TipoDeComprobante": "",
+    "MetodoPago": "",
+    "LugarExpedicion": "",
+    "Confirmacion": "",
+    "CfdiRelacionados": {
+      "TipoRelacion": "",
+      "CfdiRelacionado": [
+        "UUID-1",
+        "UUID-2",
+        "UUID-N"
+      ]
+    },
+    "Emisor": {
+      "Rfc": "",
+      "Nombre": "",
+      "RegimenFiscal": ""
+    },
+    "Receptor": {
+      "Rfc": "",
+      "Nombre": "",
+      "ResidenciaFiscal": "",
+      "NumRegIdTrib": "",
+      "UsoCFDI": ""
+    },
+    "Conceptos": [
+      {
+        "ClaveProdServ": "",
+        "NoIdentificacion": "",
+        "Cantidad": "",
+        "ClaveUnidad": "",
+        "Unidad": "",
+        "Descripcion": "",
+        "ValorUnitario": "",
+        "Importe": "",
+        "Descuento": "",
+        "Impuestos": {
+          "Traslados": [
+            {
+              "Base": "",
+              "Impuesto": "",
+              "TipoFactor": "",
+              "TasaOCuota": "",
+              "Importe": ""
+            }
+          ],
+          "Retenciones": [
+            {
+              "Base": "",
+              "Impuesto": "",
+              "TipoFactor": "",
+              "TasaOCuota": "",
+              "Importe": ""
+            }
+          ]
+        },
+        "InformacionAduanera": [
+          "NumeroPedimento-1",
+          "NumeroPedimento-2",
+          "NumeroPedimento-N"
+        ]
+      }
+    ],
+    "Impuestos": {
+      "TotalImpuestosRetenidos": "",
+      "TotalImpuestosTrasladados": "",
+      "Retenciones": [
+        {
+          "Impuesto": "",
+          "Importe": ""
+        }
+      ],
+      "Traslados": [
+        {
+          "Impuesto": "",
+          "TipoFactor": "",
+          "TasaOCuota": "",
+          "Importe": ""
+        }
+      ]
+    },
+    "Complemento": [
+      {
+        "detallista": {
+          "type": "",
+          "contentVersion": "1.3.1",
+          "documentStructureVersion": "",
+          "documentStatus": "",
+          "requestForPaymentIdentification": {
+            "entityType": "valor_elem"
+          },
+          "specialInstruction": [
+            {
+              "code": "",
+              "text": [
+                "text1",
+                "text2",
+                "text3"
+              ]
+            }
+          ],
+          "orderIdentification": {
+            "referenceIdentification": [
+              {
+                "_referenceIdentification": "valor_elem",
+                "type": ""
+              }
+            ],
+            "ReferenceDate": "valor_elem"
+          },
+          "AdditionalInformation": {
+            "referenceIdentification": [
+              {
+                "_referenceIdentification": "valor_elem",
+                "type": ""
+              }
+            ]
+          },
+          "DeliveryNote": {
+            "referenceIdentification": [
+              "referenceIdentification1",
+              "referenceIdentification2",
+              "referenceIdentification3"
+            ],
+            "ReferenceDate": "valor_elem"
+          },
+          "buyer": {
+            "gln": "valor_elem",
+            "contactInformation": {
+              "personOrDepartmentName": {
+                "text": "valor_elem"
+              }
+            }
+          },
+          "seller": {
+            "gln": "valor_elem",
+            "alternatePartyIdentification": {
+              "_alternatePartyIdentification": "valor_elem",
+              "type": ""
+            }
+          },
+          "shipTo": {
+            "gln": "valor_elem",
+            "nameAndAddress": [
+              {
+                "name": "valor_elem",
+                "streetAddressOne": "valor_elem",
+                "city": "valor_elem",
+                "postalCode": "valor_elem"
+              }
+            ]
+          },
+          "InvoiceCreator": {
+            "gln": "valor_elem",
+            "alternatePartyIdentification": {
+              "_alternatePartyIdentification": "valor_elem",
+              "type": ""
+            },
+            "nameAndAddress": [
+              {
+                "name": "valor_elem",
+                "streetAddressOne": "valor_elem",
+                "city": "valor_elem",
+                "postalCode": "valor_elem"
+              }
+            ]
+          },
+          "Customs": [
+            {
+              "gln": "valor_elem"
+            }
+          ],
+          "currency": [
+            {
+              "currencyISOCode": "",
+              "currencyFunction": [
+                "currencyFunction1",
+                "currencyFunction2",
+                "currencyFunction3"
+              ],
+              "rateOfChange": "valor_elem"
+            }
+          ],
+          "paymentTerms": {
+            "paymentTermsEvent": "",
+            "PaymentTermsRelationTime": "",
+            "netPayment": {
+              "netPaymentTermsType": "",
+              "paymentTimePeriod": {
+                "timePeriodDue": {
+                  "timePeriod": "",
+                  "value": "valor_elem"
+                }
+              }
+            },
+            "discountPayment": {
+              "discountType": "",
+              "percentage": "valor_elem"
+            }
+          },
+          "shipmentDetail": "valor_elem",
+          "allowanceCharge": [
+            {
+              "allowanceChargeType": "",
+              "settlementType": "",
+              "sequenceNumber": "",
+              "specialServicesType": "valor_elem",
+              "monetaryAmountOrPercentage": {
+                "rate": {
+                  "base": "",
+                  "percentage": "valor_elem"
+                }
+              }
+            }
+          ],
+          "lineItem": [
+            {
+              "type": "",
+              "number": "",
+              "tradeItemIdentification": {
+                "gtin": "valor_elem"
+              },
+              "alternateTradeItemIdentification": [
+                {
+                  "_alternateTradeItemIdentification": "valor_elem",
+                  "type": ""
+                }
+              ],
+              "tradeItemDescriptionInformation": {
+                "language": "",
+                "longText": "valor_elem"
+              },
+              "invoicedQuantity": {
+                "_invoicedQuantity": "valor_elem",
+                "unitOfMeasure": ""
+              },
+              "grossPrice": {
+                "Amount": "valor_elem"
+              },
+              "netPrice": {
+                "Amount": "valor_elem"
+              },
+              "totalLineAmount": {
+                "grossAmount": {
+                  "Amount": "valor_elem"
+                },
+                "netAmount": {
+                  "Amount": "valor_elem"
+                }
+              }
+            }
+          ],
+          "totalAmount": {
+            "Amount": "valor_elem"
+          },
+          "TotalAllowanceCharge": [
+            {
+              "allowanceOrChargeType": "",
+              "specialServicesType": "valor_elem",
+              "Amount": "valor_elem"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "CamposPDF": {
+    "tipoComprobante": "",
+    "Comentarios": ""
+  }
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="meta_create_ticket_wizard_view_form" model="ir.ui.view">
+        <field name="name">meta.create.ticket.wizard.form</field>
+        <field name="model">meta.create.ticket.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create Ticket">
+                <group>
+                    <group string="Ticket Information">
+                        <field name="name" placeholder="Ticket subject..."/>
+                        <field name="team_id"/>
+                        <field name="ticket_type_id" domain="[('helpdesk_team_ids', 'in', team_id)]"/>
+                        <field name="priority" widget="priority"/>
+                    </group>
+                    <group string="Contact">
+                        <field name="partner_id"/>
+                    </group>
+                </group>
+                <group>
+                    <group string="Source">
+                        <field name="conversation_id" readonly="1"/>
+                        <field name="include_conversation_history"/>
+                    </group>
+                </group>
+                <group string="Description">
+                    <field name="description" nolabel="1" widget="html" placeholder="Ticket description..."/>
+                </group>
+                <footer>
+                    <button name="action_create" type="object" string="Create Ticket" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

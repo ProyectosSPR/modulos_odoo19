@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Meta Channel Tree View -->
+    <record id="meta_channel_view_list" model="ir.ui.view">
+        <field name="name">meta.channel.list</field>
+        <field name="model">meta.channel</field>
+        <field name="arch" type="xml">
+            <list string="Channels">
+                <field name="name"/>
+                <field name="channel_type" widget="badge" decoration-info="channel_type == 'whatsapp'" decoration-primary="channel_type in ['facebook_page', 'facebook_messenger']" decoration-danger="channel_type == 'instagram'"/>
+                <field name="conversation_count"/>
+                <field name="unread_count" decoration-danger="unread_count > 0"/>
+                <field name="active_conversation_count"/>
+                <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Meta Channel Form View -->
+    <record id="meta_channel_view_form" model="ir.ui.view">
+        <field name="name">meta.channel.form</field>
+        <field name="model">meta.channel</field>
+        <field name="arch" type="xml">
+            <form string="Channel">
+                <header>
+                    <button name="action_test_connection" type="object" string="Test Connection" class="btn-secondary" icon="fa-plug"/>
+                    <button name="action_view_conversations" type="object" string="View Conversations" class="btn-primary" icon="fa-comments"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_conversations" type="object" class="oe_stat_button" icon="fa-comments">
+                            <field name="conversation_count" string="Conversations" widget="statinfo"/>
+                        </button>
+                        <button class="oe_stat_button" icon="fa-envelope" disabled="1">
+                            <field name="unread_count" string="Unread" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="Channel Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Channel Type">
+                            <field name="channel_type" widget="radio"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Company">
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Configuration" name="config">
+                            <group invisible="channel_type not in ['facebook_page', 'facebook_messenger', 'instagram']">
+                                <group string="Social Account Link">
+                                    <field name="social_account_id" domain="[('media_type', 'in', ['facebook', 'instagram'])]"/>
+                                    <field name="facebook_page_id" readonly="1" invisible="channel_type not in ['facebook_page', 'facebook_messenger']"/>
+                                </group>
+                                <group string="Messenger Settings" invisible="channel_type != 'facebook_messenger'">
+                                    <field name="messenger_enabled"/>
+                                    <field name="messenger_webhook_verified" readonly="1"/>
+                                </group>
+                                <group string="Instagram Settings" invisible="channel_type != 'instagram'">
+                                    <field name="instagram_account_id"/>
+                                    <field name="instagram_username" readonly="1"/>
+                                </group>
+                            </group>
+                            <group invisible="channel_type != 'whatsapp'">
+                                <group string="WhatsApp Account Link">
+                                    <field name="whatsapp_account_id"/>
+                                    <field name="whatsapp_phone_number" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Statistics" name="stats">
+                            <group>
+                                <group>
+                                    <field name="conversation_count" readonly="1"/>
+                                    <field name="active_conversation_count" readonly="1"/>
+                                </group>
+                                <group>
+                                    <field name="unread_count" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Meta Channel Kanban View -->
+    <record id="meta_channel_view_kanban" model="ir.ui.view">
+        <field name="name">meta.channel.kanban</field>
+        <field name="model">meta.channel</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="name"/>
+                <field name="channel_type"/>
+                <field name="conversation_count"/>
+                <field name="unread_count"/>
+                <field name="image"/>
+                <templates>
+                    <t t-name="card">
+                        <aside>
+                            <field name="image" widget="image" options="{'size': [48, 48]}"/>
+                        </aside>
+                        <main>
+                            <strong><field name="name"/></strong>
+                            <field name="channel_type" widget="badge"/>
+                            <div class="text-muted small">
+                                <span><field name="conversation_count"/> conversations</span>
+                                <span t-if="record.unread_count.raw_value > 0" class="badge text-bg-danger ms-1">
+                                    <field name="unread_count"/> unread
+                                </span>
+                            </div>
+                        </main>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_meta_channel" model="ir.actions.act_window">
+        <field name="name">Channels</field>
+        <field name="res_model">meta.channel</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No channels configured yet
+            </p>
+            <p>
+                Connect your Facebook Pages, Instagram accounts, and WhatsApp Business to start receiving messages.
+            </p>
+        </field>
+    </record>
+</odoo>

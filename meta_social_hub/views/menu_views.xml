@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main Menu -->
+    <menuitem id="menu_meta_social_hub_root"
+              name="Meta Social Hub"
+              web_icon="meta_social_hub,static/description/icon.png"
+              sequence="45"
+              groups="meta_social_hub.group_meta_social_user"/>
+
+    <!-- Inbox Section -->
+    <menuitem id="menu_meta_inbox"
+              name="Inbox"
+              parent="menu_meta_social_hub_root"
+              sequence="10"/>
+
+    <menuitem id="menu_meta_inbox_all"
+              name="All Conversations"
+              parent="menu_meta_inbox"
+              action="action_meta_inbox"
+              sequence="10"/>
+
+    <menuitem id="menu_meta_inbox_my"
+              name="My Conversations"
+              parent="menu_meta_inbox"
+              action="action_meta_inbox_my"
+              sequence="20"/>
+
+    <menuitem id="menu_meta_inbox_unassigned"
+              name="Unassigned"
+              parent="menu_meta_inbox"
+              action="action_meta_inbox_unassigned"
+              sequence="30"/>
+
+    <menuitem id="menu_meta_inbox_resolved"
+              name="Resolved"
+              parent="menu_meta_inbox"
+              action="action_meta_inbox_resolved"
+              sequence="40"/>
+
+    <!-- By Channel Section -->
+    <menuitem id="menu_meta_by_channel"
+              name="By Channel"
+              parent="menu_meta_social_hub_root"
+              sequence="20"/>
+
+    <menuitem id="menu_meta_channel_whatsapp"
+              name="WhatsApp"
+              parent="menu_meta_by_channel"
+              action="action_meta_inbox_whatsapp"
+              sequence="10"/>
+
+    <menuitem id="menu_meta_channel_messenger"
+              name="Messenger"
+              parent="menu_meta_by_channel"
+              action="action_meta_inbox_messenger"
+              sequence="20"/>
+
+    <menuitem id="menu_meta_channel_instagram"
+              name="Instagram"
+              parent="menu_meta_by_channel"
+              action="action_meta_inbox_instagram"
+              sequence="30"/>
+
+    <!-- Configuration Section -->
+    <menuitem id="menu_meta_configuration"
+              name="Configuration"
+              parent="menu_meta_social_hub_root"
+              sequence="100"
+              groups="meta_social_hub.group_meta_social_manager"/>
+
+    <menuitem id="menu_meta_channels"
+              name="Channels"
+              parent="menu_meta_configuration"
+              action="action_meta_channel"
+              sequence="10"/>
+
+    <menuitem id="menu_meta_conversations_all"
+              name="All Conversations"
+              parent="menu_meta_configuration"
+              action="action_meta_conversation"
+              sequence="20"/>
+
+    <menuitem id="menu_meta_messages"
+              name="Messages"
+              parent="menu_meta_configuration"
+              action="action_meta_message"
+              sequence="30"
+              groups="meta_social_hub.group_meta_social_admin"/>
+
+    <!-- Tags Configuration -->
+    <record id="action_meta_conversation_tag" model="ir.actions.act_window">
+        <field name="name">Conversation Tags</field>
+        <field name="res_model">meta.conversation.tag</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_meta_tags"
+              name="Tags"
+              parent="menu_meta_configuration"
+              action="action_meta_conversation_tag"
+              sequence="40"/>
+</odoo>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Default conversation tags -->
+    <record id="tag_sales" model="meta.conversation.tag">
+        <field name="name">Sales</field>
+        <field name="color">1</field>
+    </record>
+
+    <record id="tag_support" model="meta.conversation.tag">
+        <field name="name">Support</field>
+        <field name="color">2</field>
+    </record>
+
+    <record id="tag_complaint" model="meta.conversation.tag">
+        <field name="name">Complaint</field>
+        <field name="color">9</field>
+    </record>
+
+    <record id="tag_inquiry" model="meta.conversation.tag">
+        <field name="name">Inquiry</field>
+        <field name="color">4</field>
+    </record>
+
+    <record id="tag_vip" model="meta.conversation.tag">
+        <field name="name">VIP</field>
+        <field name="color">5</field>
+    </record>
+
+    <record id="tag_urgent" model="meta.conversation.tag">
+        <field name="name">Urgent</field>
+        <field name="color">11</field>
+    </record>
+
+    <record id="tag_follow_up" model="meta.conversation.tag">
+        <field name="name">Follow-up Required</field>
+        <field name="color">3</field>
+    </record>
+
+    <!-- System Parameters for Messenger Webhook -->
+    <record id="config_messenger_verify_token" model="ir.config_parameter">
+        <field name="key">meta_social_hub.messenger_verify_token</field>
+        <field name="value">odoo_meta_verify_token_change_me</field>
+    </record>
+</odoo>

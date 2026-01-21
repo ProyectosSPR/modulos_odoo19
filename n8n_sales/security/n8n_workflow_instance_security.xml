@@ -12,14 +12,14 @@
         <field name="perm_unlink" eval="False"/>
     </record>
 
-    <!-- Record Rule: Portal user solo ve sus propias instancias -->
+    <!-- Record Rule: Portal user CRUD en sus propias instancias -->
     <record id="n8n_workflow_instance_portal_rule" model="ir.rule">
-        <field name="name">N8N Workflow Instance: Portal ve sus propias instancias</field>
+        <field name="name">N8N Workflow Instance: Portal CRUD sus propias instancias</field>
         <field name="model_id" ref="model_n8n_workflow_instance"/>
         <field name="domain_force">[('partner_id', '=', user.partner_id.id)]</field>
         <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
         <field name="perm_read" eval="True"/>
-        <field name="perm_write" eval="False"/>
+        <field name="perm_write" eval="True"/>
         <field name="perm_create" eval="False"/>
         <field name="perm_unlink" eval="False"/>
     </record>

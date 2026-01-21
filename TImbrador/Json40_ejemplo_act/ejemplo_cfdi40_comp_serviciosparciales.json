@@ -1,0 +1,90 @@
+{
+  "Comprobante": {
+    "Version": "4.0",
+    "Serie": "INE",
+    "Folio": "1",
+    "Fecha": "2023-06-22T11:11:12",
+    "FormaPago": "01",
+    "NoCertificado": "30001000000500003416",
+    "CondicionesDePago": "NA",
+    "SubTotal": "1.00",
+    "Moneda": "MXN",
+    "TipoCambio": "1",
+    "Total": "1.16",
+    "TipoDeComprobante": "I",
+    "Exportacion": "01",
+    "MetodoPago": "PUE",
+    "LugarExpedicion": "45079",
+    "Emisor": {
+      "Rfc": "EKU9003173C9",
+      "Nombre": "ESCUELA KEMPER URGATE",
+      "RegimenFiscal": "601"
+    },
+    "Receptor": {
+      "Rfc": "EKU9003173C9",
+      "Nombre": "ESCUELA KEMPER URGATE",
+      "DomicilioFiscalReceptor": "26015",
+      "RegimenFiscalReceptor": "601",
+      "UsoCFDI": "S01"
+    },
+    "Conceptos": [
+      {
+        "ClaveProdServ": "01010101",
+        "NoIdentificacion": "00001",
+        "Cantidad": "1",
+        "ClaveUnidad": "F52",
+        "Unidad": "TONELADA",
+        "Descripcion": "ACERO",
+        "ValorUnitario": "1.00",
+        "Importe": "1.00",
+        "ObjetoImp": "02",
+        "Impuestos": {
+          "Traslados": [
+            {
+              "Base": "1.00",
+              "Impuesto": "002",
+              "TipoFactor": "Tasa",
+              "TasaOCuota": "0.160000",
+              "Importe": "0.16"
+            }
+          ]
+        }
+      }
+    ],
+    "Impuestos": {
+      "TotalImpuestosTrasladados": "0.16",
+      "Traslados": [
+        {
+          "Base": "1.00",
+          "Impuesto": "002",
+          "TipoFactor": "Tasa",
+          "TasaOCuota": "0.160000",
+          "Importe": "0.16"
+        }
+      ]
+    },
+    "Complemento": [
+      {
+        "ServiciosParciales": {
+          "Version": "1.0",
+          "NumPerLicoAut": "1122334455",
+          "Inmueble": {
+            "Calle": "2 Norte",
+            "NoExterior": "408",
+            "NoInterior": "NA",
+            "Colonia": "Centro",
+            "Localidad": "Puebla",
+            "Referencia": "A un lado de VIPs",
+            "Municipio": "Puebla",
+            "Estado": "21",
+            "CodigoPostal": "72000"
+          }
+        }
+      }
+    ]
+  },
+  "CamposPDF": {
+    "tipoComprobante": "FACTURA",
+    "Comentarios": "Ninguno"
+  }
+}

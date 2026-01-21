@@ -1,0 +1,56 @@
+{
+    "Comprobante": {
+        "Version": "4.0",
+        "Serie": "LC-J",
+        "Folio": "LC-10912",
+        "Fecha": "2024-07-29T11:31:17",
+        "NoCertificado": "30001000000500003416",
+        "SubTotal": "2.00",
+        "Moneda": "MXN",
+        "Total": "2.00",
+        "FormaPago":"01",
+        "TipoDeComprobante": "I",
+        "MetodoPago": "PUE",
+        "Exportacion":"01",
+        "LugarExpedicion": "80349",
+        "Emisor":
+        {
+            "Rfc": "EKU9003173C9",
+            "Nombre": "ESCUELA KEMPER URGATE",
+            "RegimenFiscal": "601"
+        },
+        "Receptor":
+        {
+            "Rfc": "XAXX010101000",
+            "Nombre": "Publico en General",
+            "DomicilioFiscalReceptor":"80349",
+            "RegimenFiscalReceptor":"616",
+            "UsoCFDI": "S01"
+        },
+        "Conceptos":
+        [
+            {
+                "ClaveProdServ": "40142020",
+                "Cantidad": "1.0",
+                "ClaveUnidad": "MTR",
+                "Descripcion": "Base64 encoding schemes are commonly used when there is a need to encode binary data",
+                "ValorUnitario": "1.00",
+                "Importe": "1.00",
+                "ObjetoImp":"01"
+            },
+            {
+                "ClaveProdServ": "40142020",
+                "Cantidad": 1.0,
+                "ClaveUnidad": "MTR",
+                "Descripcion": "GAT.MANGUERA 4MXTXREEL (167.6 MTS) (46579656)",
+                "ValorUnitario": "1.00",
+                "Importe": "1.00",
+                "ObjetoImp":"01"
+            }
+        ]
+    },
+    "CamposPDF": {
+    "tipoComprobante": "FACTURA",
+    "Comentarios": "Aquí van los comentarios de la factura"
+    }
+}

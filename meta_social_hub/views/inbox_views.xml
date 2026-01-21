@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main Inbox Action - Kanban focused -->
+    <record id="action_meta_inbox" model="ir.actions.act_window">
+        <field name="name">Inbox</field>
+        <field name="res_model">meta.conversation</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="meta_conversation_view_search"/>
+        <field name="context">{
+            'search_default_filter_unread': 1,
+        }</field>
+        <field name="domain">[('state', 'in', ['new', 'open', 'pending'])]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Your inbox is empty!
+            </p>
+            <p>
+                All conversations from WhatsApp, Facebook Messenger, and Instagram will appear here.
+            </p>
+        </field>
+    </record>
+
+    <!-- My Conversations Action -->
+    <record id="action_meta_inbox_my" model="ir.actions.act_window">
+        <field name="name">My Conversations</field>
+        <field name="res_model">meta.conversation</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="meta_conversation_view_search"/>
+        <field name="domain">[('user_id', '=', uid), ('state', 'in', ['new', 'open', 'pending'])]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- Unassigned Conversations Action -->
+    <record id="action_meta_inbox_unassigned" model="ir.actions.act_window">
+        <field name="name">Unassigned</field>
+        <field name="res_model">meta.conversation</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="meta_conversation_view_search"/>
+        <field name="domain">[('user_id', '=', False), ('state', 'in', ['new', 'open'])]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- Resolved Conversations Action -->
+    <record id="action_meta_inbox_resolved" model="ir.actions.act_window">
+        <field name="name">Resolved</field>
+        <field name="res_model">meta.conversation</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="meta_conversation_view_search"/>
+        <field name="domain">[('state', '=', 'resolved')]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- WhatsApp Conversations -->
+    <record id="action_meta_inbox_whatsapp" model="ir.actions.act_window">
+        <field name="name">WhatsApp</field>
+        <field name="res_model">meta.conversation</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="meta_conversation_view_search"/>
+        <field name="domain">[('channel_type', '=', 'whatsapp'), ('state', '!=', 'resolved')]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- Messenger Conversations -->
+    <record id="action_meta_inbox_messenger" model="ir.actions.act_window">
+        <field name="name">Messenger</field>
+        <field name="res_model">meta.conversation</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="meta_conversation_view_search"/>
+        <field name="domain">[('channel_type', '=', 'facebook_messenger'), ('state', '!=', 'resolved')]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- Instagram Conversations -->
+    <record id="action_meta_inbox_instagram" model="ir.actions.act_window">
+        <field name="name">Instagram</field>
+        <field name="res_model">meta.conversation</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="meta_conversation_view_search"/>
+        <field name="domain">[('channel_type', '=', 'instagram'), ('state', '!=', 'resolved')]</field>
+        <field name="context">{}</field>
+    </record>
+</odoo>

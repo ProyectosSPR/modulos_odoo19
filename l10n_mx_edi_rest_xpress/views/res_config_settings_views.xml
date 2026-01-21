@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form_inherit_rest_xpress" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.rest.xpress</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="l10n_mx_edi.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Customize username field: hide it for REST XPRESS (it doesn't use username) -->
+            <xpath expr="//field[@name='l10n_mx_edi_pac_username']" position="attributes">
+                <attribute name="invisible">l10n_mx_edi_pac == 'rest_xpress'</attribute>
+                <attribute name="required">l10n_mx_edi_pac in ['solfact', 'finkok', 'sw'] and l10n_mx_edi_pac != 'rest_xpress'</attribute>
+            </xpath>
+
+            <!-- Customize password field label for REST XPRESS -->
+            <xpath expr="//field[@name='l10n_mx_edi_pac_password']" position="before">
+                <label for="l10n_mx_edi_pac_password"
+                       string="API Key"
+                       invisible="l10n_mx_edi_pac != 'rest_xpress'"/>
+            </xpath>
+
+            <xpath expr="//field[@name='l10n_mx_edi_pac_password']" position="attributes">
+                <attribute name="placeholder"
+                           add="{'rest_xpress': 'Your REST XPRESS API Key'}"
+                           separator=", "/>
+            </xpath>
+
+            <!-- Add help text and credits button for REST XPRESS -->
+            <xpath expr="//field[@name='l10n_mx_edi_pac_password']" position="after">
+                <div class="text-muted" invisible="l10n_mx_edi_pac != 'rest_xpress'">
+                    Ingrese su API Key de REST XPRESS. Puede obtenerla desde el panel de su cuenta REST XPRESS.
+                </div>
+                <div class="mt-2" invisible="l10n_mx_edi_pac != 'rest_xpress'">
+                    <button name="action_rest_xpress_check_credits"
+                            type="object"
+                            string="Consultar Créditos (Timbres)"
+                            class="btn-secondary"
+                            icon="fa-refresh"
+                            context="{'default_company_id': company_id}"/>
+                </div>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,104 @@
+{
+  "Retenciones": {
+    "Version": "2.0",
+    "FolioInt": "",
+    "NoCertificado": "",
+    "FechaExp": "",
+    "LugarExpRetenc": "",
+    "CveRetenc": "",
+    "DescRetenc": "",
+    "CfdiRetenRelacionados": {
+      "TipoRelacion": "",
+      "UUID": ""
+    },
+    "Emisor": {
+      "RfcE": "",
+      "NomDenRazSocE": "",
+      "RegimenFiscalE": ""
+    },
+    "Receptor": {
+      "NacionalidadR": "",
+      "Nacional": {
+        "RfcR": "",
+        "NomDenRazSocR": "",
+        "CurpR": "",
+        "DomicilioFiscalR": ""
+      },
+      "Extranjero": {
+        "NumRegIdTribR": "",
+        "NomDenRazSocR": ""
+      }
+    },
+    "Periodo": {
+      "MesIni": "",
+      "MesFin": "",
+      "Ejercicio": ""
+    },
+    "Totales": {
+      "MontoTotOperacion": "",
+      "MontoTotGrav": "",
+      "MontoTotExent": "",
+      "MontoTotRet": "",
+      "UtilidadBimestral": "",
+      "ISRCorrespondiente": "",
+      "ImpRetenidos": [
+        {
+          "BaseRet": "",
+          "ImpuestoRet": "",
+          "MontoRet": "",
+          "TipoPagoRet": ""
+        },
+        {
+          "BaseRet": "",
+          "ImpuestoRet": "",
+          "MontoRet": "",
+          "TipoPagoRet": ""
+        }
+      ]
+    },
+    "Complemento": [
+      {
+        "PlataformasTecnologicas": {
+          "Version": "",
+          "Periodicidad": "",
+          "NumServ": "",
+          "MonTotServSIVA": "",
+          "TotalIVATrasladado": "",
+          "TotalIVARetenido": "",
+          "TotalISRRetenido": "",
+          "DifIVAEntregadoPrestServ": "",
+          "MonTotalporUsoPlataforma": "",
+          "MonTotalContribucionGubernamental": "",
+          "Servicios": {
+            "DetallesDelServicio": [
+              {
+                "FormaPagoServ": "",
+                "TipoDeServ": "",
+                "SubTipServ": "",
+                "RFCTerceroAutorizado": "",
+                "FechaServ": "",
+                "PrecioServSinIVA": "",
+                "ImpuestosTrasladadosdelServicio": {
+                  "Base": "",
+                  "Impuesto": "",
+                  "TipoFactor": "",
+                  "TasaCuota": "",
+                  "Importe": ""
+                },
+                "ContribucionGubernamental": {
+                  "ImpContrib": "",
+                  "EntidadDondePagaLaContribucion": ""
+                },
+                "ComisionDelServicio": {
+                  "Base": "",
+                  "Porcentaje": "",
+                  "Importe": ""
+                }
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

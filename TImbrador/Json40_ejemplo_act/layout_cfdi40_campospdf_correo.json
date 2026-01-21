@@ -1,0 +1,159 @@
+{
+  "Comprobante": {
+    "Version": "4.0",
+    "Serie": "",
+    "Folio": "",
+    "Fecha": "",
+    "FormaPago": "",
+    "NoCertificado": "",
+    "CondicionesDePago": "",
+    "SubTotal": "",
+    "Descuento": "",
+    "Moneda": "",
+    "TipoCambio": "",
+    "Total": "",
+    "TipoDeComprobante": "",
+    "Exportacion": "",
+    "MetodoPago": "",
+    "LugarExpedicion": "",
+    "Confirmacion": "",
+    "InformacionGlobal": {
+      "Periodicidad": "",
+      "Meses": "",
+      "Año": ""
+    },
+    "CfdiRelacionados": {
+      "TipoRelacion": "",
+      "CfdiRelacionado": [
+        "UUID-1",
+        "UUID-2",
+        "UUID-N"
+      ]
+    },
+    "Emisor": {
+      "Rfc": "",
+      "Nombre": "",
+      "RegimenFiscal": "",
+      "FacAtrAdquirente": ""
+    },
+    "Receptor": {
+      "Rfc": "",
+      "Nombre": "",
+      "DomicilioFiscalReceptor": "",
+      "ResidenciaFiscal": "",
+      "NumRegIdTrib": "",
+      "RegimenFiscalReceptor": "",
+      "UsoCFDI": ""
+    },
+    "Conceptos": [
+      {
+        "ClaveProdServ": "",
+        "NoIdentificacion": "",
+        "Cantidad": "",
+        "ClaveUnidad": "",
+        "Unidad": "",
+        "Descripcion": "",
+        "ValorUnitario": "",
+        "Importe": "",
+        "Descuento": "",
+        "ObjetoImp": "",
+        "Impuestos": {
+          "Traslados": [
+            {
+              "Base": "",
+              "Impuesto": "",
+              "TipoFactor": "",
+              "TasaOCuota": "",
+              "Importe": ""
+            }
+          ],
+          "Retenciones": [
+            {
+              "Base": "",
+              "Impuesto": "",
+              "TipoFactor": "",
+              "TasaOCuota": "",
+              "Importe": ""
+            }
+          ]
+        }
+      }
+    ],
+    "Impuestos": {
+      "TotalImpuestosRetenidos": "",
+      "TotalImpuestosTrasladados": "",
+      "Retenciones": [
+        {
+          "Impuesto": "",
+          "Importe": ""
+        }
+      ],
+      "Traslados": [
+        {
+          "Base": "",
+          "Impuesto": "",
+          "TipoFactor": "",
+          "TasaOCuota": "",
+          "Importe": ""
+        }
+      ]
+    }
+  },
+  "CamposPDF": {
+    "tipoComprobante": "Factura",
+    "Comentarios": "Aquí van los comentarios de la factura",
+    "CartaPorte_Origen": "",
+    "CartaPorte_Destino": "",
+    "CartaPorte_Conductor": "",
+    "CartaPorte_Placas": "",
+    "CartaPorte_Vehiculo": "",
+    "CartaPorte_Kilometros": "",
+    "calleEmisor": "",
+    "noExteriorEmisor": "",
+    "noInteriorEmisor": "",
+    "coloniaEmisor": "",
+    "codigoPostalEmisor": "",
+    "localidadEmisor": "",
+    "municipioEmisor": "",
+    "estadoEmisor": "",
+    "paisEmisor": "",
+    "telefonoEmisor": "",
+    "emailEmisor": "",
+    "calleReceptor": "",
+    "noExteriorReceptor": "",
+    "noInteriorReceptor": "",
+    "coloniaReceptor": "",
+    "codigoPostalReceptor": "",
+    "localidadReceptor": "",
+    "municipioReceptor": "",
+    "estadoReceptor": "",
+    "paisReceptor": "",
+    "etiquetas": [
+      {
+        "nombre": "",
+        "valor": ""
+      },
+      {
+        "nombre": "",
+        "valor": ""
+      }
+    ],
+    "firmas": [
+      {
+        "nombre": "",
+        "puesto": ""
+      },
+      {
+        "nombre": "",
+        "puesto": ""
+      }
+    ]
+  },
+  "EnviarCFDI": {
+    "Correos": [
+      "",
+      ""
+    ]
+  },
+  "logo": "cadena_en_base64_del_archivo_del_logo"
+}

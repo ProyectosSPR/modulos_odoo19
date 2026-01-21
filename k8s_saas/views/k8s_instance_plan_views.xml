@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Tree View -->
+    <record id="k8s_instance_plan_view_list" model="ir.ui.view">
+        <field name="name">k8s.instance.plan.list</field>
+        <field name="model">k8s.instance.plan</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="cluster_id"/>
+                <field name="resources_cpu_limit"/>
+                <field name="resources_memory_limit"/>
+                <field name="storage_size"/>
+                <field name="instance_count"/>
+                <field name="active" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="k8s_instance_plan_view_form" model="ir.ui.view">
+        <field name="name">k8s.instance.plan.form</field>
+        <field name="model">k8s.instance.plan</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_instances" type="object" class="oe_stat_button" icon="fa-server">
+                            <field name="instance_count" widget="statinfo" string="Instancias"/>
+                        </button>
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Nombre del Plan"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Identificacion">
+                            <field name="code"/>
+                            <field name="sequence"/>
+                            <field name="cluster_id"/>
+                        </group>
+                        <group string="Imagen Docker">
+                            <field name="odoo_image"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Recursos CPU/Memoria">
+                            <field name="resources_cpu_limit"/>
+                            <field name="resources_cpu_request"/>
+                            <field name="resources_memory_limit"/>
+                            <field name="resources_memory_request"/>
+                        </group>
+                        <group string="Almacenamiento y Limites">
+                            <field name="storage_size"/>
+                            <field name="max_users"/>
+                            <field name="max_databases"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Templates de Manifiestos" name="manifests">
+                            <field name="manifest_template_ids">
+                                <list>
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="manifest_type" widget="badge"/>
+                                    <field name="is_global"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Productos Asociados" name="products">
+                            <field name="product_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="list_price"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Descripcion" name="description">
+                            <field name="description" placeholder="Descripcion del plan..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="k8s_instance_plan_view_search" model="ir.ui.view">
+        <field name="name">k8s.instance.plan.search</field>
+        <field name="model">k8s.instance.plan</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="cluster_id"/>
+                <filter name="filter_inactive" string="Archivados" domain="[('active', '=', False)]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_cluster" string="Cluster" context="{'group_by': 'cluster_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="k8s_instance_plan_action" model="ir.actions.act_window">
+        <field name="name">Planes de Instancia</field>
+        <field name="res_model">k8s.instance.plan</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="k8s_instance_plan_view_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crear primer plan de instancia
+            </p>
+            <p>
+                Los planes definen los recursos (CPU, memoria, almacenamiento)
+                y los manifiestos que se aplicaran a las instancias.
+            </p>
+        </field>
+    </record>
+
+</odoo>

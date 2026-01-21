@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Settings Model Extension -->
+    <record id="res_config_settings_view_form_inherit_meta" model="ir.ui.view">
+        <field name="name">res.config.settings.form.inherit.meta.social.hub</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@data-key='general_settings']" position="after">
+                <app data-key="meta_social_hub" string="Meta Social Hub" name="meta_social_hub" groups="meta_social_hub.group_meta_social_admin">
+                    <block title="Messenger Webhook Configuration" name="messenger_config">
+                        <setting string="Webhook Verify Token" help="Token used to verify Facebook webhook subscription">
+                            <div class="content-group">
+                                <div class="mt16 row">
+                                    <label for="meta_messenger_verify_token" class="col-lg-3"/>
+                                    <field name="meta_messenger_verify_token" class="col-lg-9"/>
+                                </div>
+                                <div class="text-muted">
+                                    Set this token in your Facebook App's Webhook configuration.
+                                    The callback URL is: <code>/meta/messenger/webhook</code>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                    <block title="Default Settings" name="defaults">
+                        <setting string="Auto-create Contacts" help="Automatically create contacts from unknown senders">
+                            <div class="content-group">
+                                <field name="meta_auto_create_partner"/>
+                            </div>
+                        </setting>
+                        <setting string="Default Sales Team" help="Default team for new conversations">
+                            <div class="content-group">
+                                <div class="mt16 row">
+                                    <label for="meta_default_team_id" class="col-lg-3"/>
+                                    <field name="meta_default_team_id" class="col-lg-9"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                    <block title="Notifications" name="notifications">
+                        <setting string="Notify on New Conversation" help="Send notification when a new conversation starts">
+                            <div class="content-group">
+                                <field name="meta_notify_new_conversation"/>
+                            </div>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

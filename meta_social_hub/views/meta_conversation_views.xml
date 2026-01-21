@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Meta Conversation Tree View -->
+    <record id="meta_conversation_view_list" model="ir.ui.view">
+        <field name="name">meta.conversation.list</field>
+        <field name="model">meta.conversation</field>
+        <field name="arch" type="xml">
+            <list string="Conversations" default_order="last_message_date desc" decoration-bf="unread_count > 0" decoration-muted="state == 'resolved'">
+                <field name="name"/>
+                <field name="channel_type" widget="badge" decoration-info="channel_type == 'whatsapp'" decoration-primary="channel_type in ['facebook_page', 'facebook_messenger']" decoration-danger="channel_type == 'instagram'"/>
+                <field name="partner_id"/>
+                <field name="phone"/>
+                <field name="state" widget="badge" decoration-info="state == 'new'" decoration-success="state == 'open'" decoration-warning="state == 'pending'" decoration-muted="state == 'resolved'"/>
+                <field name="user_id" widget="many2one_avatar_user"/>
+                <field name="unread_count" decoration-danger="unread_count > 0"/>
+                <field name="last_message_date" widget="datetime"/>
+                <field name="last_message_preview" optional="show"/>
+                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Meta Conversation Form View -->
+    <record id="meta_conversation_view_form" model="ir.ui.view">
+        <field name="name">meta.conversation.form</field>
+        <field name="model">meta.conversation</field>
+        <field name="arch" type="xml">
+            <form string="Conversation">
+                <header>
+                    <button name="action_open" type="object" string="Open" class="btn-primary" invisible="state != 'new'"/>
+                    <button name="action_pending" type="object" string="Set Pending" invisible="state not in ['new', 'open']"/>
+                    <button name="action_resolve" type="object" string="Resolve" class="btn-success" invisible="state == 'resolved'"/>
+                    <button name="action_reopen" type="object" string="Reopen" invisible="state != 'resolved'"/>
+                    <button name="action_assign_to_me" type="object" string="Assign to Me" invisible="user_id == uid"/>
+                    <field name="state" widget="statusbar" statusbar_visible="new,open,pending,resolved"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_messages" type="object" class="oe_stat_button" icon="fa-comments">
+                            <field name="message_count" string="Messages" widget="statinfo"/>
+                        </button>
+                        <button name="action_view_leads" type="object" class="oe_stat_button" icon="fa-filter" invisible="lead_count == 0">
+                            <field name="lead_count" string="Leads" widget="statinfo"/>
+                        </button>
+                        <button name="action_view_orders" type="object" class="oe_stat_button" icon="fa-shopping-cart" invisible="sale_order_count == 0">
+                            <field name="sale_order_count" string="Orders" widget="statinfo"/>
+                        </button>
+                        <button name="action_view_tickets" type="object" class="oe_stat_button" icon="fa-ticket" invisible="ticket_count == 0">
+                            <field name="ticket_count" string="Tickets" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <field name="external_avatar" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                        <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" placeholder="Tags..."/>
+                    </div>
+                    <group>
+                        <group string="Contact Information">
+                            <field name="partner_id"/>
+                            <field name="external_name" readonly="1"/>
+                            <field name="phone"/>
+                            <field name="external_id" readonly="1" groups="base.group_no_one"/>
+                        </group>
+                        <group string="Channel">
+                            <field name="channel_id"/>
+                            <field name="channel_type" readonly="1"/>
+                            <field name="discuss_channel_id" readonly="1" groups="base.group_no_one"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Assignment">
+                            <field name="user_id" widget="many2one_avatar_user"/>
+                            <field name="team_id"/>
+                            <field name="priority" widget="priority"/>
+                        </group>
+                        <group string="Metrics">
+                            <field name="unread_count" readonly="1"/>
+                            <field name="last_message_date" readonly="1"/>
+                            <field name="first_response_time" readonly="1" widget="float_time"/>
+                            <field name="resolution_time" readonly="1" widget="float_time"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Messages" name="messages">
+                            <field name="message_meta_ids" mode="list" readonly="1">
+                                <list decoration-info="message_type == 'inbound'" decoration-success="message_type == 'outbound'">
+                                    <field name="create_date" string="Date"/>
+                                    <field name="message_type" widget="badge"/>
+                                    <field name="body_text" string="Message"/>
+                                    <field name="state" widget="badge"/>
+                                    <field name="author_user_id" invisible="message_type == 'inbound'"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Actions" name="actions">
+                            <group>
+                                <button name="action_create_lead" type="object" string="Create Lead" icon="fa-filter" class="btn-secondary"/>
+                                <button name="action_create_ticket" type="object" string="Create Ticket" icon="fa-ticket" class="btn-secondary"/>
+                                <button name="action_send_product" type="object" string="Send Products" icon="fa-shopping-cart" class="btn-secondary"/>
+                            </group>
+                        </page>
+                        <page string="Related Records" name="related">
+                            <group string="Leads">
+                                <field name="lead_ids" nolabel="1">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="stage_id"/>
+                                        <field name="user_id"/>
+                                        <field name="expected_revenue"/>
+                                    </list>
+                                </field>
+                            </group>
+                            <group string="Sales Orders">
+                                <field name="sale_order_ids" nolabel="1">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="state"/>
+                                        <field name="amount_total"/>
+                                    </list>
+                                </field>
+                            </group>
+                            <group string="Tickets">
+                                <field name="ticket_ids" nolabel="1">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="stage_id"/>
+                                        <field name="user_id"/>
+                                    </list>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Meta Conversation Kanban View (Main Inbox View) -->
+    <record id="meta_conversation_view_kanban" model="ir.ui.view">
+        <field name="name">meta.conversation.kanban</field>
+        <field name="model">meta.conversation</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" class="o_meta_inbox_kanban" on_create="quick_create" quick_create="false" default_order="last_message_date desc">
+                <field name="name"/>
+                <field name="channel_type"/>
+                <field name="state"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+                <field name="unread_count"/>
+                <field name="last_message_date"/>
+                <field name="last_message_preview"/>
+                <field name="last_message_direction"/>
+                <field name="external_avatar"/>
+                <field name="tag_ids"/>
+                <field name="priority"/>
+                <progressbar field="state" colors='{"new": "info", "open": "success", "pending": "warning", "resolved": "muted"}'/>
+                <templates>
+                    <t t-name="card">
+                        <div class="d-flex">
+                            <aside class="me-2">
+                                <field name="external_avatar" widget="image" options="{'size': [40, 40]}" class="rounded-circle"/>
+                            </aside>
+                            <main class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name"/>
+                                    </strong>
+                                    <small class="text-muted">
+                                        <field name="last_message_date" widget="datetime" options="{'format': 'HH:mm'}"/>
+                                    </small>
+                                </div>
+                                <div class="d-flex align-items-center gap-1 mb-1">
+                                    <field name="channel_type" widget="badge" decoration-info="channel_type == 'whatsapp'" decoration-primary="channel_type in ['facebook_page', 'facebook_messenger']" decoration-danger="channel_type == 'instagram'"/>
+                                    <span t-if="record.unread_count.raw_value > 0" class="badge text-bg-danger">
+                                        <field name="unread_count"/>
+                                    </span>
+                                    <field name="priority" widget="priority" class="ms-auto"/>
+                                </div>
+                                <div class="text-muted small text-truncate">
+                                    <i t-if="record.last_message_direction.raw_value == 'outbound'" class="fa fa-reply me-1" title="Sent"/>
+                                    <i t-else="" class="fa fa-inbox me-1" title="Received"/>
+                                    <field name="last_message_preview"/>
+                                </div>
+                                <div class="mt-1">
+                                    <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                </div>
+                                <footer class="pt-2">
+                                    <field name="user_id" widget="many2one_avatar_user"/>
+                                </footer>
+                            </main>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="meta_conversation_view_search" model="ir.ui.view">
+        <field name="name">meta.conversation.search</field>
+        <field name="model">meta.conversation</field>
+        <field name="arch" type="xml">
+            <search string="Conversations">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="phone"/>
+                <field name="external_name"/>
+                <field name="user_id"/>
+                <separator/>
+                <filter string="New" name="filter_new" domain="[('state', '=', 'new')]"/>
+                <filter string="Open" name="filter_open" domain="[('state', '=', 'open')]"/>
+                <filter string="Pending" name="filter_pending" domain="[('state', '=', 'pending')]"/>
+                <filter string="Resolved" name="filter_resolved" domain="[('state', '=', 'resolved')]"/>
+                <separator/>
+                <filter string="Unread" name="filter_unread" domain="[('unread_count', '>', 0)]"/>
+                <filter string="My Conversations" name="filter_my" domain="[('user_id', '=', uid)]"/>
+                <filter string="Unassigned" name="filter_unassigned" domain="[('user_id', '=', False)]"/>
+                <separator/>
+                <filter string="WhatsApp" name="filter_whatsapp" domain="[('channel_type', '=', 'whatsapp')]"/>
+                <filter string="Messenger" name="filter_messenger" domain="[('channel_type', '=', 'facebook_messenger')]"/>
+                <filter string="Instagram" name="filter_instagram" domain="[('channel_type', '=', 'instagram')]"/>
+                <filter string="Facebook" name="filter_facebook" domain="[('channel_type', '=', 'facebook_page')]"/>
+                <separator/>
+                <filter string="Today" name="filter_today" domain="[('last_message_date', '>=', datetime.datetime.combine(context_today(), datetime.time(0, 0, 0)).strftime('%Y-%m-%d %H:%M:%S'))]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Channel Type" name="group_channel_type" context="{'group_by': 'channel_type'}"/>
+                    <filter string="Channel" name="group_channel" context="{'group_by': 'channel_id'}"/>
+                    <filter string="Assigned To" name="group_user" context="{'group_by': 'user_id'}"/>
+                    <filter string="Team" name="group_team" context="{'group_by': 'team_id'}"/>
+                    <filter string="Date" name="group_date" context="{'group_by': 'last_message_date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_meta_conversation" model="ir.actions.act_window">
+        <field name="name">Conversations</field>
+        <field name="res_model">meta.conversation</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="meta_conversation_view_search"/>
+        <field name="context">{'search_default_filter_my': 0}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No conversations yet
+            </p>
+            <p>
+                Conversations will appear here when customers contact you through your connected channels.
+            </p>
+        </field>
+    </record>
+</odoo>

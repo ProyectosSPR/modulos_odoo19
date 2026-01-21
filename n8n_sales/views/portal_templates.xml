@@ -7,7 +7,7 @@
             <t t-call="portal.portal_docs_entry">
                 <t t-set="icon" t-value="'fa fa-cogs'"/>
                 <t t-set="title">Mis Automatizaciones</t>
-                <t t-set="url" t-value="'/my/n8n'"/>
+                <t t-set="url" t-value="'/my/n8n/dashboard'"/>
                 <t t-set="text">Gestiona tus workflows de N8N</t>
                 <t t-set="placeholder_count" t-value="'n8n_workflow_count'"/>
             </t>
@@ -17,19 +17,192 @@
     <!-- Breadcrumbs -->
     <template id="portal_my_home_menu_n8n" name="Portal Menu N8N" inherit_id="portal.portal_breadcrumbs" priority="50">
         <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'n8n_dashboard'" class="breadcrumb-item active">Dashboard Automatizaciones</li>
+            <li t-if="page_name == 'n8n_workflows'" class="breadcrumb-item">
+                <a href="/my/n8n/dashboard">Dashboard</a>
+            </li>
             <li t-if="page_name == 'n8n_workflows'" class="breadcrumb-item active">Mis Automatizaciones</li>
             <li t-if="page_name == 'n8n_workflow_detail'" class="breadcrumb-item">
-                <a href="/my/n8n">Mis Automatizaciones</a>
+                <a href="/my/n8n/dashboard">Dashboard</a>
             </li>
-            <li t-if="page_name == 'n8n_workflow_detail'" class="breadcrumb-item active" t-esc="workflow.name"/>
+            <li t-if="page_name == 'n8n_workflow_detail'" class="breadcrumb-item">
+                <a href="/my/n8n">Automatizaciones</a>
+            </li>
+            <li t-if="page_name == 'n8n_workflow_detail'" class="breadcrumb-item active" t-esc="workflow.custom_name or workflow.name"/>
             <li t-if="page_name == 'n8n_sync_form'" class="breadcrumb-item">
-                <a href="/my/n8n">Mis Automatizaciones</a>
+                <a href="/my/n8n">Automatizaciones</a>
             </li>
             <li t-if="page_name == 'n8n_sync_form'" class="breadcrumb-item">
                 <a t-attf-href="/my/n8n/#{workflow.id}" t-esc="workflow.name"/>
             </li>
             <li t-if="page_name == 'n8n_sync_form'" class="breadcrumb-item active">Sincronizar</li>
+            <li t-if="page_name == 'n8n_edit_workflow'" class="breadcrumb-item">
+                <a href="/my/n8n">Automatizaciones</a>
+            </li>
+            <li t-if="page_name == 'n8n_edit_workflow'" class="breadcrumb-item">
+                <a t-attf-href="/my/n8n/#{workflow.id}" t-esc="workflow.name"/>
+            </li>
+            <li t-if="page_name == 'n8n_edit_workflow'" class="breadcrumb-item active">Editar</li>
+            <li t-if="page_name == 'n8n_executions'" class="breadcrumb-item">
+                <a href="/my/n8n">Automatizaciones</a>
+            </li>
+            <li t-if="page_name == 'n8n_executions'" class="breadcrumb-item">
+                <a t-attf-href="/my/n8n/#{workflow.id}" t-esc="workflow.name"/>
+            </li>
+            <li t-if="page_name == 'n8n_executions'" class="breadcrumb-item active">Ejecuciones</li>
         </xpath>
+    </template>
+
+    <!-- ==================== -->
+    <!-- DASHBOARD -->
+    <!-- ==================== -->
+    <template id="portal_n8n_dashboard" name="Dashboard N8N">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="False"/>
+
+            <div class="container py-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2><i class="fa fa-dashboard"></i> Dashboard de Automatizaciones</h2>
+                    <a href="/my/n8n" class="btn btn-primary">
+                        <i class="fa fa-list"></i> Ver Todas
+                    </a>
+                </div>
+
+                <!-- Tarjetas de estadísticas -->
+                <div class="row mb-4">
+                    <div class="col-md-3 mb-3">
+                        <div class="card bg-primary text-white h-100">
+                            <div class="card-body text-center">
+                                <h1 class="display-4" t-esc="total_workflows"/>
+                                <p class="mb-0">Total Workflows</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card bg-success text-white h-100">
+                            <div class="card-body text-center">
+                                <h1 class="display-4" t-esc="active_workflows"/>
+                                <p class="mb-0">Activos</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card bg-info text-white h-100">
+                            <div class="card-body text-center">
+                                <h1 class="display-4" t-esc="successful_executions"/>
+                                <p class="mb-0">Ejecuciones Exitosas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card bg-danger text-white h-100">
+                            <div class="card-body text-center">
+                                <h1 class="display-4" t-esc="failed_executions"/>
+                                <p class="mb-0">Ejecuciones Fallidas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alertas de pendientes -->
+                <t t-if="pending_workflows > 0">
+                    <div class="alert alert-warning" role="alert">
+                        <i class="fa fa-exclamation-triangle"></i>
+                        Tienes <strong t-esc="pending_workflows"/> workflow(s) pendiente(s) de sincronizar.
+                        <a href="/my/n8n?filterby=pending" class="alert-link">Ver pendientes</a>
+                    </div>
+                </t>
+
+                <div class="row">
+                    <!-- Workflows recientes -->
+                    <div class="col-lg-8 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0"><i class="fa fa-clock-o"></i> Actividad Reciente</h5>
+                            </div>
+                            <div class="card-body p-0">
+                                <t t-if="recent_workflows">
+                                    <table class="table table-hover mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Workflow</th>
+                                                <th>Última Ejecución</th>
+                                                <th>Estado</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="recent_workflows" t-as="wf">
+                                                <tr>
+                                                    <td>
+                                                        <a t-attf-href="/my/n8n/#{wf.id}">
+                                                            <t t-esc="wf.custom_name or wf.name"/>
+                                                        </a>
+                                                    </td>
+                                                    <td t-esc="wf.last_execution_date" t-options="{'widget': 'datetime'}"/>
+                                                    <td>
+                                                        <span t-if="wf.last_execution_status == 'success'" class="badge bg-success">Exitosa</span>
+                                                        <span t-if="wf.last_execution_status == 'error'" class="badge bg-danger">Error</span>
+                                                        <span t-if="wf.last_execution_status == 'running'" class="badge bg-info">Ejecutando</span>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </t>
+                                <t t-else="">
+                                    <div class="p-4 text-center text-muted">
+                                        <i class="fa fa-info-circle fa-2x mb-2"></i>
+                                        <p>No hay actividad reciente</p>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resumen rápido -->
+                    <div class="col-lg-4 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0"><i class="fa fa-pie-chart"></i> Resumen</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <span>Sincronizados</span>
+                                        <span class="badge bg-success" t-esc="synced_workflows"/>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <span>Pendientes</span>
+                                        <span class="badge bg-warning" t-esc="pending_workflows"/>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <span>Total Ejecuciones</span>
+                                        <span class="badge bg-info" t-esc="total_executions"/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Accesos rápidos -->
+                        <div class="card mt-3">
+                            <div class="card-header">
+                                <h5 class="mb-0"><i class="fa fa-bolt"></i> Accesos Rápidos</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-grid gap-2">
+                                    <a href="/my/n8n" class="btn btn-outline-primary">
+                                        <i class="fa fa-list"></i> Ver Todos los Workflows
+                                    </a>
+                                    <a href="/my/n8n?filterby=pending" class="btn btn-outline-warning">
+                                        <i class="fa fa-clock-o"></i> Pendientes de Sincronizar
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
     </template>
 
     <!-- Lista de Workflows -->
@@ -120,6 +293,30 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert"/>
                     </div>
                 </t>
+                <t t-if="request.params.get('success') == 'activated'">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>¡Éxito!</strong> El workflow ha sido activado.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"/>
+                    </div>
+                </t>
+                <t t-if="request.params.get('success') == 'deactivated'">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>Aviso:</strong> El workflow ha sido desactivado.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"/>
+                    </div>
+                </t>
+                <t t-if="request.params.get('success') == 'updated'">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>¡Éxito!</strong> La configuración ha sido actualizada.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"/>
+                    </div>
+                </t>
+                <t t-if="request.params.get('success') == 'refreshed'">
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        <strong>Info:</strong> Estadísticas actualizadas.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"/>
+                    </div>
+                </t>
                 <t t-if="request.params.get('error')">
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong>Error:</strong> <t t-esc="request.params.get('error')"/>
@@ -130,7 +327,13 @@
                 <!-- Header -->
                 <div class="row mb-4">
                     <div class="col-md-8">
-                        <h2 t-esc="workflow.name"/>
+                        <h2>
+                            <t t-if="workflow.custom_name">
+                                <t t-esc="workflow.custom_name"/>
+                                <small class="text-muted d-block fs-6">(<t t-esc="workflow.name"/>)</small>
+                            </t>
+                            <t t-else="" t-esc="workflow.name"/>
+                        </h2>
                         <p class="text-muted">
                             Producto: <t t-esc="workflow.product_id.name"/>
                             <t t-if="workflow.is_extension">
@@ -142,11 +345,122 @@
                         <span t-if="workflow.state == 'pending'" class="badge bg-warning fs-5">
                             <i class="fa fa-clock-o"></i> Pendiente de Sincronizar
                         </span>
-                        <span t-if="workflow.state == 'synced'" class="badge bg-success fs-5">
-                            <i class="fa fa-check"></i> Sincronizado
+                        <span t-if="workflow.state == 'synced' and workflow.is_active" class="badge bg-success fs-5">
+                            <i class="fa fa-check"></i> Activo
+                        </span>
+                        <span t-if="workflow.state == 'synced' and not workflow.is_active" class="badge bg-secondary fs-5">
+                            <i class="fa fa-pause"></i> Inactivo
                         </span>
                     </div>
                 </div>
+
+                <!-- Panel de Control (solo para workflows sincronizados) -->
+                <t t-if="workflow.state == 'synced'">
+                    <div class="card mb-4">
+                        <div class="card-header bg-dark text-white">
+                            <h5 class="mb-0"><i class="fa fa-sliders"></i> Panel de Control</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-grid gap-2">
+                                        <t t-if="workflow.is_active">
+                                            <form t-attf-action="/my/n8n/#{workflow.id}/deactivate" method="POST" class="d-grid">
+                                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                                <button type="submit" class="btn btn-warning btn-lg">
+                                                    <i class="fa fa-pause"></i> Desactivar Workflow
+                                                </button>
+                                            </form>
+                                        </t>
+                                        <t t-else="">
+                                            <form t-attf-action="/my/n8n/#{workflow.id}/activate" method="POST" class="d-grid">
+                                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                                <button type="submit" class="btn btn-success btn-lg">
+                                                    <i class="fa fa-play"></i> Activar Workflow
+                                                </button>
+                                            </form>
+                                        </t>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-grid gap-2">
+                                        <a t-attf-href="/my/n8n/#{workflow.id}/edit" class="btn btn-outline-primary btn-lg">
+                                            <i class="fa fa-edit"></i> Editar Configuración
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-grid">
+                                        <a t-attf-href="/my/n8n/#{workflow.id}/executions" class="btn btn-outline-info btn-lg">
+                                            <i class="fa fa-history"></i> Ver Ejecuciones
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <form t-attf-action="/my/n8n/#{workflow.id}/refresh" method="POST" class="d-grid">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <button type="submit" class="btn btn-outline-secondary btn-lg">
+                                            <i class="fa fa-refresh"></i> Actualizar Estadísticas
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Notas del usuario -->
+                            <t t-if="workflow.notes">
+                                <hr/>
+                                <h6><i class="fa fa-sticky-note"></i> Mis Notas:</h6>
+                                <p class="text-muted" style="white-space: pre-wrap;"><t t-esc="workflow.notes"/></p>
+                            </t>
+                        </div>
+                    </div>
+
+                    <!-- Estadísticas rápidas -->
+                    <div class="row mb-4">
+                        <div class="col-md-3 mb-2">
+                            <div class="card text-center h-100">
+                                <div class="card-body">
+                                    <h3 class="text-primary" t-esc="workflow.total_executions"/>
+                                    <small class="text-muted">Total Ejecuciones</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <div class="card text-center h-100">
+                                <div class="card-body">
+                                    <h3 class="text-success" t-esc="workflow.successful_executions"/>
+                                    <small class="text-muted">Exitosas</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <div class="card text-center h-100">
+                                <div class="card-body">
+                                    <h3 class="text-danger" t-esc="workflow.failed_executions"/>
+                                    <small class="text-muted">Fallidas</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <div class="card text-center h-100">
+                                <div class="card-body">
+                                    <t t-if="workflow.last_execution_status == 'success'">
+                                        <h3 class="text-success"><i class="fa fa-check-circle"></i></h3>
+                                    </t>
+                                    <t t-elif="workflow.last_execution_status == 'error'">
+                                        <h3 class="text-danger"><i class="fa fa-times-circle"></i></h3>
+                                    </t>
+                                    <t t-else="">
+                                        <h3 class="text-muted"><i class="fa fa-minus-circle"></i></h3>
+                                    </t>
+                                    <small class="text-muted">Última Ejecución</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
 
                 <!-- Alerta para workflow pendiente -->
                 <t t-if="workflow.state == 'pending' and not workflow.is_extension">
@@ -430,6 +744,170 @@
                                 </form>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- ==================== -->
+    <!-- EDITAR WORKFLOW -->
+    <!-- ==================== -->
+    <template id="portal_n8n_edit_workflow" name="Editar Workflow N8N">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="False"/>
+
+            <div class="container py-4">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <!-- Mensajes -->
+                        <t t-if="error">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Error:</strong> <t t-esc="error"/>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"/>
+                            </div>
+                        </t>
+
+                        <div class="card">
+                            <div class="card-header bg-primary text-white">
+                                <h4 class="mb-0"><i class="fa fa-edit"></i> Editar Configuración</h4>
+                            </div>
+                            <div class="card-body">
+                                <form t-attf-action="/my/n8n/#{workflow.id}/edit" method="POST">
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Nombre Original</label>
+                                        <input type="text" class="form-control" disabled="disabled"
+                                               t-att-value="workflow.name"/>
+                                        <small class="text-muted">Este es el nombre original del workflow (no editable)</small>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Nombre Personalizado</label>
+                                        <input type="text" name="custom_name" class="form-control"
+                                               placeholder="Ej: Mi Automatización de Ventas"
+                                               t-att-value="workflow.custom_name or ''"/>
+                                        <small class="text-muted">Dale un nombre que te ayude a identificarlo fácilmente</small>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Notas</label>
+                                        <textarea name="notes" class="form-control" rows="4"
+                                                  placeholder="Escribe notas o recordatorios sobre este workflow..."><t t-esc="workflow.notes or ''"/></textarea>
+                                    </div>
+
+                                    <hr/>
+
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary btn-lg">
+                                            <i class="fa fa-save"></i> Guardar Cambios
+                                        </button>
+                                        <a t-attf-href="/my/n8n/#{workflow.id}" class="btn btn-secondary">
+                                            Cancelar
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- ==================== -->
+    <!-- HISTORIAL DE EJECUCIONES -->
+    <!-- ==================== -->
+    <template id="portal_n8n_executions" name="Ejecuciones Workflow N8N">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="False"/>
+
+            <div class="container py-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2>
+                        <i class="fa fa-history"></i> Historial de Ejecuciones
+                    </h2>
+                    <a t-attf-href="/my/n8n/#{workflow.id}" class="btn btn-secondary">
+                        <i class="fa fa-arrow-left"></i> Volver al Workflow
+                    </a>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <t t-esc="workflow.custom_name or workflow.name"/>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 text-center">
+                                <h3 class="text-primary" t-esc="workflow.total_executions"/>
+                                <p class="text-muted mb-0">Total Ejecuciones</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <h3 class="text-success" t-esc="workflow.successful_executions"/>
+                                <p class="text-muted mb-0">Exitosas</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <h3 class="text-danger" t-esc="workflow.failed_executions"/>
+                                <p class="text-muted mb-0">Fallidas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fa fa-list"></i> Últimas 50 Ejecuciones</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <t t-if="executions">
+                            <table class="table table-hover mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Fecha</th>
+                                        <th>Modo</th>
+                                        <th>Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="executions" t-as="exec">
+                                        <tr>
+                                            <td><code t-esc="exec.get('id')"/></td>
+                                            <td t-esc="exec.get('started_at')"/>
+                                            <td>
+                                                <span t-if="exec.get('mode') == 'webhook'" class="badge bg-info">Webhook</span>
+                                                <span t-elif="exec.get('mode') == 'trigger'" class="badge bg-primary">Trigger</span>
+                                                <span t-elif="exec.get('mode') == 'manual'" class="badge bg-secondary">Manual</span>
+                                                <span t-else="" class="badge bg-secondary" t-esc="exec.get('mode')"/>
+                                            </td>
+                                            <td>
+                                                <span t-if="exec.get('status') == 'success'" class="badge bg-success">
+                                                    <i class="fa fa-check"></i> Exitosa
+                                                </span>
+                                                <span t-elif="exec.get('status') == 'error'" class="badge bg-danger">
+                                                    <i class="fa fa-times"></i> Error
+                                                </span>
+                                                <span t-elif="exec.get('status') == 'running'" class="badge bg-info">
+                                                    <i class="fa fa-spinner fa-spin"></i> Ejecutando
+                                                </span>
+                                                <span t-else="" class="badge bg-secondary">
+                                                    <t t-esc="exec.get('status')"/>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </t>
+                        <t t-else="">
+                            <div class="p-4 text-center text-muted">
+                                <i class="fa fa-info-circle fa-2x mb-2"></i>
+                                <p>No hay ejecuciones registradas</p>
+                            </div>
+                        </t>
                     </div>
                 </div>
             </div>

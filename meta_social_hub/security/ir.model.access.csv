@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+# Meta Channel
+access_meta_channel_user,meta.channel.user,model_meta_channel,group_meta_social_user,1,0,0,0
+access_meta_channel_manager,meta.channel.manager,model_meta_channel,group_meta_social_manager,1,1,1,1
+# Meta Conversation
+access_meta_conversation_user,meta.conversation.user,model_meta_conversation,group_meta_social_user,1,1,1,0
+access_meta_conversation_manager,meta.conversation.manager,model_meta_conversation,group_meta_social_manager,1,1,1,1
+# Meta Conversation Tag
+access_meta_conversation_tag_user,meta.conversation.tag.user,model_meta_conversation_tag,group_meta_social_user,1,0,0,0
+access_meta_conversation_tag_manager,meta.conversation.tag.manager,model_meta_conversation_tag,group_meta_social_manager,1,1,1,1
+# Meta Message
+access_meta_message_user,meta.message.user,model_meta_message,group_meta_social_user,1,1,1,0
+access_meta_message_manager,meta.message.manager,model_meta_message,group_meta_social_manager,1,1,1,1
+# Wizards
+access_meta_send_product_wizard,meta.send.product.wizard,model_meta_send_product_wizard,group_meta_social_user,1,1,1,1
+access_meta_create_lead_wizard,meta.create.lead.wizard,model_meta_create_lead_wizard,group_meta_social_user,1,1,1,1
+access_meta_create_ticket_wizard,meta.create.ticket.wizard,model_meta_create_ticket_wizard,group_meta_social_user,1,1,1,1

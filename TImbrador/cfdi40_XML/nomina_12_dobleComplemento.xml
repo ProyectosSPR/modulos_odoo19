@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cfdi:Comprobante Certificado="MIIFuzCCA6OgAwIBAgIUMzAwMDEwMDAwMDA0MDAwMDI0MzQwDQYJKoZIhvcNAQELBQAwggErMQ8wDQYDVQQDDAZBQyBVQVQxLjAsBgNVBAoMJVNFUlZJQ0lPIERFIEFETUlOSVNUUkFDSU9OIFRSSUJVVEFSSUExGjAYBgNVBAsMEVNBVC1JRVMgQXV0aG9yaXR5MSgwJgYJKoZIhvcNAQkBFhlvc2Nhci5tYXJ0aW5lekBzYXQuZ29iLm14MR0wGwYDVQQJDBQzcmEgY2VycmFkYSBkZSBjYWRpejEOMAwGA1UEEQwFMDYzNzAxCzAJBgNVBAYTAk1YMRkwFwYDVQQIDBBDSVVEQUQgREUgTUVYSUNPMREwDwYDVQQHDAhDT1lPQUNBTjERMA8GA1UELRMIMi41LjQuNDUxJTAjBgkqhkiG9w0BCQITFnJlc3BvbnNhYmxlOiBBQ0RNQS1TQVQwHhcNMTkwNjE3MTk0NDE0WhcNMjMwNjE3MTk0NDE0WjCB4jEnMCUGA1UEAxMeRVNDVUVMQSBLRU1QRVIgVVJHQVRFIFNBIERFIENWMScwJQYDVQQpEx5FU0NVRUxBIEtFTVBFUiBVUkdBVEUgU0EgREUgQ1YxJzAlBgNVBAoTHkVTQ1VFTEEgS0VNUEVSIFVSR0FURSBTQSBERSBDVjElMCMGA1UELRMcRUtVOTAwMzE3M0M5IC8gWElRQjg5MTExNlFFNDEeMBwGA1UEBRMVIC8gWElRQjg5MTExNk1HUk1aUjA1MR4wHAYDVQQLExVFc2N1ZWxhIEtlbXBlciBVcmdhdGUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCN0peKpgfOL75iYRv1fqq+oVYsLPVUR/GibYmGKc9InHFy5lYF6OTYjnIIvmkOdRobbGlCUxORX/tLsl8Ya9gm6Yo7hHnODRBIDup3GISFzB/96R9K/MzYQOcscMIoBDARaycnLvy7FlMvO7/rlVnsSARxZRO8Kz8Zkksj2zpeYpjZIya/369+oGqQk1cTRkHo59JvJ4Tfbk/3iIyf4H/Ini9nBe9cYWo0MnKob7DDt/vsdi5tA8mMtA953LapNyCZIDCRQQlUGNgDqY9/8F5mUvVgkcczsIgGdvf9vMQPSf3jjCiKj7j6ucxl1+FwJWmbvgNmiaUR/0q4m2rm78lFAgMBAAGjHTAbMAwGA1UdEwEB/wQCMAAwCwYDVR0PBAQDAgbAMA0GCSqGSIb3DQEBCwUAA4ICAQBcpj1TjT4jiinIujIdAlFzE6kRwYJCnDG08zSp4kSnShjxADGEXH2chehKMV0FY7c4njA5eDGdA/G2OCTPvF5rpeCZP5Dw504RZkYDl2suRz+wa1sNBVpbnBJEK0fQcN3IftBwsgNFdFhUtCyw3lus1SSJbPxjLHS6FcZZ51YSeIfcNXOAuTqdimusaXq15GrSrCOkM6n2jfj2sMJYM2HXaXJ6rGTEgYmhYdwxWtil6RfZB+fGQ/H9I9WLnl4KTZUS6C9+NLHh4FPDhSk19fpS2S/56aqgFoGAkXAYt9Fy5ECaPcULIfJ1DEbsXKyRdCv3JY89+0MNkOdaDnsemS2o5Gl08zI4iYtt3L40gAZ60NPh31kVLnYNsmvfNxYyKp+AeJtDHyW9w7ftM0Hoi+BuRmcAQSKFV3pk8j51la+jrRBrAUv8blbRcQ5BiZUwJzHFEKIwTsRGoRyEx96sNnB03n6GTwjIGz92SmLdNl95r9rkvp+2m4S6q1lPuXaFg7DGBrXWC8iyqeWE2iobdwIIuXPTMVqQb12m1dAkJVRO5NdHnP/MpqOvOgLqoZBNHGyBg4Gqm4sCJHCxA1c8Elfa2RQTCk0tAzllL4vOnI1GHkGJn65xokGsaU4B4D36xh7eWrfj4/pgWHmtoDAYa8wzSwo2GVCZOs+mtEgOQB91/g==" Descuento="79.27" Exportacion="01" Fecha="2022-03-18T09:00:00" Folio="LC025" LugarExpedicion="91700" MetodoPago="PUE" Moneda="MXN" NoCertificado="30001000000400002434" Sello="RTIszaruU0+br2koadlUmhdn+7yVZfwE5pjWtyzYj/M7QxZUGkiFwQDVBrl/plJw6iP5/MBs2cAM0Z4sAQxdJaFt4gqunTufCXtG/fbMsbMo6wzum9YwCyP0UfN6azYw9Ea9ihcrnt03ke9oqNKVlp1bIFL5V9xX605K19QDphu/KMCW1gC+z3KK2et3cj84pOBCg3zHu/Vxqd/9yu0UefXuA5DLgjVsZwVAcQFQagRpeAzb1CFi67gI4d8Y9PJNv9W7ljkTAYf0fByvhibM2ikTKGNKLDmqZzR+RbteplecQBz/WNpN732EBrRfpRfuOV1dfHr5+qnFXG/Ae8B8Fg==" Serie="LC" SubTotal="6883.20" TipoCambio="1" TipoDeComprobante="N" Total="6803.93" Version="4.0" xmlns:cfdi="http://www.sat.gob.mx/cfd/4" xmlns:nomina12="http://www.sat.gob.mx/nomina12" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd http://www.sat.gob.mx/nomina12 http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd">
+	<cfdi:Emisor Nombre="ESCUELA KEMPER URGATE" RegimenFiscal="601" Rfc="EKU9003173C9"/>
+	<cfdi:Receptor DomicilioFiscalReceptor="88965" Nombre="INGRID XODAR JIMENEZ" RegimenFiscalReceptor="605" Rfc="XOJI740919U48" UsoCFDI="CN01"/>
+	<cfdi:Conceptos>
+		<cfdi:Concepto Cantidad="1" ClaveProdServ="84111505" ClaveUnidad="ACT" Descripcion="Pago de nómina" Descuento="79.27" Importe="6883.20" ObjetoImp="01" ValorUnitario="6883.20"/>
+	</cfdi:Conceptos>
+	<cfdi:Complemento>
+		<nomina12:Nomina FechaFinalPago="2021-10-31" FechaInicialPago="2021-10-15" FechaPago="2021-10-31" NumDiasPagados="15" TipoNomina="O" TotalDeducciones="79.27" TotalOtrosPagos="131.88" TotalPercepciones="5251.32" Version="1.2">
+			<nomina12:Emisor RegistroPatronal="123456789"/>
+			<nomina12:Receptor Antigüedad="P276W" ClaveEntFed="JAL" Curp="MICR681027HJCRBB05" FechaInicioRelLaboral="2016-07-15" NumEmpleado="002" NumSeguridadSocial="12345678901" PeriodicidadPago="02" Puesto="JEFE DEPARTAMENTO DE PERSONAL" RiesgoPuesto="1" SalarioBaseCotApor="174.60" SalarioDiarioIntegrado="251.06" Sindicalizado="No" TipoContrato="01" TipoRegimen="02"/>
+			<nomina12:Percepciones TotalExento="933.67" TotalGravado="4317.65" TotalSeparacionIndemnizacion="0.00" TotalSueldos="5251.32">
+				<nomina12:Percepcion Clave="029" Concepto="Vales de despensa" ImporteExento="600.00" ImporteGravado="0.00" TipoPercepcion="029"/>
+				<nomina12:Percepcion Clave="001" Concepto="Séptimo Día" ImporteExento="0.00" ImporteGravado="163.50" TipoPercepcion="001"/>
+				<nomina12:Percepcion Clave="001" Concepto="Sueldos" ImporteExento="0.00" ImporteGravado="2502.50" TipoPercepcion="001"/>
+				<nomina12:Percepcion Clave="001" Concepto="Incentivo por Asistencia" ImporteExento="0.00" ImporteGravado="1251.25" TipoPercepcion="001"/>
+				<nomina12:Percepcion Clave="010" Concepto="Incentivo por Puntualidad" ImporteExento="0.00" ImporteGravado="400.40" TipoPercepcion="010"/>
+				<nomina12:Percepcion Clave="002" Concepto="Prima Vacacional" ImporteExento="333.67" ImporteGravado="0.00" TipoPercepcion="002"/>
+			</nomina12:Percepciones>
+			<nomina12:Deducciones TotalOtrasDeducciones="79.27">
+				<nomina12:Deduccion Clave="021" Concepto="Cuotas Obreras" Importe="79.27" TipoDeduccion="021"/>
+			</nomina12:Deducciones>
+			<nomina12:OtrosPagos>
+				<nomina12:OtroPago Clave="002" Concepto="Subsidio para el empleo efectivamente entregado al trabajador" Importe="131.88" TipoOtroPago="002">
+					<nomina12:SubsidioAlEmpleo SubsidioCausado="131.88"/>
+				</nomina12:OtroPago>
+			</nomina12:OtrosPagos>
+		</nomina12:Nomina>
+		<nomina12:Nomina FechaFinalPago="2021-10-31" FechaInicialPago="2021-10-15" FechaPago="2021-10-31" NumDiasPagados="15" TipoNomina="E" TotalOtrosPagos="0.00" TotalPercepciones="1500.00" Version="1.2">
+			<nomina12:Emisor RegistroPatronal="123456789"/>
+			<nomina12:Receptor Antigüedad="P276W" ClaveEntFed="JAL" Curp="MICR681027HJCRBB05" FechaInicioRelLaboral="2016-07-15" NumEmpleado="002" NumSeguridadSocial="12345678901" PeriodicidadPago="99" Puesto="JEFE DEPARTAMENTO DE PERSONAL" RiesgoPuesto="1" SalarioBaseCotApor="174.60" SalarioDiarioIntegrado="251.06" Sindicalizado="No" TipoContrato="01" TipoRegimen="02"/>
+			<nomina12:Percepciones TotalExento="0.00" TotalGravado="1500.00" TotalSeparacionIndemnizacion="0.00" TotalSueldos="1500.00">
+				<nomina12:Percepcion Clave="002" Concepto="Gratificación Anual (Aguinaldo)" ImporteExento="0.00" ImporteGravado="1500.00" TipoPercepcion="002"/>
+			</nomina12:Percepciones>
+			<nomina12:OtrosPagos>
+				<nomina12:OtroPago Clave="002" Concepto="002 - Subsidio para el empleo (efectivamente entregado al trabajador)." Importe="0.00" TipoOtroPago="002">
+					<nomina12:SubsidioAlEmpleo SubsidioCausado="0.00"/>
+				</nomina12:OtroPago>
+			</nomina12:OtrosPagos>
+		</nomina12:Nomina>
+		<tfd:TimbreFiscalDigital FechaTimbrado="2022-03-18T10:20:13" NoCertificadoSAT="30001000000400002495" RfcProvCertif="SPR190613I52" SelloCFD="RTIszaruU0+br2koadlUmhdn+7yVZfwE5pjWtyzYj/M7QxZUGkiFwQDVBrl/plJw6iP5/MBs2cAM0Z4sAQxdJaFt4gqunTufCXtG/fbMsbMo6wzum9YwCyP0UfN6azYw9Ea9ihcrnt03ke9oqNKVlp1bIFL5V9xX605K19QDphu/KMCW1gC+z3KK2et3cj84pOBCg3zHu/Vxqd/9yu0UefXuA5DLgjVsZwVAcQFQagRpeAzb1CFi67gI4d8Y9PJNv9W7ljkTAYf0fByvhibM2ikTKGNKLDmqZzR+RbteplecQBz/WNpN732EBrRfpRfuOV1dfHr5+qnFXG/Ae8B8Fg==" SelloSAT="R+QADB69ArmRFojAOAEbXi8TPqWeP/mkiPrB42bXwqoaJOgv1uIX/dmvce2ogous4WODTj1UVwEOGAq2hvsvB0+RTvOFxOFI+FuuBCpqF3YD/g/M7IjADr7kfk1IHRvJ49VHRQlb8Mjr9LdlXxQsYFmuyZ643OZqM5ATjYmTGDYTYV8gGrfP0TzUkRyYdoDaDdY7bADvjsYmA0CzSQiwvdksihgXRZ3byHRkAwkKMDGnptEbDCpQWxLAR7g1TH1z0rTAGq3CaKzPKfpe5OrHVOwg7QVHQftIvRI+28LmGbKoH+fBBVVFU1RQE4zCEw/SojvlKcpg+cLdY0momDlbWQ==" UUID="2d29b503-f578-47bb-8c38-170f7c3486cd" Version="1.1" xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"/>
+	</cfdi:Complemento>
+</cfdi:Comprobante>

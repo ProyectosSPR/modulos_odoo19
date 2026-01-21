@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <!-- Channel Type Badge Template -->
+    <t t-name="meta_social_hub.ChannelTypeBadge">
+        <span t-attf-class="badge #{props.type === 'whatsapp' ? 'bg-success' : props.type === 'instagram' ? 'bg-danger' : 'bg-primary'}">
+            <i t-attf-class="fa #{props.type === 'whatsapp' ? 'fa-whatsapp' : props.type === 'instagram' ? 'fa-instagram' : 'fa-facebook-messenger'} me-1"/>
+            <t t-esc="props.label"/>
+        </span>
+    </t>
+
+    <!-- Unread Badge Template -->
+    <t t-name="meta_social_hub.UnreadBadge">
+        <span t-if="props.count > 0" class="badge bg-danger ms-1">
+            <t t-esc="props.count"/>
+        </span>
+    </t>
+
+    <!-- Conversation Card Template for Kanban -->
+    <t t-name="meta_social_hub.ConversationCard">
+        <div class="o_meta_conversation_card d-flex p-2">
+            <div class="o_meta_avatar me-2">
+                <img t-if="props.avatar" t-att-src="props.avatar" class="rounded-circle" width="40" height="40"/>
+                <span t-else="" class="o_meta_avatar_placeholder rounded-circle bg-secondary d-flex align-items-center justify-content-center" style="width:40px;height:40px;">
+                    <i class="fa fa-user text-white"/>
+                </span>
+            </div>
+            <div class="o_meta_content flex-grow-1">
+                <div class="d-flex justify-content-between align-items-start">
+                    <strong class="o_meta_name" t-esc="props.name"/>
+                    <small class="text-muted" t-esc="props.time"/>
+                </div>
+                <div class="o_meta_channel_info mb-1">
+                    <t t-call="meta_social_hub.ChannelTypeBadge">
+                        <t t-set="type" t-value="props.channelType"/>
+                        <t t-set="label" t-value="props.channelLabel"/>
+                    </t>
+                    <t t-call="meta_social_hub.UnreadBadge">
+                        <t t-set="count" t-value="props.unreadCount"/>
+                    </t>
+                </div>
+                <div class="o_meta_preview text-muted small text-truncate">
+                    <i t-if="props.lastDirection === 'outbound'" class="fa fa-reply me-1"/>
+                    <i t-else="" class="fa fa-inbox me-1"/>
+                    <t t-esc="props.preview"/>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <!-- Stats Dashboard Widget -->
+    <t t-name="meta_social_hub.StatsWidget">
+        <div class="o_meta_stats_widget card">
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col">
+                        <h3 class="mb-0 text-info" t-esc="props.newCount"/>
+                        <small class="text-muted">New</small>
+                    </div>
+                    <div class="col">
+                        <h3 class="mb-0 text-success" t-esc="props.openCount"/>
+                        <small class="text-muted">Open</small>
+                    </div>
+                    <div class="col">
+                        <h3 class="mb-0 text-warning" t-esc="props.pendingCount"/>
+                        <small class="text-muted">Pending</small>
+                    </div>
+                    <div class="col">
+                        <h3 class="mb-0 text-danger" t-esc="props.unreadCount"/>
+                        <small class="text-muted">Unread</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

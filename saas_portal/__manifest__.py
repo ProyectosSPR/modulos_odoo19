@@ -21,8 +21,10 @@
         'sale_subscription',
         'project',
         'appointment',
+        'account',
         'saas_services',
         'k8s_saas',
+        # n8n_sales is optional - dashboard adapts if not installed
     ],
     'data': [
         'security/ir.model.access.csv',

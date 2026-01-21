@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cfdi:Comprobante Certificado="MIIFuzCCA6OgAwIBAgIUMzAwMDEwMDAwMDA0MDAwMDI0MzQwDQYJKoZIhvcNAQELBQAwggErMQ8wDQYDVQQDDAZBQyBVQVQxLjAsBgNVBAoMJVNFUlZJQ0lPIERFIEFETUlOSVNUUkFDSU9OIFRSSUJVVEFSSUExGjAYBgNVBAsMEVNBVC1JRVMgQXV0aG9yaXR5MSgwJgYJKoZIhvcNAQkBFhlvc2Nhci5tYXJ0aW5lekBzYXQuZ29iLm14MR0wGwYDVQQJDBQzcmEgY2VycmFkYSBkZSBjYWRpejEOMAwGA1UEEQwFMDYzNzAxCzAJBgNVBAYTAk1YMRkwFwYDVQQIDBBDSVVEQUQgREUgTUVYSUNPMREwDwYDVQQHDAhDT1lPQUNBTjERMA8GA1UELRMIMi41LjQuNDUxJTAjBgkqhkiG9w0BCQITFnJlc3BvbnNhYmxlOiBBQ0RNQS1TQVQwHhcNMTkwNjE3MTk0NDE0WhcNMjMwNjE3MTk0NDE0WjCB4jEnMCUGA1UEAxMeRVNDVUVMQSBLRU1QRVIgVVJHQVRFIFNBIERFIENWMScwJQYDVQQpEx5FU0NVRUxBIEtFTVBFUiBVUkdBVEUgU0EgREUgQ1YxJzAlBgNVBAoTHkVTQ1VFTEEgS0VNUEVSIFVSR0FURSBTQSBERSBDVjElMCMGA1UELRMcRUtVOTAwMzE3M0M5IC8gWElRQjg5MTExNlFFNDEeMBwGA1UEBRMVIC8gWElRQjg5MTExNk1HUk1aUjA1MR4wHAYDVQQLExVFc2N1ZWxhIEtlbXBlciBVcmdhdGUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCN0peKpgfOL75iYRv1fqq+oVYsLPVUR/GibYmGKc9InHFy5lYF6OTYjnIIvmkOdRobbGlCUxORX/tLsl8Ya9gm6Yo7hHnODRBIDup3GISFzB/96R9K/MzYQOcscMIoBDARaycnLvy7FlMvO7/rlVnsSARxZRO8Kz8Zkksj2zpeYpjZIya/369+oGqQk1cTRkHo59JvJ4Tfbk/3iIyf4H/Ini9nBe9cYWo0MnKob7DDt/vsdi5tA8mMtA953LapNyCZIDCRQQlUGNgDqY9/8F5mUvVgkcczsIgGdvf9vMQPSf3jjCiKj7j6ucxl1+FwJWmbvgNmiaUR/0q4m2rm78lFAgMBAAGjHTAbMAwGA1UdEwEB/wQCMAAwCwYDVR0PBAQDAgbAMA0GCSqGSIb3DQEBCwUAA4ICAQBcpj1TjT4jiinIujIdAlFzE6kRwYJCnDG08zSp4kSnShjxADGEXH2chehKMV0FY7c4njA5eDGdA/G2OCTPvF5rpeCZP5Dw504RZkYDl2suRz+wa1sNBVpbnBJEK0fQcN3IftBwsgNFdFhUtCyw3lus1SSJbPxjLHS6FcZZ51YSeIfcNXOAuTqdimusaXq15GrSrCOkM6n2jfj2sMJYM2HXaXJ6rGTEgYmhYdwxWtil6RfZB+fGQ/H9I9WLnl4KTZUS6C9+NLHh4FPDhSk19fpS2S/56aqgFoGAkXAYt9Fy5ECaPcULIfJ1DEbsXKyRdCv3JY89+0MNkOdaDnsemS2o5Gl08zI4iYtt3L40gAZ60NPh31kVLnYNsmvfNxYyKp+AeJtDHyW9w7ftM0Hoi+BuRmcAQSKFV3pk8j51la+jrRBrAUv8blbRcQ5BiZUwJzHFEKIwTsRGoRyEx96sNnB03n6GTwjIGz92SmLdNl95r9rkvp+2m4S6q1lPuXaFg7DGBrXWC8iyqeWE2iobdwIIuXPTMVqQb12m1dAkJVRO5NdHnP/MpqOvOgLqoZBNHGyBg4Gqm4sCJHCxA1c8Elfa2RQTCk0tAzllL4vOnI1GHkGJn65xokGsaU4B4D36xh7eWrfj4/pgWHmtoDAYa8wzSwo2GVCZOs+mtEgOQB91/g==" CondicionesDePago="NA" Exportacion="01" Fecha="2022-05-13T12:00:00" Folio="LC021" FormaPago="03" LugarExpedicion="72000" MetodoPago="PUE" Moneda="MXN" NoCertificado="30001000000400002434" Sello="EJIkaq/GKfTWZKb2phtOEZbqJIZjjq8b6HBz6ZP6Zq/MStOufX0X8jB3R3NRk5MWFsoKjVbI6x+7ZrY6aio9GFlc/30zuD7j+Vqz+X8rFDELJk4+SeCS57i3+HLkyk4NAylLKVKDm35JvDR9W77MXYQv5wqjiSKuONT1OIYy7KkKAHsT/NnFrip2rtFaAlbKIYlQJ7twyPtln2dQPPJeUOOaXfH9WisdjdfZ2xjp32dfz8U+YLC4jsWtbmVSVgbr9GhvNziWLE+kiPbKKO64sP9lzRNMIpK7+uOujeKAirqgzXstjk/4ughYUw15WzLGVen9tyJu0NkBsKRCC5Ax5w==" Serie="LC" SubTotal="1.00" TipoCambio="1" TipoDeComprobante="E" Total="1.00" Version="4.0" xmlns:cfdi="http://www.sat.gob.mx/cfd/4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd">
+	<cfdi:CfdiRelacionados TipoRelacion="04">
+		<cfdi:CfdiRelacionado UUID="df117db8-1446-47c4-b70f-46a25d8df051"/>
+	</cfdi:CfdiRelacionados>
+	<cfdi:Emisor Nombre="ESCUELA KEMPER URGATE" RegimenFiscal="601" Rfc="EKU9003173C9"/>
+	<cfdi:Receptor DomicilioFiscalReceptor="45640" Nombre="SISTEMAS IA INDUSTRIAL" RegimenFiscalReceptor="601" Rfc="SII200817FX0" UsoCFDI="G01"/>
+	<cfdi:Conceptos>
+		<cfdi:Concepto Cantidad="1" ClaveProdServ="01010101" ClaveUnidad="F52" Descripcion="ACERO" Importe="1.00" NoIdentificacion="miclave" ObjetoImp="02" Unidad="TONELADA" ValorUnitario="1.00">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="1.00" Impuesto="002" TipoFactor="Exento"/>
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+	</cfdi:Conceptos>
+	<cfdi:Impuestos>
+		<cfdi:Traslados>
+			<cfdi:Traslado Base="1.00" Impuesto="002" TipoFactor="Exento"/>
+		</cfdi:Traslados>
+	</cfdi:Impuestos>
+	<cfdi:Complemento>
+		<tfd:TimbreFiscalDigital FechaTimbrado="2022-05-13T13:05:12" NoCertificadoSAT="30001000000400002495" RfcProvCertif="SPR190613I52" SelloCFD="EJIkaq/GKfTWZKb2phtOEZbqJIZjjq8b6HBz6ZP6Zq/MStOufX0X8jB3R3NRk5MWFsoKjVbI6x+7ZrY6aio9GFlc/30zuD7j+Vqz+X8rFDELJk4+SeCS57i3+HLkyk4NAylLKVKDm35JvDR9W77MXYQv5wqjiSKuONT1OIYy7KkKAHsT/NnFrip2rtFaAlbKIYlQJ7twyPtln2dQPPJeUOOaXfH9WisdjdfZ2xjp32dfz8U+YLC4jsWtbmVSVgbr9GhvNziWLE+kiPbKKO64sP9lzRNMIpK7+uOujeKAirqgzXstjk/4ughYUw15WzLGVen9tyJu0NkBsKRCC5Ax5w==" SelloSAT="eiTveBbyT9MtfQTcxHbQLdMp1qTpwdI2T59jgZa1isfNhPbEnsGX0nnCR0r0URmB6Gd/LhxtUvOaz3YPT/1z9Vkf+dh5s5lMh2l0A47FUEJPzxJjEoOhXuwvewhSSG7M4+mRsqvYzLzW+0dG3G2u9g1x9lMzPrVr6nVLwldk9+QSy8NZ0ZlvkacpwL/tbFMaOE6PWjseeJRuzX+W72TKBhhRzFSp3AffSvEHuy+uK/lSSb2DP1BJgr84A2LSIO66J+bbUJfCjFN5PLUTGp/23zoanb/nTP1tMZEoU9QePU6mqhqRA49dyX25bfOE/YG0aqYwbb6Es8WRh5oQMQUjhg==" UUID="81169049-555f-489d-bb12-cfd318d9ab67" Version="1.1" xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"/>
+	</cfdi:Complemento>
+</cfdi:Comprobante>

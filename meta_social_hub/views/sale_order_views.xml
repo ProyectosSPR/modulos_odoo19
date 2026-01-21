@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend Sale Order Form View -->
+    <record id="sale_order_view_form_inherit_meta" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.meta.social.hub</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Add buttons -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_meta_conversation" type="object"
+                        class="oe_stat_button" icon="fa-comments"
+                        invisible="not meta_conversation_id">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Conversation</span>
+                    </div>
+                </button>
+            </xpath>
+
+            <!-- Add action buttons in header -->
+            <xpath expr="//header" position="inside">
+                <button name="action_send_quotation_via_meta" type="object"
+                        string="Send via Chat" icon="fa-paper-plane"
+                        class="btn-secondary"
+                        groups="meta_social_hub.group_meta_social_user"/>
+                <button name="action_send_products_via_meta" type="object"
+                        string="Send Products" icon="fa-shopping-cart"
+                        class="btn-secondary"
+                        groups="meta_social_hub.group_meta_social_user"/>
+            </xpath>
+
+            <!-- Add Meta fields -->
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="meta_conversation_id" readonly="1" groups="meta_social_hub.group_meta_social_user"/>
+                <field name="meta_channel_type" readonly="1" widget="badge" invisible="not meta_conversation_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add to Sale Order List View -->
+    <record id="sale_order_view_list_inherit_meta" model="ir.ui.view">
+        <field name="name">sale.order.list.inherit.meta.social.hub</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list" position="inside">
+                <field name="meta_channel_type" widget="badge" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

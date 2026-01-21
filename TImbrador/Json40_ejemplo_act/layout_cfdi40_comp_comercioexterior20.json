@@ -1,0 +1,203 @@
+{
+  "Comprobante": {
+    "Version": "4.0",
+    "Serie": "",
+    "Folio": "",
+    "Fecha": "",
+    "FormaPago": "",
+    "NoCertificado": "",
+    "CondicionesDePago": "",
+    "SubTotal": "",
+    "Descuento": "",
+    "Moneda": "",
+    "TipoCambio": "",
+    "Total": "",
+    "TipoDeComprobante": "",
+    "Exportacion": "",
+    "MetodoPago": "",
+    "LugarExpedicion": "",
+    "Confirmacion": "",
+    "CfdiRelacionados": {
+      "TipoRelacion": "",
+      "CfdiRelacionado": [
+        "UUID-1",
+        "UUID-2",
+        "UUID-N"
+      ]
+    },
+    "Emisor": {
+      "Rfc": "",
+      "Nombre": "",
+      "RegimenFiscal": ""
+    },
+    "Receptor": {
+      "Rfc": "",
+      "Nombre": "",
+      "DomicilioFiscalReceptor": "",
+      "ResidenciaFiscal": "",
+      "NumRegIdTrib": "",
+      "RegimenFiscalReceptor": "",
+      "UsoCFDI": ""
+    },
+    "Conceptos": [
+      {
+        "ClaveProdServ": "",
+        "NoIdentificacion": "",
+        "Cantidad": "",
+        "ClaveUnidad": "",
+        "Unidad": "",
+        "Descripcion": "",
+        "ValorUnitario": "",
+        "Importe": "",
+        "Descuento": "",
+        "ObjetoImp": "",
+        "Impuestos": {
+          "Traslados": [
+            {
+              "Base": "",
+              "Impuesto": "",
+              "TipoFactor": "",
+              "TasaOCuota": "",
+              "Importe": ""
+            }
+          ],
+          "Retenciones": [
+            {
+              "Base": "",
+              "Impuesto": "",
+              "TipoFactor": "",
+              "TasaOCuota": "",
+              "Importe": ""
+            }
+          ]
+        },
+        "Parte": [
+          {
+            "ClaveProdServ": "",
+            "NoIdentificacion": "",
+            "Cantidad": "",
+            "Unidad": "",
+            "Descripcion": "",
+            "ValorUnitario": "",
+            "Importe": ""
+          }
+        ]
+      }
+    ],
+    "Impuestos": {
+      "TotalImpuestosRetenidos": "",
+      "TotalImpuestosTrasladados": "",
+      "Retenciones": [
+        {
+          "Impuesto": "",
+          "Importe": ""
+        }
+      ],
+      "Traslados": [
+        {
+          "Base": "",
+          "Impuesto": "",
+          "TipoFactor": "",
+          "TasaOCuota": "",
+          "Importe": ""
+        }
+      ]
+    },
+    "Complemento": [
+      {
+        "ComercioExterior20": {
+          "Version": "",
+          "MotivoTraslado": "",
+          "ClaveDePedimento": "",
+          "CertificadoOrigen": "",
+          "NumCertificadoOrigen": "",
+          "NumeroExportadorConfiable": "",
+          "Incoterm": "",
+          "Observaciones": "",
+          "TipoCambioUSD": "",
+          "TotalUSD": "",
+          "Emisor": {
+            "Curp": "",
+            "Domicilio": {
+              "Calle": "",
+              "NumeroExterior": "",
+              "NumeroInterior": "",
+              "Colonia": "",
+              "Localidad": "",
+              "Referencia": "",
+              "Municipio": "",
+              "Estado": "",
+              "Pais": "",
+              "CodigoPostal": ""
+            }
+          },
+          "Propietario": [
+            {
+              "NumRegIdTrib": "",
+              "ResidenciaFiscal": ""
+            }
+          ],
+          "Receptor": {
+            "NumRegIdTrib": "",
+            "Domicilio": {
+              "Calle": "",
+              "NumeroExterior": "",
+              "NumeroInterior": "",
+              "Colonia": "",
+              "Localidad": "",
+              "Referencia": "",
+              "Municipio": "",
+              "Estado": "",
+              "Pais": "",
+              "CodigoPostal": ""
+            }
+          },
+          "Destinatario": [
+            {
+              "NumRegIdTrib": "",
+              "Nombre": "",
+              "Domicilio": [
+                {
+                  "Calle": "",
+                  "NumeroExterior": "",
+                  "NumeroInterior": "",
+                  "Colonia": "",
+                  "Localidad": "",
+                  "Referencia": "",
+                  "Municipio": "",
+                  "Estado": "",
+                  "Pais": "",
+                  "CodigoPostal": ""
+                }
+              ]
+            }
+          ],
+          "Mercancias": {
+            "Mercancia": [
+              {
+                "NoIdentificacion": "",
+                "FraccionArancelaria": "",
+                "CantidadAduana": "",
+                "UnidadAduana": "",
+                "ValorUnitarioAduana": "",
+                "ValorDolares": "",
+                "DescripcionesEspecificas": [
+                  {
+                    "Marca": "",
+                    "Modelo": "",
+                    "SubModelo": "",
+                    "NumeroSerie": ""
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "CamposPDF": {
+    "tipoComprobante": "",
+    "Comentarios": ""
+  }
+}

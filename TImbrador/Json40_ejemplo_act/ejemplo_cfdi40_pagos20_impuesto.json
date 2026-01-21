@@ -1,0 +1,111 @@
+{
+    "Comprobante": {
+        "Version": "4.0",
+        "Serie": "LC-P",
+        "Folio": "LC-0001",
+        "Fecha": "2024-08-27T14:41:37",
+        "NoCertificado": "30001000000500003416",
+        "SubTotal": "0",
+        "Moneda": "XXX",
+        "Total": "0",
+        "TipoDeComprobante": "P",
+        "Exportacion": "01",
+        "LugarExpedicion": "72090",
+        "Emisor": {
+            "Rfc": "EKU9003173C9",
+            "Nombre": "ESCUELA KEMPER URGATE",
+            "RegimenFiscal": "601"
+        },
+        "Receptor": {
+            "Rfc": "XAXX010101000",
+            "Nombre": "UNIVERSIDAD ROBOTICA ESPAÑOLA",
+            "DomicilioFiscalReceptor": "72090",
+            "RegimenFiscalReceptor": "616",
+            "UsoCFDI": "CP01"
+        },
+        "Conceptos": [
+            {
+                "ClaveProdServ": "84111506",
+                "Cantidad": "1",
+                "ClaveUnidad": "ACT",
+                "Descripcion": "Pago",
+                "ValorUnitario": "0",
+                "Importe": "0",
+                "ObjetoImp": "01"
+            }
+        ],
+        "Complemento": [
+            {
+                "Pagos20": {
+                    "Version": "2.0",
+                    "Totales": {
+                        "MontoTotalPagos": "100.00",
+                        "TotalRetencionesISR": "1.72",
+                        "TotalTrasladosImpuestoIVA16": "13.79",
+                        "TotalTrasladosBaseIVA16": "86.21"
+                    },
+                    "Pago": [
+                        {
+                            "FechaPago": "2022-01-31T14:41:00",
+                            "FormaDePagoP": "03",
+                            "MonedaP": "MXN",
+                            "Monto": "100.00",
+                            "TipoCambioP":"1",
+                            "NumOperacion": "1234",
+                            "DoctoRelacionado": [
+                                {
+                                    "IdDocumento": "5e971961-9239-4afa-8ac6-bccc2d954866",
+                                    "MonedaDR": "MXN",
+                                    "NumParcialidad": "1",
+                                    "EquivalenciaDR":"1",
+                                    "ImpSaldoAnt": "100.00",
+                                    "ImpPagado": "100.00",
+                                    "ImpSaldoInsoluto": "0",
+                                    "ObjetoImpDR": "02",
+                                    "ImpuestosDR": {
+                                        "RetencionesDR": [
+                                          {
+                                            "BaseDR": "86.21",
+                                            "ImpuestoDR": "001",
+                                            "TipoFactorDR": "Tasa",
+                                            "TasaOCuotaDR": "0.020000",
+                                            "ImporteDR": "1.72"
+                                          }
+                                        ],
+                                        "TrasladosDR": [
+                                            {
+                                                "BaseDR": "86.21",
+                                                "ImpuestoDR": "002",
+                                                "TipoFactorDR": "Tasa",
+                                                "TasaOCuotaDR": "0.160000",
+                                                "ImporteDR": "13.79"
+                                            }
+                                        ]
+
+                                    }
+                                }
+                            ],
+                            "ImpuestosP": {
+                                "RetencionesP": [
+                                  {
+                                    "ImpuestoP": "001",
+                                    "ImporteP": "1.72"
+                                  }
+                                ],
+                                "TrasladosP": [
+                                    {
+                                        "BaseP": "86.21",
+                                        "ImpuestoP": "002",
+                                        "TipoFactorP": "Tasa",
+                                        "TasaOCuotaP": "0.160000",
+                                        "ImporteP": "13.79"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

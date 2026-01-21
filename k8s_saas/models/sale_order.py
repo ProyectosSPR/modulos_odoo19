@@ -5,6 +5,25 @@ from odoo.exceptions import UserError
 _logger = logging.getLogger(__name__)
 
 
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
+
+    creates_k8s_instance = fields.Boolean(
+        'Crea Instancia K8s',
+        help='Al vender este producto se creara una instancia de Odoo en Kubernetes'
+    )
+    k8s_plan_id = fields.Many2one(
+        'k8s.instance.plan',
+        string='Plan K8s',
+        help='Plan de recursos para la instancia'
+    )
+    k8s_managed_by_us = fields.Boolean(
+        'Administrado por Nosotros',
+        default=True,
+        help='Si es True, nosotros administramos la instancia. Si es False, el cliente la administra.'
+    )
+
+
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
@@ -20,7 +39,7 @@ class SaleOrder(models.Model):
 
     k8s_instance_ids = fields.One2many(
         'k8s.instance',
-        'subscription_id',
+        'sale_order_id',
         string='Instancias K8s'
     )
     k8s_instance_count = fields.Integer(
@@ -40,41 +59,71 @@ class SaleOrder(models.Model):
         Instance = self.env['k8s.instance']
         Cluster = self.env['k8s.cluster']
 
-        # Get default cluster
-        cluster = Cluster.search([('state', '=', 'connected')], limit=1)
-        if not cluster:
-            _logger.warning("No connected K8s cluster found")
-            return
-
         for line in self.order_line:
-            product = line.product_id
+            product = line.product_id.product_tmpl_id
 
             # Check if product creates K8s instance
-            if hasattr(product, 'creates_k8s_instance') and product.creates_k8s_instance:
-                # Check if instance already exists for this line
-                if line.k8s_instance_id:
+            if not product.creates_k8s_instance:
+                continue
+
+            # Check if instance already exists for this line
+            if line.k8s_instance_id:
+                continue
+
+            # Get plan from product or default
+            plan = product.k8s_plan_id
+            if not plan:
+                plan = self.env['k8s.instance.plan'].search([], limit=1)
+                if not plan:
+                    _logger.warning(f"No K8s plan found for product {product.name}")
                     continue
 
-                # Create instance
-                instance_name = f"{self.partner_id.name} - {product.name}"
+            # Get cluster - prefer plan's cluster, then default, then any connected
+            cluster = plan.cluster_id
+            if not cluster:
+                cluster = Cluster.search([('is_default', '=', True), ('state', '=', 'connected')], limit=1)
+            if not cluster:
+                cluster = Cluster.search([('state', '=', 'connected')], limit=1)
+            if not cluster:
+                _logger.warning("No connected K8s cluster found")
+                continue
 
-                instance = Instance.create({
-                    'name': instance_name,
-                    'cluster_id': cluster.id,
-                    'partner_id': self.partner_id.id,
-                    'subscription_id': self.id if self.is_subscription else False,
-                    'odoo_version': '19.0',
-                })
+            # Create instance name
+            instance_name = f"{self.partner_id.name} - {product.name}"
+            if line.product_uom_qty > 1:
+                # If multiple quantities, add sequence
+                existing_count = Instance.search_count([
+                    ('partner_id', '=', self.partner_id.id),
+                    ('plan_id', '=', plan.id)
+                ])
+                instance_name = f"{self.partner_id.name} - {product.name} #{existing_count + 1}"
 
-                line.k8s_instance_id = instance.id
+            # Determine if managed by us
+            managed_by_us = product.k8s_managed_by_us
 
-                _logger.info(f"Created K8s instance {instance.name} for order {self.name}")
+            # Create instance
+            instance = Instance.create({
+                'name': instance_name,
+                'cluster_id': cluster.id,
+                'plan_id': plan.id,
+                'partner_id': self.partner_id.id,
+                'sale_order_id': self.id,
+                'subscription_id': self.id if self.is_subscription else False,
+                'managed_by_us': managed_by_us,
+            })
 
-                # Auto-create the instance in K8s
+            line.k8s_instance_id = instance.id
+
+            _logger.info(f"Created K8s instance {instance.name} for order {self.name}")
+
+            # Auto-create the instance in K8s only if managed by us
+            if managed_by_us:
                 try:
                     instance.action_create_instance()
                 except Exception as e:
                     _logger.error(f"Error auto-creating K8s instance: {e}")
+                    # Don't fail the order, just log the error
+                    instance.message_post(body=_('Error al crear instancia automaticamente: %s') % str(e))
 
     def action_confirm(self):
         """Override to create K8s instances on confirmation"""
@@ -92,10 +141,10 @@ class SaleOrder(models.Model):
             'type': 'ir.actions.act_window',
             'name': _('Instancias K8s'),
             'res_model': 'k8s.instance',
-            'view_mode': 'list,form',
-            'domain': [('subscription_id', '=', self.id)],
+            'view_mode': 'kanban,list,form',
+            'domain': [('sale_order_id', '=', self.id)],
             'context': {
-                'default_subscription_id': self.id,
+                'default_sale_order_id': self.id,
                 'default_partner_id': self.partner_id.id,
             },
         }

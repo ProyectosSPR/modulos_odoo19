@@ -1,0 +1,100 @@
+{
+  "Comprobante": {
+    "Version": "4.0",
+    "Serie": "LCTEST",
+    "Folio": "LCPD-0059",
+    "Fecha": "2025-05-05T08:11:11",
+    "FormaPago": "03",
+    "NoCertificado": "30001000000500003416",
+    "SubTotal": "3000",
+    "Moneda": "MXN",
+    "TipoCambio": "1",
+    "Total": "3000",
+    "TipoDeComprobante": "I",
+    "Exportacion": "01",
+    "MetodoPago": "PUE",
+    "LugarExpedicion": "64000",
+    "Emisor": {
+      "Rfc": "EKU9003173C9",
+      "Nombre": "ESCUELA KEMPER URGATE",
+      "RegimenFiscal": "601"
+    },
+    "Receptor": {
+      "Rfc": "URE180429TM6",
+      "Nombre": "UNIVERSIDAD ROBOTICA ESPAÑOLA",
+      "DomicilioFiscalReceptor": "86991",
+      "RegimenFiscalReceptor": "601",
+      "UsoCFDI": "G01"
+    },
+    "Conceptos": [
+    {
+        "ClaveProdServ": "86121602",
+        "Cantidad": "1",
+        "ClaveUnidad": "E48",
+        "Unidad": "SERVICIO",
+        "Descripcion": "REINSCRIPCION",
+        "ValorUnitario": "3000",
+        "Importe": "3000",
+        "ObjetoImp": "02",
+		"Impuestos": 
+		{
+			"Traslados": 
+			[
+				{
+					"Base": "3000.00",
+					"Impuesto": "002",
+					"TipoFactor": "Exento"
+				}
+			],
+			"Retenciones": 
+			[
+				{
+					"Base": "3000.00",
+					"Impuesto": "002",
+					"TipoFactor": "Tasa",
+					"TasaOCuota": "0.000000",
+					"Importe": "0.00"
+				}
+			]
+        },
+        "ComplementoConcepto": 
+		[
+            {
+				"instEducativas": 
+				{
+					"version": "1.0",
+					"nombreAlumno": "CRUZ MATIAS GUILLERMINA",
+					"CURP": "CUMG740829MSPRTL08",
+					"nivelEducativo": "Profesional técnico",
+					"autRVOE": "AMC-D-225/2016",
+					"rfcPago": "TVN0205071Q8"
+				}
+			}
+        ]
+    }
+    ],
+	"Impuestos": 
+	{   "TotalImpuestosRetenidos": "0.0",
+		"Retenciones": 
+		[
+			{
+				"Impuesto": "002",
+				"Importe": "0.0"
+			}
+        ],
+      "Traslados": 
+		[
+			{
+				"Base": "3000.00",
+				"Impuesto": "002",
+				"TipoFactor": "Exento"
+			}
+        ]
+    },
+	"CamposPDF": 
+    {
+		"tipoComprobante": "FACTURA",
+		"Comentarios": "Ninguno."
+    }
+  }
+}

@@ -1,0 +1,185 @@
+{
+  "Comprobante": {
+    "Version": "4.0",
+    "Serie": "",
+    "Folio": "",
+    "Fecha": "",
+    "NoCertificado": "",
+    "SubTotal": "",
+    "Descuento": "",
+    "Moneda": "",
+    "Total": "",
+    "TipoDeComprobante": "N",
+    "Exportacion": "",
+    "MetodoPago": "",
+    "LugarExpedicion": "",
+    "Confirmacion": "",
+    "CfdiRelacionados": {
+      "TipoRelacion": "",
+      "CfdiRelacionado": [
+        "UUID-1",
+        "UUID-2",
+        "UUID-N"
+      ]
+    },
+    "Emisor": {
+      "Rfc": "",
+      "Nombre": "",
+      "RegimenFiscal": ""
+    },
+    "Receptor": {
+      "Rfc": "",
+      "Nombre": "",
+      "DomicilioFiscalReceptor": "",
+      "RegimenFiscalReceptor": "",
+      "UsoCFDI": ""
+    },
+    "Conceptos": [
+      {
+        "ClaveProdServ": "",
+        "Cantidad": "",
+        "ClaveUnidad": "",
+        "Descripcion": "",
+        "ValorUnitario": "",
+        "Importe": "",
+        "Descuento": "",
+        "ObjetoImp": ""
+      }
+    ],
+    "Complemento": [
+      {
+        "Nomina": {
+          "Version": "1.2",
+          "TipoNomina": "",
+          "FechaPago": "",
+          "FechaInicialPago": "",
+          "FechaFinalPago": "",
+          "NumDiasPagados": "",
+          "TotalPercepciones": "",
+          "TotalDeducciones": "",
+          "TotalOtrosPagos": "",
+          "Emisor": {
+            "Curp": "",
+            "RegistroPatronal": "",
+            "RfcPatronOrigen": "",
+            "EntidadSNCF": {
+              "OrigenRecurso": "",
+              "MontoRecursoPropio": ""
+            }
+          },
+          "Receptor": {
+            "Curp": "",
+            "NumSeguridadSocial": "",
+            "FechaInicioRelLaboral": "",
+            "Antigüedad": "",
+            "TipoContrato": "",
+            "Sindicalizado": "",
+            "TipoJornada": "",
+            "TipoRegimen": "",
+            "NumEmpleado": "",
+            "Departamento": "",
+            "Puesto": "",
+            "RiesgoPuesto": "",
+            "PeriodicidadPago": "",
+            "Banco": "",
+            "CuentaBancaria": "",
+            "SalarioBaseCotApor": "",
+            "SalarioDiarioIntegrado": "",
+            "ClaveEntFed": "",
+            "SubContratacion": [
+              {
+                "RfcLabora": "",
+                "PorcentajeTiempo": ""
+              }
+            ]
+          },
+          "Percepciones" : {
+            "TotalSueldos": "",
+            "TotalSeparacionIndemnizacion": "",
+            "TotalJubilacionPensionRetiro": "",
+            "TotalGravado": "",
+            "TotalExento": "",
+            "Percepcion": [
+              {
+                "TipoPercepcion": "",
+                "Clave": "",
+                "Concepto": "",
+                "ImporteGravado": "",
+                "ImporteExento": "",
+                "AccionesOTitulos": {
+                  "ValorMercado": "",
+                  "PrecioAlOtorgarse": ""
+                },
+                "HorasExtra": [
+                  {
+                    "Dias": "",
+                    "TipoHoras": "",
+                    "HorasExtra": "",
+                    "ImportePagado": ""
+                  }
+                ]
+              }
+            ],
+            "JubilacionPensionRetiro": {
+              "TotalUnaExhibicion": "",
+              "TotalParcialidad": "",
+              "MontoDiario": "",
+              "IngresoAcumulable": "",
+              "IngresoNoAcumulable": ""
+            },
+            "SeparacionIndemnizacion": {
+              "TotalPagado": "",
+              "NumAñosServicio": "",
+              "UltimoSueldoMensOrd": "",
+              "IngresoAcumulable": "",
+              "IngresoNoAcumulable": ""
+            }
+          },
+          "Deducciones": {
+            "TotalOtrasDeducciones": "",
+            "TotalImpuestosRetenidos": "",
+            "Deduccion": [
+              {
+                "TipoDeduccion": "",
+                "Clave": "",
+                "Concepto": "",
+                "Importe": ""
+              }
+            ]
+          },
+          "OtrosPagos": {
+            "OtroPago": [
+              {
+                "TipoOtroPago": "",
+                "Clave": "",
+                "Concepto": "",
+                "Importe": "",
+                "SubsidioAlEmpleo": {
+                  "SubsidioCausado": ""
+                },
+                "CompensacionSaldosAFavor": {
+                  "SaldoAFavor": "",
+                  "Año": "",
+                  "RemanenteSalFav": ""
+                }
+              }
+            ]
+          },
+          "Incapacidades": {
+            "Incapacidad": [
+              {
+                "DiasIncapacidad": "",
+                "TipoIncapacidad": "",
+                "ImporteMonetario": ""
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "CamposPDF": {
+    "tipoComprobante": "",
+    "Comentarios": ""
+  }
+}

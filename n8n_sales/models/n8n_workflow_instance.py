@@ -37,6 +37,48 @@ class N8nWorkflowInstance(models.Model):
         ('synced', 'Sincronizado')
     ], string="Estado", default='pending', readonly=True)
 
+    # Campos para gestión desde portal
+    is_active = fields.Boolean(
+        string="Workflow Activo",
+        default=False,
+        help="Indica si el workflow está activo en N8N"
+    )
+    custom_name = fields.Char(
+        string="Nombre Personalizado",
+        help="Nombre personalizado dado por el cliente"
+    )
+    notes = fields.Text(
+        string="Notas del Cliente",
+        help="Notas o comentarios del cliente sobre este workflow"
+    )
+
+    # Estadísticas (calculadas desde N8N API)
+    total_executions = fields.Integer(
+        string="Total Ejecuciones",
+        default=0,
+        readonly=True
+    )
+    successful_executions = fields.Integer(
+        string="Ejecuciones Exitosas",
+        default=0,
+        readonly=True
+    )
+    failed_executions = fields.Integer(
+        string="Ejecuciones Fallidas",
+        default=0,
+        readonly=True
+    )
+    last_execution_date = fields.Datetime(
+        string="Última Ejecución",
+        readonly=True
+    )
+    last_execution_status = fields.Selection([
+        ('success', 'Exitosa'),
+        ('error', 'Error'),
+        ('waiting', 'En Espera'),
+        ('running', 'Ejecutando')
+    ], string="Estado Última Ejecución", readonly=True)
+
     # Campos para extensiones
     is_extension = fields.Boolean(string="Es Extensión", readonly=True,
                                    help="Indica si este workflow es una extensión de otro")
@@ -420,3 +462,195 @@ class N8nWorkflowInstance(models.Model):
         except requests.exceptions.RequestException as e:
             _logger.error(f"Error al aplicar merge manual: {e}")
             raise UserError(f"Error al actualizar el workflow en N8N: {e}")
+
+    # ==================
+    # MÉTODOS PARA PORTAL
+    # ==================
+
+    def _get_n8n_credentials(self):
+        """Obtiene las credenciales de N8N desde la configuración"""
+        params = self.env['ir.config_parameter'].sudo()
+        n8n_url = params.get_param('n8n_sales.n8n_url')
+        api_key = params.get_param('n8n_sales.n8n_api_key')
+        if not n8n_url or not api_key:
+            raise UserError("Credenciales maestras de N8N no configuradas.")
+        return n8n_url, api_key
+
+    def action_activate_workflow(self):
+        """Activa el workflow en N8N"""
+        self.ensure_one()
+        if not self.n8n_instance_id or self.state != 'synced':
+            raise UserError("El workflow debe estar sincronizado para activarlo.")
+
+        n8n_url, api_key = self._get_n8n_credentials()
+        headers = {"X-N8N-API-KEY": api_key}
+
+        try:
+            activate_url = f"{n8n_url}/api/v1/workflows/{self.n8n_instance_id}/activate"
+            response = requests.post(activate_url, headers=headers, timeout=15)
+            response.raise_for_status()
+
+            self.write({'is_active': True})
+            _logger.info(f"Workflow {self.n8n_instance_id} activado exitosamente")
+
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': 'Workflow Activado',
+                    'message': 'El workflow ha sido activado en N8N.',
+                    'type': 'success',
+                    'sticky': False,
+                }
+            }
+        except requests.exceptions.RequestException as e:
+            _logger.error(f"Error al activar workflow: {e}")
+            raise UserError(f"Error al activar el workflow: {e}")
+
+    def action_deactivate_workflow(self):
+        """Desactiva el workflow en N8N"""
+        self.ensure_one()
+        if not self.n8n_instance_id or self.state != 'synced':
+            raise UserError("El workflow debe estar sincronizado para desactivarlo.")
+
+        n8n_url, api_key = self._get_n8n_credentials()
+        headers = {"X-N8N-API-KEY": api_key}
+
+        try:
+            deactivate_url = f"{n8n_url}/api/v1/workflows/{self.n8n_instance_id}/deactivate"
+            response = requests.post(deactivate_url, headers=headers, timeout=15)
+            response.raise_for_status()
+
+            self.write({'is_active': False})
+            _logger.info(f"Workflow {self.n8n_instance_id} desactivado exitosamente")
+
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': 'Workflow Desactivado',
+                    'message': 'El workflow ha sido desactivado en N8N.',
+                    'type': 'warning',
+                    'sticky': False,
+                }
+            }
+        except requests.exceptions.RequestException as e:
+            _logger.error(f"Error al desactivar workflow: {e}")
+            raise UserError(f"Error al desactivar el workflow: {e}")
+
+    def action_refresh_stats(self):
+        """Actualiza las estadísticas de ejecución desde N8N"""
+        self.ensure_one()
+        if not self.n8n_instance_id or self.state != 'synced':
+            return
+
+        n8n_url, api_key = self._get_n8n_credentials()
+        headers = {"X-N8N-API-KEY": api_key}
+
+        try:
+            # Obtener estado del workflow
+            workflow_url = f"{n8n_url}/api/v1/workflows/{self.n8n_instance_id}"
+            response = requests.get(workflow_url, headers=headers, timeout=15)
+            response.raise_for_status()
+            workflow_data = response.json()
+            is_active = workflow_data.get('active', False)
+
+            # Obtener ejecuciones del workflow
+            executions_url = f"{n8n_url}/api/v1/executions"
+            params = {
+                'workflowId': self.n8n_instance_id,
+                'limit': 100
+            }
+            response_exec = requests.get(executions_url, headers=headers, params=params, timeout=20)
+            response_exec.raise_for_status()
+            exec_data = response_exec.json()
+            executions = exec_data.get('data', [])
+
+            # Calcular estadísticas
+            total = len(executions)
+            successful = sum(1 for e in executions if e.get('finished') and not e.get('stoppedAt'))
+            failed = sum(1 for e in executions if e.get('stoppedAt'))
+
+            # Obtener última ejecución
+            last_exec = executions[0] if executions else None
+            last_exec_date = None
+            last_exec_status = None
+
+            if last_exec:
+                started_at = last_exec.get('startedAt')
+                if started_at:
+                    from datetime import datetime
+                    try:
+                        last_exec_date = datetime.fromisoformat(started_at.replace('Z', '+00:00'))
+                    except (ValueError, TypeError):
+                        pass
+
+                if last_exec.get('stoppedAt'):
+                    last_exec_status = 'error'
+                elif last_exec.get('finished'):
+                    last_exec_status = 'success'
+                elif last_exec.get('startedAt') and not last_exec.get('finished'):
+                    last_exec_status = 'running'
+                else:
+                    last_exec_status = 'waiting'
+
+            self.write({
+                'is_active': is_active,
+                'total_executions': total,
+                'successful_executions': successful,
+                'failed_executions': failed,
+                'last_execution_date': last_exec_date,
+                'last_execution_status': last_exec_status,
+            })
+
+            _logger.info(f"Estadísticas actualizadas para workflow {self.id}: {total} ejecuciones")
+
+        except requests.exceptions.RequestException as e:
+            _logger.error(f"Error al obtener estadísticas: {e}")
+
+    def get_recent_executions(self, limit=10):
+        """Obtiene las ejecuciones recientes del workflow"""
+        self.ensure_one()
+        if not self.n8n_instance_id or self.state != 'synced':
+            return []
+
+        try:
+            n8n_url, api_key = self._get_n8n_credentials()
+            headers = {"X-N8N-API-KEY": api_key}
+
+            executions_url = f"{n8n_url}/api/v1/executions"
+            params = {
+                'workflowId': self.n8n_instance_id,
+                'limit': limit
+            }
+            response = requests.get(executions_url, headers=headers, params=params, timeout=20)
+            response.raise_for_status()
+            exec_data = response.json()
+
+            executions = []
+            for exec_item in exec_data.get('data', []):
+                executions.append({
+                    'id': exec_item.get('id'),
+                    'started_at': exec_item.get('startedAt'),
+                    'finished': exec_item.get('finished'),
+                    'stopped_at': exec_item.get('stoppedAt'),
+                    'mode': exec_item.get('mode'),
+                    'status': 'error' if exec_item.get('stoppedAt') else ('success' if exec_item.get('finished') else 'running'),
+                })
+
+            return executions
+
+        except requests.exceptions.RequestException as e:
+            _logger.error(f"Error al obtener ejecuciones: {e}")
+            return []
+
+    def portal_update_settings(self, vals):
+        """Actualiza campos editables desde el portal"""
+        self.ensure_one()
+        # Solo permitir actualizar campos específicos
+        allowed_fields = {'custom_name', 'notes'}
+        safe_vals = {k: v for k, v in vals.items() if k in allowed_fields}
+        if safe_vals:
+            self.write(safe_vals)
+            return True
+        return False

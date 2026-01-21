@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="meta_create_lead_wizard_view_form" model="ir.ui.view">
+        <field name="name">meta.create.lead.wizard.form</field>
+        <field name="model">meta.create.lead.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create Lead">
+                <group>
+                    <group string="Lead Information">
+                        <field name="name" placeholder="Lead name..."/>
+                        <field name="expected_revenue"/>
+                        <field name="currency_id" invisible="1"/>
+                    </group>
+                    <group string="Contact">
+                        <field name="partner_id"/>
+                        <field name="create_partner" invisible="partner_id"/>
+                        <field name="phone"/>
+                        <field name="email"/>
+                    </group>
+                </group>
+                <group>
+                    <group string="Assignment">
+                        <field name="team_id"/>
+                        <field name="user_id"/>
+                    </group>
+                    <group string="Source">
+                        <field name="conversation_id" readonly="1"/>
+                        <field name="include_conversation_history"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="description" nolabel="1" placeholder="Additional notes..."/>
+                </group>
+                <footer>
+                    <button name="action_create" type="object" string="Create Lead" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

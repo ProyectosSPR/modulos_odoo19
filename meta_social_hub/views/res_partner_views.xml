@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend Partner Form View -->
+    <record id="res_partner_view_form_inherit_meta" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.meta.social.hub</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <!-- Add button box -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_meta_conversations" type="object"
+                        class="oe_stat_button" icon="fa-comments"
+                        invisible="meta_conversation_count == 0">
+                    <field name="meta_conversation_count" string="Conversations" widget="statinfo"/>
+                </button>
+            </xpath>
+
+            <!-- Add Meta IDs in a new page -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Meta Social" name="meta_social" groups="meta_social_hub.group_meta_social_user">
+                    <group>
+                        <group string="Platform IDs">
+                            <field name="facebook_id"/>
+                            <field name="instagram_id"/>
+                            <field name="whatsapp_id"/>
+                        </group>
+                        <group string="Activity">
+                            <field name="meta_conversation_count" readonly="1"/>
+                            <field name="meta_last_conversation_date" readonly="1"/>
+                            <field name="meta_channels" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Recent Conversations">
+                        <field name="meta_conversation_ids" nolabel="1" readonly="1">
+                            <list>
+                                <field name="channel_type" widget="badge"/>
+                                <field name="state" widget="badge"/>
+                                <field name="last_message_date"/>
+                                <field name="last_message_preview"/>
+                                <field name="user_id"/>
+                            </list>
+                        </field>
+                    </group>
+                    <group>
+                        <button name="action_start_meta_conversation" type="object"
+                                string="Start Conversation" icon="fa-comments"
+                                class="btn-primary"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add to Partner List View -->
+    <record id="res_partner_view_list_inherit_meta" model="ir.ui.view">
+        <field name="name">res.partner.list.inherit.meta.social.hub</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list" position="inside">
+                <field name="meta_conversation_count" string="Conversations" optional="hide"/>
+                <field name="meta_channels" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add Meta Channels filter to search -->
+    <record id="res_partner_view_search_inherit_meta" model="ir.ui.view">
+        <field name="name">res.partner.search.inherit.meta.social.hub</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <separator/>
+                <filter string="Has Meta Conversations" name="has_meta_conversations"
+                        domain="[('meta_conversation_count', '>', 0)]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

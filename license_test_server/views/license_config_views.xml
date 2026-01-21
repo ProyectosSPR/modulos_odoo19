@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vista Form -->
+    <record id="license_test_config_form" model="ir.ui.view">
+        <field name="name">license.test.config.form</field>
+        <field name="model">license.test.config</field>
+        <field name="arch" type="xml">
+            <form string="Configuración de Licencia">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_reset_counter" type="object"
+                                class="oe_stat_button" icon="fa-refresh">
+                            <field name="request_count" widget="statinfo" string="Solicitudes"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Activo" bg_color="text-bg-success"
+                            invisible="not active"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Nombre de configuración"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group string="Respuesta de Licencia">
+                            <field name="active"/>
+                            <field name="expiration_date"/>
+                            <field name="expiration_reason"/>
+                            <field name="enterprise_code"/>
+                        </group>
+                        <group string="Estadísticas">
+                            <field name="last_request_date" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Simulación de Errores" name="errors">
+                            <group>
+                                <group string="Errores">
+                                    <field name="simulate_error"/>
+                                </group>
+                                <group string="BD Ya Vinculada">
+                                    <field name="simulate_linked_db"/>
+                                    <field name="linked_subscription_url"
+                                           invisible="not simulate_linked_db"/>
+                                    <field name="linked_email"
+                                           invisible="not simulate_linked_db"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Mensajes" name="messages">
+                            <group>
+                                <field name="custom_message" placeholder="Mensaje que aparecerá en las notificaciones de Odoo..."/>
+                            </group>
+                        </page>
+                        <page string="Instrucciones" name="instructions">
+                            <div class="alert alert-info" role="alert">
+                                <h4>Cómo usar este módulo:</h4>
+                                <ol>
+                                    <li>Configura la respuesta de licencia que quieres simular</li>
+                                    <li>Modifica <code>odoo.conf</code> añadiendo:
+                                        <pre>publisher_warranty_url = http://localhost:8069/publisher-warranty/</pre>
+                                    </li>
+                                    <li>Reinicia Odoo</li>
+                                    <li>Activa el cron "Publisher: Update Notification" o haz click en "Check Status" en el panel de expiración</li>
+                                    <li>Revisa los logs en "Solicitudes Recibidas"</li>
+                                </ol>
+                                <hr/>
+                                <h4>Para probar que funciona:</h4>
+                                <p>Visita: <a href="/publisher-warranty/test" target="_blank">/publisher-warranty/test</a></p>
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista Tree -->
+    <record id="license_test_config_tree" model="ir.ui.view">
+        <field name="name">license.test.config.tree</field>
+        <field name="model">license.test.config</field>
+        <field name="arch" type="xml">
+            <list string="Configuraciones">
+                <field name="name"/>
+                <field name="active"/>
+                <field name="expiration_date"/>
+                <field name="expiration_reason"/>
+                <field name="enterprise_code"/>
+                <field name="request_count"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Acción -->
+    <record id="license_test_config_action" model="ir.actions.act_window">
+        <field name="name">Configuración de Licencia</field>
+        <field name="res_model">license.test.config</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crear configuración de respuesta de licencia
+            </p>
+            <p>
+                Configure cómo debe responder el servidor de prueba a las solicitudes de licencia.
+            </p>
+        </field>
+    </record>
+</odoo>

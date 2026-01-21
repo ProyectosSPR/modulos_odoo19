@@ -1,0 +1,416 @@
+{
+	"info": {
+		"_postman_id": "1dedc461-2172-4ee2-b899-22c8f5858c97",
+		"name": "timbradorxpress-API_timbrado-cfdi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "timbrar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "apikey",
+							"value": "93edc4af66b84c938f66a56ca0596205",
+							"type": "text"
+						},
+						{
+							"key": "xmlCFDI",
+							"value": "<?xml version=\"1.0\" encoding=\"utf-8\"?><cfdi:Comprobante Certificado=\"MIIFsDCCA5igAwIBAgIUMzAwMDEwMDAwMDA1MDAwMDM0MTYwDQYJKoZIhvcNAQELBQAwggErMQ8wDQYDVQQDDAZBQyBVQVQxLjAsBgNVBAoMJVNFUlZJQ0lPIERFIEFETUlOSVNUUkFDSU9OIFRSSUJVVEFSSUExGjAYBgNVBAsMEVNBVC1JRVMgQXV0aG9yaXR5MSgwJgYJKoZIhvcNAQkBFhlvc2Nhci5tYXJ0aW5lekBzYXQuZ29iLm14MR0wGwYDVQQJDBQzcmEgY2VycmFkYSBkZSBjYWxpejEOMAwGA1UEEQwFMDYzNzAxCzAJBgNVBAYTAk1YMRkwFwYDVQQIDBBDSVVEQUQgREUgTUVYSUNPMREwDwYDVQQHDAhDT1lPQUNBTjERMA8GA1UELRMIMi41LjQuNDUxJTAjBgkqhkiG9w0BCQITFnJlc3BvbnNhYmxlOiBBQ0RNQS1TQVQwHhcNMjMwNTE4MTE0MzUxWhcNMjcwNTE4MTE0MzUxWjCB1zEnMCUGA1UEAxMeRVNDVUVMQSBLRU1QRVIgVVJHQVRFIFNBIERFIENWMScwJQYDVQQpEx5FU0NVRUxBIEtFTVBFUiBVUkdBVEUgU0EgREUgQ1YxJzAlBgNVBAoTHkVTQ1VFTEEgS0VNUEVSIFVSR0FURSBTQSBERSBDVjElMCMGA1UELRMcRUtVOTAwMzE3M0M5IC8gVkFEQTgwMDkyN0RKMzEeMBwGA1UEBRMVIC8gVkFEQTgwMDkyN0hTUlNSTDA1MRMwEQYDVQQLEwpTdWN1cnNhbCAxMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtmecO6n2GS0zL025gbHGQVxznPDICoXzR2uUngz4DqxVUC/w9cE6FxSiXm2ap8Gcjg7wmcZfm85EBaxCx/0J2u5CqnhzIoGCdhBPuhWQnIh5TLgj/X6uNquwZkKChbNe9aeFirU/JbyN7Egia9oKH9KZUsodiM/pWAH00PCtoKJ9OBcSHMq8Rqa3KKoBcfkg1ZrgueffwRLws9yOcRWLb02sDOPzGIm/jEFicVYt2Hw1qdRE5xmTZ7AGG0UHs+unkGjpCVeJ+BEBn0JPLWVvDKHZAQMj6s5Bku35+d/MyATkpOPsGT/VTnsouxekDfikJD1f7A1ZpJbqDpkJnss3vQIDAQABox0wGzAMBgNVHRMBAf8EAjAAMAsGA1UdDwQEAwIGwDANBgkqhkiG9w0BAQsFAAOCAgEAFaUgj5PqgvJigNMgtrdXZnbPfVBbukAbW4OGnUhNrA7SRAAfv2BSGk16PI0nBOr7qF2mItmBnjgEwk+DTv8Zr7w5qp7vleC6dIsZFNJoa6ZndrE/f7KO1CYruLXr5gwEkIyGfJ9NwyIagvHHMszzyHiSZIA850fWtbqtythpAliJ2jF35M5pNS+YTkRB+T6L/c6m00ymN3q9lT1rB03YywxrLreRSFZOSrbwWfg34EJbHfbFXpCSVYdJRfiVdvHnewN0r5fUlPtR9stQHyuqewzdkyb5jTTw02D2cUfL57vlPStBj7SEi3uOWvLrsiDnnCIxRMYJ2UA2ktDKHk+zWnsDmaeleSzonv2CHW42yXYPCvWi88oE1DJNYLNkIjua7MxAnkNZbScNw01A6zbLsZ3y8G6eEYnxSTRfwjd8EP4kdiHNJftm7Z4iRU7HOVh79/lRWB+gd171s3d/mI9kte3MRy6V8MMEMCAnMboGpaooYwgAmwclI2XZCczNWXfhaWe0ZS5PmytD/GDpXzkX0oEgY9K/uYo5V77NdZbGAjmyi8cE2B2ogvyaN2XfIInrZPgEffJ4AB7kFA2mwesdLOCh0BLD9itmCve3A1FGR4+stO2ANUoiI3w3Tv2yQSg4bjeDlJ08lXaaFCLW2peEXMXjQUk7fmpb5MNuOUTW6BE=\" CondicionesDePago=\"NA\" Exportacion=\"01\" Fecha=\"2022-12-11T12:00:00\" Folio=\"LC022\" FormaPago=\"03\" LugarExpedicion=\"72000\" MetodoPago=\"PUE\" Moneda=\"MXN\" NoCertificado=\"30001000000500003416\" Sello=\"PBKb60mSG21bahWHdDm7d/lBfvvQM/CiXI14qdWmCygH+pqEtZd9VPJriKFdu/2bpkObUxAaP7pjdqNaQt/z01LA/vScC4Nru3ose2r3dJC8wqPPLJIPEipXDVJCEvmpqkytEa2IPg5mDqCFA4ju+QsoFy6TTdM4fCQvFEM6OlbDINC7wtnF7n5gRkl0JrQRTymuKPdva5Yo+vwso0Y8N3BNRzHdCA/whd2wvPZJca/zm/xWh9RCNu62eOklgyM3/jUJpld3yemK2S6R2EJ0UWfwv9y68r5fmRzBSxECBrgGpB5H44qr3kv5iLm7WHbkSpSAWWsiwIlqhLZ85WgLlw==\" Serie=\"LC\" SubTotal=\"3.00\" TipoCambio=\"1\" TipoDeComprobante=\"I\" Total=\"3.48\" Version=\"4.0\" xmlns:cfdi=\"http://www.sat.gob.mx/cfd/4\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd\"><cfdi:CfdiRelacionados TipoRelacion=\"04\"><cfdi:CfdiRelacionado UUID=\"df117db8-1446-47c4-b70f-46a25d8df051\"/></cfdi:CfdiRelacionados><cfdi:Emisor Nombre=\"ESCUELA KEMPER URGATE\" RegimenFiscal=\"601\" Rfc=\"EKU9003173C9\"/><cfdi:Receptor DomicilioFiscalReceptor=\"72000\" Nombre=\"XOCHILT CASAS CHAVEZ\" RegimenFiscalReceptor=\"616\" Rfc=\"XAXX010101000\" UsoCFDI=\"S01\"/><cfdi:Conceptos><cfdi:Concepto Cantidad=\"1\" ClaveProdServ=\"01010101\" ClaveUnidad=\"F52\" Descripcion=\"QA Concepto 1\" Importe=\"1.00\" NoIdentificacion=\"miclave1\" ObjetoImp=\"02\" Unidad=\"pza\" ValorUnitario=\"1.00\"><cfdi:Impuestos><cfdi:Traslados><cfdi:Traslado Base=\"1.00\" Importe=\"0.16\" Impuesto=\"002\" TasaOCuota=\"0.160000\" TipoFactor=\"Tasa\"/></cfdi:Traslados></cfdi:Impuestos></cfdi:Concepto><cfdi:Concepto Cantidad=\"1\" ClaveProdServ=\"01010101\" ClaveUnidad=\"F52\" Descripcion=\"QA Concepto 2\" Importe=\"1.00\" NoIdentificacion=\"miclave2\" ObjetoImp=\"02\" Unidad=\"pza\" ValorUnitario=\"1.00\"><cfdi:Impuestos><cfdi:Traslados><cfdi:Traslado Base=\"1.00\" Importe=\"0.16\" Impuesto=\"002\" TasaOCuota=\"0.160000\" TipoFactor=\"Tasa\"/></cfdi:Traslados></cfdi:Impuestos></cfdi:Concepto><cfdi:Concepto Cantidad=\"1\" ClaveProdServ=\"01010101\" ClaveUnidad=\"F52\" Descripcion=\"QA Concepto 3\" Importe=\"1.00\" NoIdentificacion=\"miclave3\" ObjetoImp=\"02\" Unidad=\"pza\" ValorUnitario=\"1.00\"><cfdi:Impuestos><cfdi:Traslados><cfdi:Traslado Base=\"1.00\" Importe=\"0.16\" Impuesto=\"002\" TasaOCuota=\"0.160000\" TipoFactor=\"Tasa\"/></cfdi:Traslados></cfdi:Impuestos></cfdi:Concepto></cfdi:Conceptos><cfdi:Impuestos TotalImpuestosTrasladados=\"0.48\"><cfdi:Traslados><cfdi:Traslado Base=\"3.00\" Importe=\"0.48\" Impuesto=\"002\" TasaOCuota=\"0.160000\" TipoFactor=\"Tasa\"/></cfdi:Traslados></cfdi:Impuestos></cfdi:Comprobante>\n",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://dev.timbradorxpress.mx/api/rest/servicio/timbrar",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"timbradorxpress",
+						"mx"
+					],
+					"path": [
+						"api",
+						"rest",
+						"servicio",
+						"timbrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "timbrarTFD",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "apikey",
+							"value": "93edc4af66b84c938f66a56ca0596205",
+							"type": "text"
+						},
+						{
+							"key": "xmlCFDI",
+							"value": "<?xml version=\"1.0\" encoding=\"utf-8\"?><cfdi:Comprobante Certificado=\"MIIFsDCCA5igAwIBAgIUMzAwMDEwMDAwMDA1MDAwMDM0MTYwDQYJKoZIhvcNAQELBQAwggErMQ8wDQYDVQQDDAZBQyBVQVQxLjAsBgNVBAoMJVNFUlZJQ0lPIERFIEFETUlOSVNUUkFDSU9OIFRSSUJVVEFSSUExGjAYBgNVBAsMEVNBVC1JRVMgQXV0aG9yaXR5MSgwJgYJKoZIhvcNAQkBFhlvc2Nhci5tYXJ0aW5lekBzYXQuZ29iLm14MR0wGwYDVQQJDBQzcmEgY2VycmFkYSBkZSBjYWxpejEOMAwGA1UEEQwFMDYzNzAxCzAJBgNVBAYTAk1YMRkwFwYDVQQIDBBDSVVEQUQgREUgTUVYSUNPMREwDwYDVQQHDAhDT1lPQUNBTjERMA8GA1UELRMIMi41LjQuNDUxJTAjBgkqhkiG9w0BCQITFnJlc3BvbnNhYmxlOiBBQ0RNQS1TQVQwHhcNMjMwNTE4MTE0MzUxWhcNMjcwNTE4MTE0MzUxWjCB1zEnMCUGA1UEAxMeRVNDVUVMQSBLRU1QRVIgVVJHQVRFIFNBIERFIENWMScwJQYDVQQpEx5FU0NVRUxBIEtFTVBFUiBVUkdBVEUgU0EgREUgQ1YxJzAlBgNVBAoTHkVTQ1VFTEEgS0VNUEVSIFVSR0FURSBTQSBERSBDVjElMCMGA1UELRMcRUtVOTAwMzE3M0M5IC8gVkFEQTgwMDkyN0RKMzEeMBwGA1UEBRMVIC8gVkFEQTgwMDkyN0hTUlNSTDA1MRMwEQYDVQQLEwpTdWN1cnNhbCAxMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtmecO6n2GS0zL025gbHGQVxznPDICoXzR2uUngz4DqxVUC/w9cE6FxSiXm2ap8Gcjg7wmcZfm85EBaxCx/0J2u5CqnhzIoGCdhBPuhWQnIh5TLgj/X6uNquwZkKChbNe9aeFirU/JbyN7Egia9oKH9KZUsodiM/pWAH00PCtoKJ9OBcSHMq8Rqa3KKoBcfkg1ZrgueffwRLws9yOcRWLb02sDOPzGIm/jEFicVYt2Hw1qdRE5xmTZ7AGG0UHs+unkGjpCVeJ+BEBn0JPLWVvDKHZAQMj6s5Bku35+d/MyATkpOPsGT/VTnsouxekDfikJD1f7A1ZpJbqDpkJnss3vQIDAQABox0wGzAMBgNVHRMBAf8EAjAAMAsGA1UdDwQEAwIGwDANBgkqhkiG9w0BAQsFAAOCAgEAFaUgj5PqgvJigNMgtrdXZnbPfVBbukAbW4OGnUhNrA7SRAAfv2BSGk16PI0nBOr7qF2mItmBnjgEwk+DTv8Zr7w5qp7vleC6dIsZFNJoa6ZndrE/f7KO1CYruLXr5gwEkIyGfJ9NwyIagvHHMszzyHiSZIA850fWtbqtythpAliJ2jF35M5pNS+YTkRB+T6L/c6m00ymN3q9lT1rB03YywxrLreRSFZOSrbwWfg34EJbHfbFXpCSVYdJRfiVdvHnewN0r5fUlPtR9stQHyuqewzdkyb5jTTw02D2cUfL57vlPStBj7SEi3uOWvLrsiDnnCIxRMYJ2UA2ktDKHk+zWnsDmaeleSzonv2CHW42yXYPCvWi88oE1DJNYLNkIjua7MxAnkNZbScNw01A6zbLsZ3y8G6eEYnxSTRfwjd8EP4kdiHNJftm7Z4iRU7HOVh79/lRWB+gd171s3d/mI9kte3MRy6V8MMEMCAnMboGpaooYwgAmwclI2XZCczNWXfhaWe0ZS5PmytD/GDpXzkX0oEgY9K/uYo5V77NdZbGAjmyi8cE2B2ogvyaN2XfIInrZPgEffJ4AB7kFA2mwesdLOCh0BLD9itmCve3A1FGR4+stO2ANUoiI3w3Tv2yQSg4bjeDlJ08lXaaFCLW2peEXMXjQUk7fmpb5MNuOUTW6BE=\" CondicionesDePago=\"NA\" Exportacion=\"01\" Fecha=\"2022-12-11T12:00:00\" Folio=\"LC022\" FormaPago=\"03\" LugarExpedicion=\"72000\" MetodoPago=\"PUE\" Moneda=\"MXN\" NoCertificado=\"30001000000500003416\" Sello=\"PBKb60mSG21bahWHdDm7d/lBfvvQM/CiXI14qdWmCygH+pqEtZd9VPJriKFdu/2bpkObUxAaP7pjdqNaQt/z01LA/vScC4Nru3ose2r3dJC8wqPPLJIPEipXDVJCEvmpqkytEa2IPg5mDqCFA4ju+QsoFy6TTdM4fCQvFEM6OlbDINC7wtnF7n5gRkl0JrQRTymuKPdva5Yo+vwso0Y8N3BNRzHdCA/whd2wvPZJca/zm/xWh9RCNu62eOklgyM3/jUJpld3yemK2S6R2EJ0UWfwv9y68r5fmRzBSxECBrgGpB5H44qr3kv5iLm7WHbkSpSAWWsiwIlqhLZ85WgLlw==\" Serie=\"LC\" SubTotal=\"3.00\" TipoCambio=\"1\" TipoDeComprobante=\"I\" Total=\"3.48\" Version=\"4.0\" xmlns:cfdi=\"http://www.sat.gob.mx/cfd/4\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd\"><cfdi:CfdiRelacionados TipoRelacion=\"04\"><cfdi:CfdiRelacionado UUID=\"df117db8-1446-47c4-b70f-46a25d8df051\"/></cfdi:CfdiRelacionados><cfdi:Emisor Nombre=\"ESCUELA KEMPER URGATE\" RegimenFiscal=\"601\" Rfc=\"EKU9003173C9\"/><cfdi:Receptor DomicilioFiscalReceptor=\"72000\" Nombre=\"XOCHILT CASAS CHAVEZ\" RegimenFiscalReceptor=\"616\" Rfc=\"XAXX010101000\" UsoCFDI=\"S01\"/><cfdi:Conceptos><cfdi:Concepto Cantidad=\"1\" ClaveProdServ=\"01010101\" ClaveUnidad=\"F52\" Descripcion=\"QA Concepto 1\" Importe=\"1.00\" NoIdentificacion=\"miclave1\" ObjetoImp=\"02\" Unidad=\"pza\" ValorUnitario=\"1.00\"><cfdi:Impuestos><cfdi:Traslados><cfdi:Traslado Base=\"1.00\" Importe=\"0.16\" Impuesto=\"002\" TasaOCuota=\"0.160000\" TipoFactor=\"Tasa\"/></cfdi:Traslados></cfdi:Impuestos></cfdi:Concepto><cfdi:Concepto Cantidad=\"1\" ClaveProdServ=\"01010101\" ClaveUnidad=\"F52\" Descripcion=\"QA Concepto 2\" Importe=\"1.00\" NoIdentificacion=\"miclave2\" ObjetoImp=\"02\" Unidad=\"pza\" ValorUnitario=\"1.00\"><cfdi:Impuestos><cfdi:Traslados><cfdi:Traslado Base=\"1.00\" Importe=\"0.16\" Impuesto=\"002\" TasaOCuota=\"0.160000\" TipoFactor=\"Tasa\"/></cfdi:Traslados></cfdi:Impuestos></cfdi:Concepto><cfdi:Concepto Cantidad=\"1\" ClaveProdServ=\"01010101\" ClaveUnidad=\"F52\" Descripcion=\"QA Concepto 3\" Importe=\"1.00\" NoIdentificacion=\"miclave3\" ObjetoImp=\"02\" Unidad=\"pza\" ValorUnitario=\"1.00\"><cfdi:Impuestos><cfdi:Traslados><cfdi:Traslado Base=\"1.00\" Importe=\"0.16\" Impuesto=\"002\" TasaOCuota=\"0.160000\" TipoFactor=\"Tasa\"/></cfdi:Traslados></cfdi:Impuestos></cfdi:Concepto></cfdi:Conceptos><cfdi:Impuestos TotalImpuestosTrasladados=\"0.48\"><cfdi:Traslados><cfdi:Traslado Base=\"3.00\" Importe=\"0.48\" Impuesto=\"002\" TasaOCuota=\"0.160000\" TipoFactor=\"Tasa\"/></cfdi:Traslados></cfdi:Impuestos></cfdi:Comprobante>\n",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://dev.timbradorxpress.mx/api/rest/servicio/timbrarTFD",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"timbradorxpress",
+						"mx"
+					],
+					"path": [
+						"api",
+						"rest",
+						"servicio",
+						"timbrarTFD"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "timbrarConSello",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "apikey",
+							"value": "93edc4af66b84c938f66a56ca0596205",
+							"type": "text"
+						},
+						{
+							"key": "xmlCFDI",
+							"value": "<?xml version=\"1.0\" encoding=\"utf-8\"?><cfdi:Comprobante Certificado=\"MIIFsDCCA5igAwIBAgIUMzAwMDEwMDAwMDA1MDAwMDM0MTYwDQYJKoZIhvcNAQELBQAwggErMQ8wDQYDVQQDDAZBQyBVQVQxLjAsBgNVBAoMJVNFUlZJQ0lPIERFIEFETUlOSVNUUkFDSU9OIFRSSUJVVEFSSUExGjAYBgNVBAsMEVNBVC1JRVMgQXV0aG9yaXR5MSgwJgYJKoZIhvcNAQkBFhlvc2Nhci5tYXJ0aW5lekBzYXQuZ29iLm14MR0wGwYDVQQJDBQzcmEgY2VycmFkYSBkZSBjYWxpejEOMAwGA1UEEQwFMDYzNzAxCzAJBgNVBAYTAk1YMRkwFwYDVQQIDBBDSVVEQUQgREUgTUVYSUNPMREwDwYDVQQHDAhDT1lPQUNBTjERMA8GA1UELRMIMi41LjQuNDUxJTAjBgkqhkiG9w0BCQITFnJlc3BvbnNhYmxlOiBBQ0RNQS1TQVQwHhcNMjMwNTE4MTE0MzUxWhcNMjcwNTE4MTE0MzUxWjCB1zEnMCUGA1UEAxMeRVNDVUVMQSBLRU1QRVIgVVJHQVRFIFNBIERFIENWMScwJQYDVQQpEx5FU0NVRUxBIEtFTVBFUiBVUkdBVEUgU0EgREUgQ1YxJzAlBgNVBAoTHkVTQ1VFTEEgS0VNUEVSIFVSR0FURSBTQSBERSBDVjElMCMGA1UELRMcRUtVOTAwMzE3M0M5IC8gVkFEQTgwMDkyN0RKMzEeMBwGA1UEBRMVIC8gVkFEQTgwMDkyN0hTUlNSTDA1MRMwEQYDVQQLEwpTdWN1cnNhbCAxMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtmecO6n2GS0zL025gbHGQVxznPDICoXzR2uUngz4DqxVUC/w9cE6FxSiXm2ap8Gcjg7wmcZfm85EBaxCx/0J2u5CqnhzIoGCdhBPuhWQnIh5TLgj/X6uNquwZkKChbNe9aeFirU/JbyN7Egia9oKH9KZUsodiM/pWAH00PCtoKJ9OBcSHMq8Rqa3KKoBcfkg1ZrgueffwRLws9yOcRWLb02sDOPzGIm/jEFicVYt2Hw1qdRE5xmTZ7AGG0UHs+unkGjpCVeJ+BEBn0JPLWVvDKHZAQMj6s5Bku35+d/MyATkpOPsGT/VTnsouxekDfikJD1f7A1ZpJbqDpkJnss3vQIDAQABox0wGzAMBgNVHRMBAf8EAjAAMAsGA1UdDwQEAwIGwDANBgkqhkiG9w0BAQsFAAOCAgEAFaUgj5PqgvJigNMgtrdXZnbPfVBbukAbW4OGnUhNrA7SRAAfv2BSGk16PI0nBOr7qF2mItmBnjgEwk+DTv8Zr7w5qp7vleC6dIsZFNJoa6ZndrE/f7KO1CYruLXr5gwEkIyGfJ9NwyIagvHHMszzyHiSZIA850fWtbqtythpAliJ2jF35M5pNS+YTkRB+T6L/c6m00ymN3q9lT1rB03YywxrLreRSFZOSrbwWfg34EJbHfbFXpCSVYdJRfiVdvHnewN0r5fUlPtR9stQHyuqewzdkyb5jTTw02D2cUfL57vlPStBj7SEi3uOWvLrsiDnnCIxRMYJ2UA2ktDKHk+zWnsDmaeleSzonv2CHW42yXYPCvWi88oE1DJNYLNkIjua7MxAnkNZbScNw01A6zbLsZ3y8G6eEYnxSTRfwjd8EP4kdiHNJftm7Z4iRU7HOVh79/lRWB+gd171s3d/mI9kte3MRy6V8MMEMCAnMboGpaooYwgAmwclI2XZCczNWXfhaWe0ZS5PmytD/GDpXzkX0oEgY9K/uYo5V77NdZbGAjmyi8cE2B2ogvyaN2XfIInrZPgEffJ4AB7kFA2mwesdLOCh0BLD9itmCve3A1FGR4+stO2ANUoiI3w3Tv2yQSg4bjeDlJ08lXaaFCLW2peEXMXjQUk7fmpb5MNuOUTW6BE=\" CondicionesDePago=\"NA\" Exportacion=\"01\" Fecha=\"2022-12-11T12:00:00\" Folio=\"LC022\" FormaPago=\"03\" LugarExpedicion=\"72000\" MetodoPago=\"PUE\" Moneda=\"MXN\" NoCertificado=\"30001000000500003416\" Sello=\"PBKb60mSG21bahWHdDm7d/lBfvvQM/CiXI14qdWmCygH+pqEtZd9VPJriKFdu/2bpkObUxAaP7pjdqNaQt/z01LA/vScC4Nru3ose2r3dJC8wqPPLJIPEipXDVJCEvmpqkytEa2IPg5mDqCFA4ju+QsoFy6TTdM4fCQvFEM6OlbDINC7wtnF7n5gRkl0JrQRTymuKPdva5Yo+vwso0Y8N3BNRzHdCA/whd2wvPZJca/zm/xWh9RCNu62eOklgyM3/jUJpld3yemK2S6R2EJ0UWfwv9y68r5fmRzBSxECBrgGpB5H44qr3kv5iLm7WHbkSpSAWWsiwIlqhLZ85WgLlw==\" Serie=\"LC\" SubTotal=\"3.00\" TipoCambio=\"1\" TipoDeComprobante=\"I\" Total=\"3.48\" Version=\"4.0\" xmlns:cfdi=\"http://www.sat.gob.mx/cfd/4\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd\"><cfdi:CfdiRelacionados TipoRelacion=\"04\"><cfdi:CfdiRelacionado UUID=\"df117db8-1446-47c4-b70f-46a25d8df051\"/></cfdi:CfdiRelacionados><cfdi:Emisor Nombre=\"ESCUELA KEMPER URGATE\" RegimenFiscal=\"601\" Rfc=\"EKU9003173C9\"/><cfdi:Receptor DomicilioFiscalReceptor=\"72000\" Nombre=\"XOCHILT CASAS CHAVEZ\" RegimenFiscalReceptor=\"616\" Rfc=\"XAXX010101000\" UsoCFDI=\"S01\"/><cfdi:Conceptos><cfdi:Concepto Cantidad=\"1\" ClaveProdServ=\"01010101\" ClaveUnidad=\"F52\" Descripcion=\"QA Concepto 1\" Importe=\"1.00\" NoIdentificacion=\"miclave1\" ObjetoImp=\"02\" Unidad=\"pza\" ValorUnitario=\"1.00\"><cfdi:Impuestos><cfdi:Traslados><cfdi:Traslado Base=\"1.00\" Importe=\"0.16\" Impuesto=\"002\" TasaOCuota=\"0.160000\" TipoFactor=\"Tasa\"/></cfdi:Traslados></cfdi:Impuestos></cfdi:Concepto><cfdi:Concepto Cantidad=\"1\" ClaveProdServ=\"01010101\" ClaveUnidad=\"F52\" Descripcion=\"QA Concepto 2\" Importe=\"1.00\" NoIdentificacion=\"miclave2\" ObjetoImp=\"02\" Unidad=\"pza\" ValorUnitario=\"1.00\"><cfdi:Impuestos><cfdi:Traslados><cfdi:Traslado Base=\"1.00\" Importe=\"0.16\" Impuesto=\"002\" TasaOCuota=\"0.160000\" TipoFactor=\"Tasa\"/></cfdi:Traslados></cfdi:Impuestos></cfdi:Concepto><cfdi:Concepto Cantidad=\"1\" ClaveProdServ=\"01010101\" ClaveUnidad=\"F52\" Descripcion=\"QA Concepto 3\" Importe=\"1.00\" NoIdentificacion=\"miclave3\" ObjetoImp=\"02\" Unidad=\"pza\" ValorUnitario=\"1.00\"><cfdi:Impuestos><cfdi:Traslados><cfdi:Traslado Base=\"1.00\" Importe=\"0.16\" Impuesto=\"002\" TasaOCuota=\"0.160000\" TipoFactor=\"Tasa\"/></cfdi:Traslados></cfdi:Impuestos></cfdi:Concepto></cfdi:Conceptos><cfdi:Impuestos TotalImpuestosTrasladados=\"0.48\"><cfdi:Traslados><cfdi:Traslado Base=\"3.00\" Importe=\"0.48\" Impuesto=\"002\" TasaOCuota=\"0.160000\" TipoFactor=\"Tasa\"/></cfdi:Traslados></cfdi:Impuestos></cfdi:Comprobante>\n",
+							"type": "text"
+						},
+						{
+							"key": "keyPEM",
+							"value": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC2Z5w7qfYZLTMv\nTbmBscZBXHOc8MgKhfNHa5SeDPgOrFVQL/D1wToXFKJebZqnwZyODvCZxl+bzkQF\nrELH/Qna7kKqeHMigYJ2EE+6FZCciHlMuCP9fq42q7BmQoKFs171p4WKtT8lvI3s\nSCJr2gof0plSyh2Iz+lYAfTQ8K2gon04FxIcyrxGprcoqgFx+SDVmuC559/BEvCz\n3I5xFYtvTawM4/MYib+MQWJxVi3YfDWp1ETnGZNnsAYbRQez66eQaOkJV4n4EQGf\nQk8tZW8ModkBAyPqzkGS7fn538zIBOSk4+wZP9VOeyi7F6QN+KQkPV/sDVmkluoO\nmQmeyze9AgMBAAECggEAM8vEL6UZvxh4umwFy3Bh7dmE8wHkrChRZuyDrUXdgr0p\nFLYoZIDUMA2p9cqF6jEudaCEbgZIzAOMiVfbNtMB42tY/vNpLlk8ZK5JFXxeLjUK\nzOBVR/ybF+c1FjS4v6KpynQhlbvWDK84Veo97AZkbZjt9PZz4I+5oUYc8OAHTd+b\nNgL6r7SnudH/2p7rI9kMFp3h9oov+H91IguFn4SF0aVMPiLMUVUYA3QpvIA03c7A\ncY8tloFArpPkpa1yyZ7ToFx3mPsYNxyn4Ud3lx0PHJ0ulUjPBVoi+ewFLHG0Z8HS\n2CdBe+7ptS0u1e58+RsX5tlf61xGwlHzMbfqyrBrQQKBgQDp/VO5GmFSzvIlrCJg\nX3R6f+YWraYqqL4uND56Y5q+MaPE2lAEzYKkGdHotiYu3Ta6picBo8BamMQBC93r\nmiwJYBHZWih56Xb/lSdV1GGHUbNCCqhR78EabVgbNj8vWYaCRezXFjMdnG5dTYsn\nNsMtvV6/dBXxoLpJWi7YCM6QlQKBgQDHkBNQ1DNUvpSMeICd7OgUTiQKSGViMRKE\nBoARNGE5f6ZbCACY69gSDs/OdZUqq6gboCu4VNWrl0/mOZrhkVJEicDKcahDuM6R\n5q3EPcv/XhonAlvAXueDCVEaNh7iPyt0XTsDsMFsAi4xs9n6DcOvp8DLDBa9rfWW\ngJghwhJ4iQKBgQCdZR5QQQJ+ZV5VIPjuwsbjL+1iC+TehSuIgPQV97I7hcCXxhJV\naLgcEpI0a3I7y+nom6NZYwEc7+3Ilmbs+IPuuoTHI/JeL0EwovAWuAnysG5YWjrn\nAtNuJ2dAxrix7RKhxs+Nzw0LOhKzCFo2Qov/1IZLWpb4NhmZBeTExQfOEQKBgQCp\nmkbwQQhHE5mIMLmOflNXPnney1xusSn9TtD0zkF67oPhhdGMJZSC9FekLcZSd4Tt\nxZiilmbp6DUdgwOghTMX0MMqyqGovJ3C3fv8dlCzfbRYRubXfVDgysBEuI5S1kEG\nKl4HaudX9hpwX1v36k7PMJDngCSrm/bGrA+fUSMFkQKBgQDnHnYRit6FIr1IgLoA\nuWEYY/R1cVv5tWtDbHqa/I4+oS+qDA8HNNKVvm8HO8JLRU5f+ZhBQfJVhWbEybOj\nKpTeg0L+wtXEw8Qfb2we1GFJ/LaiXTzeJVttnARJXce+G0U/Ei8EthOCh4PTNawU\nYTt70e4jJwOsG6DZFT8EnM7O7Q==\n-----END PRIVATE KEY-----",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://dev.timbradorxpress.mx/api/rest/servicio/timbrarConSello",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"timbradorxpress",
+						"mx"
+					],
+					"path": [
+						"api",
+						"rest",
+						"servicio",
+						"timbrarConSello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "timbrarJSON",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "apikey",
+							"value": "93edc4af66b84c938f66a56ca0596205",
+							"type": "text"
+						},
+						{
+							"key": "jsonB64",
+							"value": "ewoJIkNvbXByb2JhbnRlIjogewoJICAgICJWZXJzaW9uIjogIjQuMCIsCgkgICAgIlNlcmllIjogIkxDLUoiLAoJICAgICJGb2xpbyI6ICJMQy0xMDAwNSIsCgkgICAgIkZlY2hhIjogIjIwMjMtMDItMDNUMjI6MzE6MTciLAoJICAgICJOb0NlcnRpZmljYWRvIjogIjMwMDAxMDAwMDAwNTAwMDAzNDE2IiwKCSAgICAiU3ViVG90YWwiOiAiNDUwMC4wMCIsCiAgICAJIkRlc2N1ZW50byI6ICIwLjAwIiwKCSAgICAiTW9uZWRhIjogIk1YTiIsCgkgICAgIlRvdGFsIjogIjUyMjAuMDAiLAoJICAgICJUaXBvRGVDb21wcm9iYW50ZSI6ICJFIiwKCSAgICAiTWV0b2RvUGFnbyI6ICJQVUUiLAoJICAgICJFeHBvcnRhY2lvbiI6IjAxIiwKCSAgICAiTHVnYXJFeHBlZGljaW9uIjogIjI2MDE1IiwKCSAgICAiQ2ZkaVJlbGFjaW9uYWRvcyI6IHsKCSAgICAgICJUaXBvUmVsYWNpb24iOiAiMDciLAoJICAgICAgIkNmZGlSZWxhY2lvbmFkbyI6IFsKCSAgICAgICAgIkZGRkZGRkZGLTA1NTktNDE5RS1COUZELUQwNkZGNEVGOUNBQiIKCSAgICAgICAgXQoJICAgIH0sCgkgICAgIkVtaXNvciI6CgkgICAgewoJICAgICAgICAiUmZjIjogIkVLVTkwMDMxNzNDOSIsCgkgICAgICAgICJOb21icmUiOiAiRVNDVUVMQSBLRU1QRVIgVVJHQVRFIiwKCSAgICAgICAgIlJlZ2ltZW5GaXNjYWwiOiAiNjAxIgoJICAgIH0sCgkgICAgIlJlY2VwdG9yIjoKCSAgICB7CgkgICAgICAgICJSZmMiOiAiWEFYWDAxMDEwMTAwMCIsCgkgICAgICAgICJOb21icmUiOiAiWEVOT04gSU5EVVNUUklBTCBBUlRJQ0xFUyIsCgkgICAgICAgICJVc29DRkRJIjogIkcwMyIsCgkgICAgICAgICJEb21pY2lsaW9GaXNjYWxSZWNlcHRvciI6IjI2MDE1IiwKCSAgICAgICAgIlJlZ2ltZW5GaXNjYWxSZWNlcHRvciI6IjYxNiIsCgkgICAgICAgICJVc29DRkRJIjogIlMwMSIKCSAgICB9LAoJICAgICJDb25jZXB0b3MiOgoJICAgIFsKCSAgICAgICAgewoJICAgICAgICAgICAgIkNsYXZlUHJvZFNlcnYiOiAiODQxMTE1MDYiLAoJICAgICAgICAgICAgIkNhbnRpZGFkIjogIjEuMCIsCgkgICAgICAgICAgICAiQ2xhdmVVbmlkYWQiOiAiQUNUIiwKICAgICAgICAJCSJVbmlkYWQiOiAiQWN0aXZpZGFkIiwKCSAgICAgICAgICAgICJEZXNjcmlwY2lvbiI6ICJOT1RBIERFIENSRURJVE8gUE9SIEFQTElDQUNJT04gREUgQU5USUNJUE8gRkFDVDogNjc5MTUxIiwKCSAgICAgICAgICAgICJWYWxvclVuaXRhcmlvIjogIjQ1MDAuMDAiLAoJICAgICAgICAgICAgIkltcG9ydGUiOiAiNDUwMC4wMCIsCgkgICAgICAgICAgICAiRGVzY3VlbnRvIjogIjAuMDAiLAoJICAgICAgICAgICAgIk9iamV0b0ltcCI6IjAyIiwKCSAgICAgICAgICAgICJJbXB1ZXN0b3MiOgoJICAgICAgICAgICAgewoJICAgICAgICAgICAgICAgICJUcmFzbGFkb3MiOgoJICAgICAgICAgICAgICAgIFsKCSAgICAgICAgICAgICAgICAgICAgewoJICAgICAgICAgICAgICAgICAgICAgICAgIkJhc2UiOiAiNDUwMC4wMCIsCgkgICAgICAgICAgICAgICAgICAgICAgICAiSW1wdWVzdG8iOiAiMDAyIiwKCSAgICAgICAgICAgICAgICAgICAgICAgICJUaXBvRmFjdG9yIjogIlRhc2EiLAoJICAgICAgICAgICAgICAgICAgICAgICAgIlRhc2FPQ3VvdGEiOiAiMC4xNjAwMDAiLAoJICAgICAgICAgICAgICAgICAgICAgICAgIkltcG9ydGUiOiAiNzIwLjAwIgoJICAgICAgICAgICAgICAgICAgICB9CgkgICAgICAgICAgICAgICAgXQoJICAgICAgICAgICAgfQoJICAgICAgICB9CgkgICAgXSwKCSAgICAiSW1wdWVzdG9zIjoKCSAgICB7CgkgICAgICAgICJUb3RhbEltcHVlc3Rvc1RyYXNsYWRhZG9zIjogIjcyMC4wMCIsCgkgICAgICAgICJUcmFzbGFkb3MiOgoJICAgICAgICBbCgkgICAgICAgICAgICB7CgkgICAgICAgICAgICAJIkJhc2UiOiI0NTAwLjAwIiwKCSAgICAgICAgICAgICAgICAiSW1wdWVzdG8iOiAiMDAyIiwKCSAgICAgICAgICAgICAgICAiVGlwb0ZhY3RvciI6ICJUYXNhIiwKCSAgICAgICAgICAgICAgICAiVGFzYU9DdW90YSI6ICIwLjE2MDAwMCIsCgkgICAgICAgICAgICAgICAgIkltcG9ydGUiOiAiNzIwLjAwIgoJICAgICAgICAgICAgfQoJICAgICAgICBdCgkgICAgfQoJfSwKCSJDYW1wb3NQREYiOiB7CiAgICAidGlwb0NvbXByb2JhbnRlIjogIk5PVEEgREUgQ1LDiURJVE8iLAogICAgIkNvbWVudGFyaW9zIjogIk5pbmd1bm8iCiAgfSwKICAibG9nbyIgOiAiIgp9",
+							"type": "text"
+						},
+						{
+							"key": "keyPEM",
+							"value": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC2Z5w7qfYZLTMv\nTbmBscZBXHOc8MgKhfNHa5SeDPgOrFVQL/D1wToXFKJebZqnwZyODvCZxl+bzkQF\nrELH/Qna7kKqeHMigYJ2EE+6FZCciHlMuCP9fq42q7BmQoKFs171p4WKtT8lvI3s\nSCJr2gof0plSyh2Iz+lYAfTQ8K2gon04FxIcyrxGprcoqgFx+SDVmuC559/BEvCz\n3I5xFYtvTawM4/MYib+MQWJxVi3YfDWp1ETnGZNnsAYbRQez66eQaOkJV4n4EQGf\nQk8tZW8ModkBAyPqzkGS7fn538zIBOSk4+wZP9VOeyi7F6QN+KQkPV/sDVmkluoO\nmQmeyze9AgMBAAECggEAM8vEL6UZvxh4umwFy3Bh7dmE8wHkrChRZuyDrUXdgr0p\nFLYoZIDUMA2p9cqF6jEudaCEbgZIzAOMiVfbNtMB42tY/vNpLlk8ZK5JFXxeLjUK\nzOBVR/ybF+c1FjS4v6KpynQhlbvWDK84Veo97AZkbZjt9PZz4I+5oUYc8OAHTd+b\nNgL6r7SnudH/2p7rI9kMFp3h9oov+H91IguFn4SF0aVMPiLMUVUYA3QpvIA03c7A\ncY8tloFArpPkpa1yyZ7ToFx3mPsYNxyn4Ud3lx0PHJ0ulUjPBVoi+ewFLHG0Z8HS\n2CdBe+7ptS0u1e58+RsX5tlf61xGwlHzMbfqyrBrQQKBgQDp/VO5GmFSzvIlrCJg\nX3R6f+YWraYqqL4uND56Y5q+MaPE2lAEzYKkGdHotiYu3Ta6picBo8BamMQBC93r\nmiwJYBHZWih56Xb/lSdV1GGHUbNCCqhR78EabVgbNj8vWYaCRezXFjMdnG5dTYsn\nNsMtvV6/dBXxoLpJWi7YCM6QlQKBgQDHkBNQ1DNUvpSMeICd7OgUTiQKSGViMRKE\nBoARNGE5f6ZbCACY69gSDs/OdZUqq6gboCu4VNWrl0/mOZrhkVJEicDKcahDuM6R\n5q3EPcv/XhonAlvAXueDCVEaNh7iPyt0XTsDsMFsAi4xs9n6DcOvp8DLDBa9rfWW\ngJghwhJ4iQKBgQCdZR5QQQJ+ZV5VIPjuwsbjL+1iC+TehSuIgPQV97I7hcCXxhJV\naLgcEpI0a3I7y+nom6NZYwEc7+3Ilmbs+IPuuoTHI/JeL0EwovAWuAnysG5YWjrn\nAtNuJ2dAxrix7RKhxs+Nzw0LOhKzCFo2Qov/1IZLWpb4NhmZBeTExQfOEQKBgQCp\nmkbwQQhHE5mIMLmOflNXPnney1xusSn9TtD0zkF67oPhhdGMJZSC9FekLcZSd4Tt\nxZiilmbp6DUdgwOghTMX0MMqyqGovJ3C3fv8dlCzfbRYRubXfVDgysBEuI5S1kEG\nKl4HaudX9hpwX1v36k7PMJDngCSrm/bGrA+fUSMFkQKBgQDnHnYRit6FIr1IgLoA\nuWEYY/R1cVv5tWtDbHqa/I4+oS+qDA8HNNKVvm8HO8JLRU5f+ZhBQfJVhWbEybOj\nKpTeg0L+wtXEw8Qfb2we1GFJ/LaiXTzeJVttnARJXce+G0U/Ei8EthOCh4PTNawU\nYTt70e4jJwOsG6DZFT8EnM7O7Q==\n-----END PRIVATE KEY-----",
+							"type": "text"
+						},
+						{
+							"key": "cerPEM",
+							"value": "-----BEGIN CERTIFICATE-----\nMIIFsDCCA5igAwIBAgIUMzAwMDEwMDAwMDA1MDAwMDM0MTYwDQYJKoZIhvcNAQEL\nBQAwggErMQ8wDQYDVQQDDAZBQyBVQVQxLjAsBgNVBAoMJVNFUlZJQ0lPIERFIEFE\nTUlOSVNUUkFDSU9OIFRSSUJVVEFSSUExGjAYBgNVBAsMEVNBVC1JRVMgQXV0aG9y\naXR5MSgwJgYJKoZIhvcNAQkBFhlvc2Nhci5tYXJ0aW5lekBzYXQuZ29iLm14MR0w\nGwYDVQQJDBQzcmEgY2VycmFkYSBkZSBjYWxpejEOMAwGA1UEEQwFMDYzNzAxCzAJ\nBgNVBAYTAk1YMRkwFwYDVQQIDBBDSVVEQUQgREUgTUVYSUNPMREwDwYDVQQHDAhD\nT1lPQUNBTjERMA8GA1UELRMIMi41LjQuNDUxJTAjBgkqhkiG9w0BCQITFnJlc3Bv\nbnNhYmxlOiBBQ0RNQS1TQVQwHhcNMjMwNTE4MTE0MzUxWhcNMjcwNTE4MTE0MzUx\nWjCB1zEnMCUGA1UEAxMeRVNDVUVMQSBLRU1QRVIgVVJHQVRFIFNBIERFIENWMScw\nJQYDVQQpEx5FU0NVRUxBIEtFTVBFUiBVUkdBVEUgU0EgREUgQ1YxJzAlBgNVBAoT\nHkVTQ1VFTEEgS0VNUEVSIFVSR0FURSBTQSBERSBDVjElMCMGA1UELRMcRUtVOTAw\nMzE3M0M5IC8gVkFEQTgwMDkyN0RKMzEeMBwGA1UEBRMVIC8gVkFEQTgwMDkyN0hT\nUlNSTDA1MRMwEQYDVQQLEwpTdWN1cnNhbCAxMIIBIjANBgkqhkiG9w0BAQEFAAOC\nAQ8AMIIBCgKCAQEAtmecO6n2GS0zL025gbHGQVxznPDICoXzR2uUngz4DqxVUC/w\n9cE6FxSiXm2ap8Gcjg7wmcZfm85EBaxCx/0J2u5CqnhzIoGCdhBPuhWQnIh5TLgj\n/X6uNquwZkKChbNe9aeFirU/JbyN7Egia9oKH9KZUsodiM/pWAH00PCtoKJ9OBcS\nHMq8Rqa3KKoBcfkg1ZrgueffwRLws9yOcRWLb02sDOPzGIm/jEFicVYt2Hw1qdRE\n5xmTZ7AGG0UHs+unkGjpCVeJ+BEBn0JPLWVvDKHZAQMj6s5Bku35+d/MyATkpOPs\nGT/VTnsouxekDfikJD1f7A1ZpJbqDpkJnss3vQIDAQABox0wGzAMBgNVHRMBAf8E\nAjAAMAsGA1UdDwQEAwIGwDANBgkqhkiG9w0BAQsFAAOCAgEAFaUgj5PqgvJigNMg\ntrdXZnbPfVBbukAbW4OGnUhNrA7SRAAfv2BSGk16PI0nBOr7qF2mItmBnjgEwk+D\nTv8Zr7w5qp7vleC6dIsZFNJoa6ZndrE/f7KO1CYruLXr5gwEkIyGfJ9NwyIagvHH\nMszzyHiSZIA850fWtbqtythpAliJ2jF35M5pNS+YTkRB+T6L/c6m00ymN3q9lT1r\nB03YywxrLreRSFZOSrbwWfg34EJbHfbFXpCSVYdJRfiVdvHnewN0r5fUlPtR9stQ\nHyuqewzdkyb5jTTw02D2cUfL57vlPStBj7SEi3uOWvLrsiDnnCIxRMYJ2UA2ktDK\nHk+zWnsDmaeleSzonv2CHW42yXYPCvWi88oE1DJNYLNkIjua7MxAnkNZbScNw01A\n6zbLsZ3y8G6eEYnxSTRfwjd8EP4kdiHNJftm7Z4iRU7HOVh79/lRWB+gd171s3d/\nmI9kte3MRy6V8MMEMCAnMboGpaooYwgAmwclI2XZCczNWXfhaWe0ZS5PmytD/GDp\nXzkX0oEgY9K/uYo5V77NdZbGAjmyi8cE2B2ogvyaN2XfIInrZPgEffJ4AB7kFA2m\nwesdLOCh0BLD9itmCve3A1FGR4+stO2ANUoiI3w3Tv2yQSg4bjeDlJ08lXaaFCLW\n2peEXMXjQUk7fmpb5MNuOUTW6BE=\n-----END CERTIFICATE-----",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://dev.timbradorxpress.mx/api/rest/servicio/timbrarJSON",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"timbradorxpress",
+						"mx"
+					],
+					"path": [
+						"api",
+						"rest",
+						"servicio",
+						"timbrarJSON"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "timbrarJSON2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "apikey",
+							"value": "93edc4af66b84c938f66a56ca0596205",
+							"type": "text"
+						},
+						{
+							"key": "jsonB64",
+							"value": "ewoJIkNvbXByb2JhbnRlIjogewoJICAgICJWZXJzaW9uIjogIjQuMCIsCgkgICAgIlNlcmllIjogIkxDLUoiLAoJICAgICJGb2xpbyI6ICJMQy0xMDAwNSIsCgkgICAgIkZlY2hhIjogIjIwMjMtMDItMDNUMjI6MzE6MTciLAoJICAgICJOb0NlcnRpZmljYWRvIjogIjMwMDAxMDAwMDAwNTAwMDAzNDE2IiwKCSAgICAiU3ViVG90YWwiOiAiNDUwMC4wMCIsCiAgICAJIkRlc2N1ZW50byI6ICIwLjAwIiwKCSAgICAiTW9uZWRhIjogIk1YTiIsCgkgICAgIlRvdGFsIjogIjUyMjAuMDAiLAoJICAgICJUaXBvRGVDb21wcm9iYW50ZSI6ICJFIiwKCSAgICAiTWV0b2RvUGFnbyI6ICJQVUUiLAoJICAgICJFeHBvcnRhY2lvbiI6IjAxIiwKCSAgICAiTHVnYXJFeHBlZGljaW9uIjogIjI2MDE1IiwKCSAgICAiQ2ZkaVJlbGFjaW9uYWRvcyI6IHsKCSAgICAgICJUaXBvUmVsYWNpb24iOiAiMDciLAoJICAgICAgIkNmZGlSZWxhY2lvbmFkbyI6IFsKCSAgICAgICAgIkZGRkZGRkZGLTA1NTktNDE5RS1COUZELUQwNkZGNEVGOUNBQiIKCSAgICAgICAgXQoJICAgIH0sCgkgICAgIkVtaXNvciI6CgkgICAgewoJICAgICAgICAiUmZjIjogIkVLVTkwMDMxNzNDOSIsCgkgICAgICAgICJOb21icmUiOiAiRVNDVUVMQSBLRU1QRVIgVVJHQVRFIiwKCSAgICAgICAgIlJlZ2ltZW5GaXNjYWwiOiAiNjAxIgoJICAgIH0sCgkgICAgIlJlY2VwdG9yIjoKCSAgICB7CgkgICAgICAgICJSZmMiOiAiWEFYWDAxMDEwMTAwMCIsCgkgICAgICAgICJOb21icmUiOiAiWEVOT04gSU5EVVNUUklBTCBBUlRJQ0xFUyIsCgkgICAgICAgICJVc29DRkRJIjogIkcwMyIsCgkgICAgICAgICJEb21pY2lsaW9GaXNjYWxSZWNlcHRvciI6IjI2MDE1IiwKCSAgICAgICAgIlJlZ2ltZW5GaXNjYWxSZWNlcHRvciI6IjYxNiIsCgkgICAgICAgICJVc29DRkRJIjogIlMwMSIKCSAgICB9LAoJICAgICJDb25jZXB0b3MiOgoJICAgIFsKCSAgICAgICAgewoJICAgICAgICAgICAgIkNsYXZlUHJvZFNlcnYiOiAiODQxMTE1MDYiLAoJICAgICAgICAgICAgIkNhbnRpZGFkIjogIjEuMCIsCgkgICAgICAgICAgICAiQ2xhdmVVbmlkYWQiOiAiQUNUIiwKICAgICAgICAJCSJVbmlkYWQiOiAiQWN0aXZpZGFkIiwKCSAgICAgICAgICAgICJEZXNjcmlwY2lvbiI6ICJOT1RBIERFIENSRURJVE8gUE9SIEFQTElDQUNJT04gREUgQU5USUNJUE8gRkFDVDogNjc5MTUxIiwKCSAgICAgICAgICAgICJWYWxvclVuaXRhcmlvIjogIjQ1MDAuMDAiLAoJICAgICAgICAgICAgIkltcG9ydGUiOiAiNDUwMC4wMCIsCgkgICAgICAgICAgICAiRGVzY3VlbnRvIjogIjAuMDAiLAoJICAgICAgICAgICAgIk9iamV0b0ltcCI6IjAyIiwKCSAgICAgICAgICAgICJJbXB1ZXN0b3MiOgoJICAgICAgICAgICAgewoJICAgICAgICAgICAgICAgICJUcmFzbGFkb3MiOgoJICAgICAgICAgICAgICAgIFsKCSAgICAgICAgICAgICAgICAgICAgewoJICAgICAgICAgICAgICAgICAgICAgICAgIkJhc2UiOiAiNDUwMC4wMCIsCgkgICAgICAgICAgICAgICAgICAgICAgICAiSW1wdWVzdG8iOiAiMDAyIiwKCSAgICAgICAgICAgICAgICAgICAgICAgICJUaXBvRmFjdG9yIjogIlRhc2EiLAoJICAgICAgICAgICAgICAgICAgICAgICAgIlRhc2FPQ3VvdGEiOiAiMC4xNjAwMDAiLAoJICAgICAgICAgICAgICAgICAgICAgICAgIkltcG9ydGUiOiAiNzIwLjAwIgoJICAgICAgICAgICAgICAgICAgICB9CgkgICAgICAgICAgICAgICAgXQoJICAgICAgICAgICAgfQoJICAgICAgICB9CgkgICAgXSwKCSAgICAiSW1wdWVzdG9zIjoKCSAgICB7CgkgICAgICAgICJUb3RhbEltcHVlc3Rvc1RyYXNsYWRhZG9zIjogIjcyMC4wMCIsCgkgICAgICAgICJUcmFzbGFkb3MiOgoJICAgICAgICBbCgkgICAgICAgICAgICB7CgkgICAgICAgICAgICAJIkJhc2UiOiI0NTAwLjAwIiwKCSAgICAgICAgICAgICAgICAiSW1wdWVzdG8iOiAiMDAyIiwKCSAgICAgICAgICAgICAgICAiVGlwb0ZhY3RvciI6ICJUYXNhIiwKCSAgICAgICAgICAgICAgICAiVGFzYU9DdW90YSI6ICIwLjE2MDAwMCIsCgkgICAgICAgICAgICAgICAgIkltcG9ydGUiOiAiNzIwLjAwIgoJICAgICAgICAgICAgfQoJICAgICAgICBdCgkgICAgfQoJfSwKCSJDYW1wb3NQREYiOiB7CiAgICAidGlwb0NvbXByb2JhbnRlIjogIk5PVEEgREUgQ1LDiURJVE8iLAogICAgIkNvbWVudGFyaW9zIjogIk5pbmd1bm8iCiAgfSwKICAibG9nbyIgOiAiIgp9",
+							"type": "text"
+						},
+						{
+							"key": "keyPEM",
+							"value": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC2Z5w7qfYZLTMv\nTbmBscZBXHOc8MgKhfNHa5SeDPgOrFVQL/D1wToXFKJebZqnwZyODvCZxl+bzkQF\nrELH/Qna7kKqeHMigYJ2EE+6FZCciHlMuCP9fq42q7BmQoKFs171p4WKtT8lvI3s\nSCJr2gof0plSyh2Iz+lYAfTQ8K2gon04FxIcyrxGprcoqgFx+SDVmuC559/BEvCz\n3I5xFYtvTawM4/MYib+MQWJxVi3YfDWp1ETnGZNnsAYbRQez66eQaOkJV4n4EQGf\nQk8tZW8ModkBAyPqzkGS7fn538zIBOSk4+wZP9VOeyi7F6QN+KQkPV/sDVmkluoO\nmQmeyze9AgMBAAECggEAM8vEL6UZvxh4umwFy3Bh7dmE8wHkrChRZuyDrUXdgr0p\nFLYoZIDUMA2p9cqF6jEudaCEbgZIzAOMiVfbNtMB42tY/vNpLlk8ZK5JFXxeLjUK\nzOBVR/ybF+c1FjS4v6KpynQhlbvWDK84Veo97AZkbZjt9PZz4I+5oUYc8OAHTd+b\nNgL6r7SnudH/2p7rI9kMFp3h9oov+H91IguFn4SF0aVMPiLMUVUYA3QpvIA03c7A\ncY8tloFArpPkpa1yyZ7ToFx3mPsYNxyn4Ud3lx0PHJ0ulUjPBVoi+ewFLHG0Z8HS\n2CdBe+7ptS0u1e58+RsX5tlf61xGwlHzMbfqyrBrQQKBgQDp/VO5GmFSzvIlrCJg\nX3R6f+YWraYqqL4uND56Y5q+MaPE2lAEzYKkGdHotiYu3Ta6picBo8BamMQBC93r\nmiwJYBHZWih56Xb/lSdV1GGHUbNCCqhR78EabVgbNj8vWYaCRezXFjMdnG5dTYsn\nNsMtvV6/dBXxoLpJWi7YCM6QlQKBgQDHkBNQ1DNUvpSMeICd7OgUTiQKSGViMRKE\nBoARNGE5f6ZbCACY69gSDs/OdZUqq6gboCu4VNWrl0/mOZrhkVJEicDKcahDuM6R\n5q3EPcv/XhonAlvAXueDCVEaNh7iPyt0XTsDsMFsAi4xs9n6DcOvp8DLDBa9rfWW\ngJghwhJ4iQKBgQCdZR5QQQJ+ZV5VIPjuwsbjL+1iC+TehSuIgPQV97I7hcCXxhJV\naLgcEpI0a3I7y+nom6NZYwEc7+3Ilmbs+IPuuoTHI/JeL0EwovAWuAnysG5YWjrn\nAtNuJ2dAxrix7RKhxs+Nzw0LOhKzCFo2Qov/1IZLWpb4NhmZBeTExQfOEQKBgQCp\nmkbwQQhHE5mIMLmOflNXPnney1xusSn9TtD0zkF67oPhhdGMJZSC9FekLcZSd4Tt\nxZiilmbp6DUdgwOghTMX0MMqyqGovJ3C3fv8dlCzfbRYRubXfVDgysBEuI5S1kEG\nKl4HaudX9hpwX1v36k7PMJDngCSrm/bGrA+fUSMFkQKBgQDnHnYRit6FIr1IgLoA\nuWEYY/R1cVv5tWtDbHqa/I4+oS+qDA8HNNKVvm8HO8JLRU5f+ZhBQfJVhWbEybOj\nKpTeg0L+wtXEw8Qfb2we1GFJ/LaiXTzeJVttnARJXce+G0U/Ei8EthOCh4PTNawU\nYTt70e4jJwOsG6DZFT8EnM7O7Q==\n-----END PRIVATE KEY-----",
+							"type": "text"
+						},
+						{
+							"key": "cerPEM",
+							"value": "-----BEGIN CERTIFICATE-----\nMIIFsDCCA5igAwIBAgIUMzAwMDEwMDAwMDA1MDAwMDM0MTYwDQYJKoZIhvcNAQEL\nBQAwggErMQ8wDQYDVQQDDAZBQyBVQVQxLjAsBgNVBAoMJVNFUlZJQ0lPIERFIEFE\nTUlOSVNUUkFDSU9OIFRSSUJVVEFSSUExGjAYBgNVBAsMEVNBVC1JRVMgQXV0aG9y\naXR5MSgwJgYJKoZIhvcNAQkBFhlvc2Nhci5tYXJ0aW5lekBzYXQuZ29iLm14MR0w\nGwYDVQQJDBQzcmEgY2VycmFkYSBkZSBjYWxpejEOMAwGA1UEEQwFMDYzNzAxCzAJ\nBgNVBAYTAk1YMRkwFwYDVQQIDBBDSVVEQUQgREUgTUVYSUNPMREwDwYDVQQHDAhD\nT1lPQUNBTjERMA8GA1UELRMIMi41LjQuNDUxJTAjBgkqhkiG9w0BCQITFnJlc3Bv\nbnNhYmxlOiBBQ0RNQS1TQVQwHhcNMjMwNTE4MTE0MzUxWhcNMjcwNTE4MTE0MzUx\nWjCB1zEnMCUGA1UEAxMeRVNDVUVMQSBLRU1QRVIgVVJHQVRFIFNBIERFIENWMScw\nJQYDVQQpEx5FU0NVRUxBIEtFTVBFUiBVUkdBVEUgU0EgREUgQ1YxJzAlBgNVBAoT\nHkVTQ1VFTEEgS0VNUEVSIFVSR0FURSBTQSBERSBDVjElMCMGA1UELRMcRUtVOTAw\nMzE3M0M5IC8gVkFEQTgwMDkyN0RKMzEeMBwGA1UEBRMVIC8gVkFEQTgwMDkyN0hT\nUlNSTDA1MRMwEQYDVQQLEwpTdWN1cnNhbCAxMIIBIjANBgkqhkiG9w0BAQEFAAOC\nAQ8AMIIBCgKCAQEAtmecO6n2GS0zL025gbHGQVxznPDICoXzR2uUngz4DqxVUC/w\n9cE6FxSiXm2ap8Gcjg7wmcZfm85EBaxCx/0J2u5CqnhzIoGCdhBPuhWQnIh5TLgj\n/X6uNquwZkKChbNe9aeFirU/JbyN7Egia9oKH9KZUsodiM/pWAH00PCtoKJ9OBcS\nHMq8Rqa3KKoBcfkg1ZrgueffwRLws9yOcRWLb02sDOPzGIm/jEFicVYt2Hw1qdRE\n5xmTZ7AGG0UHs+unkGjpCVeJ+BEBn0JPLWVvDKHZAQMj6s5Bku35+d/MyATkpOPs\nGT/VTnsouxekDfikJD1f7A1ZpJbqDpkJnss3vQIDAQABox0wGzAMBgNVHRMBAf8E\nAjAAMAsGA1UdDwQEAwIGwDANBgkqhkiG9w0BAQsFAAOCAgEAFaUgj5PqgvJigNMg\ntrdXZnbPfVBbukAbW4OGnUhNrA7SRAAfv2BSGk16PI0nBOr7qF2mItmBnjgEwk+D\nTv8Zr7w5qp7vleC6dIsZFNJoa6ZndrE/f7KO1CYruLXr5gwEkIyGfJ9NwyIagvHH\nMszzyHiSZIA850fWtbqtythpAliJ2jF35M5pNS+YTkRB+T6L/c6m00ymN3q9lT1r\nB03YywxrLreRSFZOSrbwWfg34EJbHfbFXpCSVYdJRfiVdvHnewN0r5fUlPtR9stQ\nHyuqewzdkyb5jTTw02D2cUfL57vlPStBj7SEi3uOWvLrsiDnnCIxRMYJ2UA2ktDK\nHk+zWnsDmaeleSzonv2CHW42yXYPCvWi88oE1DJNYLNkIjua7MxAnkNZbScNw01A\n6zbLsZ3y8G6eEYnxSTRfwjd8EP4kdiHNJftm7Z4iRU7HOVh79/lRWB+gd171s3d/\nmI9kte3MRy6V8MMEMCAnMboGpaooYwgAmwclI2XZCczNWXfhaWe0ZS5PmytD/GDp\nXzkX0oEgY9K/uYo5V77NdZbGAjmyi8cE2B2ogvyaN2XfIInrZPgEffJ4AB7kFA2m\nwesdLOCh0BLD9itmCve3A1FGR4+stO2ANUoiI3w3Tv2yQSg4bjeDlJ08lXaaFCLW\n2peEXMXjQUk7fmpb5MNuOUTW6BE=\n-----END CERTIFICATE-----",
+							"type": "text"
+						},
+						{
+							"key": "plantilla",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://dev.timbradorxpress.mx/api/rest/servicio/timbrarJSON2",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"timbradorxpress",
+						"mx"
+					],
+					"path": [
+						"api",
+						"rest",
+						"servicio",
+						"timbrarJSON2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "timbrarJSON3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "apikey",
+							"value": "93edc4af66b84c938f66a56ca0596205",
+							"type": "text"
+						},
+						{
+							"key": "jsonB64",
+							"value": "ewoJIkNvbXByb2JhbnRlIjogewoJICAgICJWZXJzaW9uIjogIjQuMCIsCgkgICAgIlNlcmllIjogIkxDLUoiLAoJICAgICJGb2xpbyI6ICJMQy0xMDAwNSIsCgkgICAgIkZlY2hhIjogIjIwMjMtMDItMDNUMjI6MzE6MTciLAoJICAgICJOb0NlcnRpZmljYWRvIjogIjMwMDAxMDAwMDAwNTAwMDAzNDE2IiwKCSAgICAiU3ViVG90YWwiOiAiNDUwMC4wMCIsCiAgICAJIkRlc2N1ZW50byI6ICIwLjAwIiwKCSAgICAiTW9uZWRhIjogIk1YTiIsCgkgICAgIlRvdGFsIjogIjUyMjAuMDAiLAoJICAgICJUaXBvRGVDb21wcm9iYW50ZSI6ICJFIiwKCSAgICAiTWV0b2RvUGFnbyI6ICJQVUUiLAoJICAgICJFeHBvcnRhY2lvbiI6IjAxIiwKCSAgICAiTHVnYXJFeHBlZGljaW9uIjogIjI2MDE1IiwKCSAgICAiQ2ZkaVJlbGFjaW9uYWRvcyI6IHsKCSAgICAgICJUaXBvUmVsYWNpb24iOiAiMDciLAoJICAgICAgIkNmZGlSZWxhY2lvbmFkbyI6IFsKCSAgICAgICAgIkZGRkZGRkZGLTA1NTktNDE5RS1COUZELUQwNkZGNEVGOUNBQiIKCSAgICAgICAgXQoJICAgIH0sCgkgICAgIkVtaXNvciI6CgkgICAgewoJICAgICAgICAiUmZjIjogIkVLVTkwMDMxNzNDOSIsCgkgICAgICAgICJOb21icmUiOiAiRVNDVUVMQSBLRU1QRVIgVVJHQVRFIiwKCSAgICAgICAgIlJlZ2ltZW5GaXNjYWwiOiAiNjAxIgoJICAgIH0sCgkgICAgIlJlY2VwdG9yIjoKCSAgICB7CgkgICAgICAgICJSZmMiOiAiWEFYWDAxMDEwMTAwMCIsCgkgICAgICAgICJOb21icmUiOiAiWEVOT04gSU5EVVNUUklBTCBBUlRJQ0xFUyIsCgkgICAgICAgICJVc29DRkRJIjogIkcwMyIsCgkgICAgICAgICJEb21pY2lsaW9GaXNjYWxSZWNlcHRvciI6IjI2MDE1IiwKCSAgICAgICAgIlJlZ2ltZW5GaXNjYWxSZWNlcHRvciI6IjYxNiIsCgkgICAgICAgICJVc29DRkRJIjogIlMwMSIKCSAgICB9LAoJICAgICJDb25jZXB0b3MiOgoJICAgIFsKCSAgICAgICAgewoJICAgICAgICAgICAgIkNsYXZlUHJvZFNlcnYiOiAiODQxMTE1MDYiLAoJICAgICAgICAgICAgIkNhbnRpZGFkIjogIjEuMCIsCgkgICAgICAgICAgICAiQ2xhdmVVbmlkYWQiOiAiQUNUIiwKICAgICAgICAJCSJVbmlkYWQiOiAiQWN0aXZpZGFkIiwKCSAgICAgICAgICAgICJEZXNjcmlwY2lvbiI6ICJOT1RBIERFIENSRURJVE8gUE9SIEFQTElDQUNJT04gREUgQU5USUNJUE8gRkFDVDogNjc5MTUxIiwKCSAgICAgICAgICAgICJWYWxvclVuaXRhcmlvIjogIjQ1MDAuMDAiLAoJICAgICAgICAgICAgIkltcG9ydGUiOiAiNDUwMC4wMCIsCgkgICAgICAgICAgICAiRGVzY3VlbnRvIjogIjAuMDAiLAoJICAgICAgICAgICAgIk9iamV0b0ltcCI6IjAyIiwKCSAgICAgICAgICAgICJJbXB1ZXN0b3MiOgoJICAgICAgICAgICAgewoJICAgICAgICAgICAgICAgICJUcmFzbGFkb3MiOgoJICAgICAgICAgICAgICAgIFsKCSAgICAgICAgICAgICAgICAgICAgewoJICAgICAgICAgICAgICAgICAgICAgICAgIkJhc2UiOiAiNDUwMC4wMCIsCgkgICAgICAgICAgICAgICAgICAgICAgICAiSW1wdWVzdG8iOiAiMDAyIiwKCSAgICAgICAgICAgICAgICAgICAgICAgICJUaXBvRmFjdG9yIjogIlRhc2EiLAoJICAgICAgICAgICAgICAgICAgICAgICAgIlRhc2FPQ3VvdGEiOiAiMC4xNjAwMDAiLAoJICAgICAgICAgICAgICAgICAgICAgICAgIkltcG9ydGUiOiAiNzIwLjAwIgoJICAgICAgICAgICAgICAgICAgICB9CgkgICAgICAgICAgICAgICAgXQoJICAgICAgICAgICAgfQoJICAgICAgICB9CgkgICAgXSwKCSAgICAiSW1wdWVzdG9zIjoKCSAgICB7CgkgICAgICAgICJUb3RhbEltcHVlc3Rvc1RyYXNsYWRhZG9zIjogIjcyMC4wMCIsCgkgICAgICAgICJUcmFzbGFkb3MiOgoJICAgICAgICBbCgkgICAgICAgICAgICB7CgkgICAgICAgICAgICAJIkJhc2UiOiI0NTAwLjAwIiwKCSAgICAgICAgICAgICAgICAiSW1wdWVzdG8iOiAiMDAyIiwKCSAgICAgICAgICAgICAgICAiVGlwb0ZhY3RvciI6ICJUYXNhIiwKCSAgICAgICAgICAgICAgICAiVGFzYU9DdW90YSI6ICIwLjE2MDAwMCIsCgkgICAgICAgICAgICAgICAgIkltcG9ydGUiOiAiNzIwLjAwIgoJICAgICAgICAgICAgfQoJICAgICAgICBdCgkgICAgfQoJfSwKCSJDYW1wb3NQREYiOiB7CiAgICAidGlwb0NvbXByb2JhbnRlIjogIk5PVEEgREUgQ1LDiURJVE8iLAogICAgIkNvbWVudGFyaW9zIjogIk5pbmd1bm8iCiAgfSwKICAibG9nbyIgOiAiIgp9",
+							"type": "text"
+						},
+						{
+							"key": "keyPEM",
+							"value": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC2Z5w7qfYZLTMv\nTbmBscZBXHOc8MgKhfNHa5SeDPgOrFVQL/D1wToXFKJebZqnwZyODvCZxl+bzkQF\nrELH/Qna7kKqeHMigYJ2EE+6FZCciHlMuCP9fq42q7BmQoKFs171p4WKtT8lvI3s\nSCJr2gof0plSyh2Iz+lYAfTQ8K2gon04FxIcyrxGprcoqgFx+SDVmuC559/BEvCz\n3I5xFYtvTawM4/MYib+MQWJxVi3YfDWp1ETnGZNnsAYbRQez66eQaOkJV4n4EQGf\nQk8tZW8ModkBAyPqzkGS7fn538zIBOSk4+wZP9VOeyi7F6QN+KQkPV/sDVmkluoO\nmQmeyze9AgMBAAECggEAM8vEL6UZvxh4umwFy3Bh7dmE8wHkrChRZuyDrUXdgr0p\nFLYoZIDUMA2p9cqF6jEudaCEbgZIzAOMiVfbNtMB42tY/vNpLlk8ZK5JFXxeLjUK\nzOBVR/ybF+c1FjS4v6KpynQhlbvWDK84Veo97AZkbZjt9PZz4I+5oUYc8OAHTd+b\nNgL6r7SnudH/2p7rI9kMFp3h9oov+H91IguFn4SF0aVMPiLMUVUYA3QpvIA03c7A\ncY8tloFArpPkpa1yyZ7ToFx3mPsYNxyn4Ud3lx0PHJ0ulUjPBVoi+ewFLHG0Z8HS\n2CdBe+7ptS0u1e58+RsX5tlf61xGwlHzMbfqyrBrQQKBgQDp/VO5GmFSzvIlrCJg\nX3R6f+YWraYqqL4uND56Y5q+MaPE2lAEzYKkGdHotiYu3Ta6picBo8BamMQBC93r\nmiwJYBHZWih56Xb/lSdV1GGHUbNCCqhR78EabVgbNj8vWYaCRezXFjMdnG5dTYsn\nNsMtvV6/dBXxoLpJWi7YCM6QlQKBgQDHkBNQ1DNUvpSMeICd7OgUTiQKSGViMRKE\nBoARNGE5f6ZbCACY69gSDs/OdZUqq6gboCu4VNWrl0/mOZrhkVJEicDKcahDuM6R\n5q3EPcv/XhonAlvAXueDCVEaNh7iPyt0XTsDsMFsAi4xs9n6DcOvp8DLDBa9rfWW\ngJghwhJ4iQKBgQCdZR5QQQJ+ZV5VIPjuwsbjL+1iC+TehSuIgPQV97I7hcCXxhJV\naLgcEpI0a3I7y+nom6NZYwEc7+3Ilmbs+IPuuoTHI/JeL0EwovAWuAnysG5YWjrn\nAtNuJ2dAxrix7RKhxs+Nzw0LOhKzCFo2Qov/1IZLWpb4NhmZBeTExQfOEQKBgQCp\nmkbwQQhHE5mIMLmOflNXPnney1xusSn9TtD0zkF67oPhhdGMJZSC9FekLcZSd4Tt\nxZiilmbp6DUdgwOghTMX0MMqyqGovJ3C3fv8dlCzfbRYRubXfVDgysBEuI5S1kEG\nKl4HaudX9hpwX1v36k7PMJDngCSrm/bGrA+fUSMFkQKBgQDnHnYRit6FIr1IgLoA\nuWEYY/R1cVv5tWtDbHqa/I4+oS+qDA8HNNKVvm8HO8JLRU5f+ZhBQfJVhWbEybOj\nKpTeg0L+wtXEw8Qfb2we1GFJ/LaiXTzeJVttnARJXce+G0U/Ei8EthOCh4PTNawU\nYTt70e4jJwOsG6DZFT8EnM7O7Q==\n-----END PRIVATE KEY-----",
+							"type": "text"
+						},
+						{
+							"key": "cerPEM",
+							"value": "-----BEGIN CERTIFICATE-----\nMIIFsDCCA5igAwIBAgIUMzAwMDEwMDAwMDA1MDAwMDM0MTYwDQYJKoZIhvcNAQEL\nBQAwggErMQ8wDQYDVQQDDAZBQyBVQVQxLjAsBgNVBAoMJVNFUlZJQ0lPIERFIEFE\nTUlOSVNUUkFDSU9OIFRSSUJVVEFSSUExGjAYBgNVBAsMEVNBVC1JRVMgQXV0aG9y\naXR5MSgwJgYJKoZIhvcNAQkBFhlvc2Nhci5tYXJ0aW5lekBzYXQuZ29iLm14MR0w\nGwYDVQQJDBQzcmEgY2VycmFkYSBkZSBjYWxpejEOMAwGA1UEEQwFMDYzNzAxCzAJ\nBgNVBAYTAk1YMRkwFwYDVQQIDBBDSVVEQUQgREUgTUVYSUNPMREwDwYDVQQHDAhD\nT1lPQUNBTjERMA8GA1UELRMIMi41LjQuNDUxJTAjBgkqhkiG9w0BCQITFnJlc3Bv\nbnNhYmxlOiBBQ0RNQS1TQVQwHhcNMjMwNTE4MTE0MzUxWhcNMjcwNTE4MTE0MzUx\nWjCB1zEnMCUGA1UEAxMeRVNDVUVMQSBLRU1QRVIgVVJHQVRFIFNBIERFIENWMScw\nJQYDVQQpEx5FU0NVRUxBIEtFTVBFUiBVUkdBVEUgU0EgREUgQ1YxJzAlBgNVBAoT\nHkVTQ1VFTEEgS0VNUEVSIFVSR0FURSBTQSBERSBDVjElMCMGA1UELRMcRUtVOTAw\nMzE3M0M5IC8gVkFEQTgwMDkyN0RKMzEeMBwGA1UEBRMVIC8gVkFEQTgwMDkyN0hT\nUlNSTDA1MRMwEQYDVQQLEwpTdWN1cnNhbCAxMIIBIjANBgkqhkiG9w0BAQEFAAOC\nAQ8AMIIBCgKCAQEAtmecO6n2GS0zL025gbHGQVxznPDICoXzR2uUngz4DqxVUC/w\n9cE6FxSiXm2ap8Gcjg7wmcZfm85EBaxCx/0J2u5CqnhzIoGCdhBPuhWQnIh5TLgj\n/X6uNquwZkKChbNe9aeFirU/JbyN7Egia9oKH9KZUsodiM/pWAH00PCtoKJ9OBcS\nHMq8Rqa3KKoBcfkg1ZrgueffwRLws9yOcRWLb02sDOPzGIm/jEFicVYt2Hw1qdRE\n5xmTZ7AGG0UHs+unkGjpCVeJ+BEBn0JPLWVvDKHZAQMj6s5Bku35+d/MyATkpOPs\nGT/VTnsouxekDfikJD1f7A1ZpJbqDpkJnss3vQIDAQABox0wGzAMBgNVHRMBAf8E\nAjAAMAsGA1UdDwQEAwIGwDANBgkqhkiG9w0BAQsFAAOCAgEAFaUgj5PqgvJigNMg\ntrdXZnbPfVBbukAbW4OGnUhNrA7SRAAfv2BSGk16PI0nBOr7qF2mItmBnjgEwk+D\nTv8Zr7w5qp7vleC6dIsZFNJoa6ZndrE/f7KO1CYruLXr5gwEkIyGfJ9NwyIagvHH\nMszzyHiSZIA850fWtbqtythpAliJ2jF35M5pNS+YTkRB+T6L/c6m00ymN3q9lT1r\nB03YywxrLreRSFZOSrbwWfg34EJbHfbFXpCSVYdJRfiVdvHnewN0r5fUlPtR9stQ\nHyuqewzdkyb5jTTw02D2cUfL57vlPStBj7SEi3uOWvLrsiDnnCIxRMYJ2UA2ktDK\nHk+zWnsDmaeleSzonv2CHW42yXYPCvWi88oE1DJNYLNkIjua7MxAnkNZbScNw01A\n6zbLsZ3y8G6eEYnxSTRfwjd8EP4kdiHNJftm7Z4iRU7HOVh79/lRWB+gd171s3d/\nmI9kte3MRy6V8MMEMCAnMboGpaooYwgAmwclI2XZCczNWXfhaWe0ZS5PmytD/GDp\nXzkX0oEgY9K/uYo5V77NdZbGAjmyi8cE2B2ogvyaN2XfIInrZPgEffJ4AB7kFA2m\nwesdLOCh0BLD9itmCve3A1FGR4+stO2ANUoiI3w3Tv2yQSg4bjeDlJ08lXaaFCLW\n2peEXMXjQUk7fmpb5MNuOUTW6BE=\n-----END CERTIFICATE-----",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://dev.timbradorxpress.mx/api/rest/servicio/timbrarJSON3",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"timbradorxpress",
+						"mx"
+					],
+					"path": [
+						"api",
+						"rest",
+						"servicio",
+						"timbrarJSON3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "timbrarTXT",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "apikey",
+							"value": "93edc4af66b84c938f66a56ca0596205",
+							"type": "text"
+						},
+						{
+							"key": "txtB64",
+							"value": "Q09NUFJPQkFOVEV8NC4wfExDfExDMTUzfDIwMjMtMDQtMTdUMDA6MTY6Mzl8Mjh8MzAwMDEwMDAwMDA1MDAwMDM0MTZ8Ti9BfDY2MzguNzl8fE1YTnwxfDc3MDEuMDB8SXwwMXxQVUV8NzIzNzB8fApJTkZPUk1BQ0lPTkdMT0JBTHx8fHwKQ0ZESVJFTEFDSU9OQURPU3wwfHwKRU1JU09SfEVLVTkwMDMxNzNDOXxFU0NVRUxBIEtFTVBFUiBVUkdBVEV8NjAxfHwKUkVDRVBUT1J8WEFYWDAxMDEwMTAwMHxQdWJsaWNvIGVuIEdlbmVyYWx8NzIzNzB8fHw2MTZ8UzAxfApDT05DRVBUT1N8MXwKQ09OQ0VQVE98MDEwMTAxMDF8fDF8SDg3fFBJRVpBfDI3MDYgIFRBTlFVRSBFU1RBQ0lPTkFSSU8gMThPIExUU3w2NjM4Ljc5fDY2MzguNzl8fDAyfApJTVBVRVNUT1NDT05DRVBUT3wxfDB8ClRSQVNMQURPQ09OQ0VQVE98NjYzOC43OXwwMDJ8VGFzYXwwLjE2MDAwMHwxMDYyLjIxfApBQ1VFTlRBVEVSQ0VST1N8fHx8fApJTkZPUk1BQ0lPTkFEVUFORVJBfDB8CkNVRU5UQVBSRURJQUx8MHwKSU1QVUVTVE9TfDF8MHwxMDYyLjIxfHwKVFJBU0xBRE98NjYzOC43OXwwMDJ8VGFzYXwwLjE2MDAwMHwxMDYyLjIxfApDT1JSRU98fApDQU1QT1NfRVhUUkF8MXwKQ0FNUE9fRVhUUkF8dGlwb0NvbXByb2JhbnRlfEZBQ1RVUkF8",
+							"type": "text"
+						},
+						{
+							"key": "keyPEM",
+							"value": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC2Z5w7qfYZLTMv\nTbmBscZBXHOc8MgKhfNHa5SeDPgOrFVQL/D1wToXFKJebZqnwZyODvCZxl+bzkQF\nrELH/Qna7kKqeHMigYJ2EE+6FZCciHlMuCP9fq42q7BmQoKFs171p4WKtT8lvI3s\nSCJr2gof0plSyh2Iz+lYAfTQ8K2gon04FxIcyrxGprcoqgFx+SDVmuC559/BEvCz\n3I5xFYtvTawM4/MYib+MQWJxVi3YfDWp1ETnGZNnsAYbRQez66eQaOkJV4n4EQGf\nQk8tZW8ModkBAyPqzkGS7fn538zIBOSk4+wZP9VOeyi7F6QN+KQkPV/sDVmkluoO\nmQmeyze9AgMBAAECggEAM8vEL6UZvxh4umwFy3Bh7dmE8wHkrChRZuyDrUXdgr0p\nFLYoZIDUMA2p9cqF6jEudaCEbgZIzAOMiVfbNtMB42tY/vNpLlk8ZK5JFXxeLjUK\nzOBVR/ybF+c1FjS4v6KpynQhlbvWDK84Veo97AZkbZjt9PZz4I+5oUYc8OAHTd+b\nNgL6r7SnudH/2p7rI9kMFp3h9oov+H91IguFn4SF0aVMPiLMUVUYA3QpvIA03c7A\ncY8tloFArpPkpa1yyZ7ToFx3mPsYNxyn4Ud3lx0PHJ0ulUjPBVoi+ewFLHG0Z8HS\n2CdBe+7ptS0u1e58+RsX5tlf61xGwlHzMbfqyrBrQQKBgQDp/VO5GmFSzvIlrCJg\nX3R6f+YWraYqqL4uND56Y5q+MaPE2lAEzYKkGdHotiYu3Ta6picBo8BamMQBC93r\nmiwJYBHZWih56Xb/lSdV1GGHUbNCCqhR78EabVgbNj8vWYaCRezXFjMdnG5dTYsn\nNsMtvV6/dBXxoLpJWi7YCM6QlQKBgQDHkBNQ1DNUvpSMeICd7OgUTiQKSGViMRKE\nBoARNGE5f6ZbCACY69gSDs/OdZUqq6gboCu4VNWrl0/mOZrhkVJEicDKcahDuM6R\n5q3EPcv/XhonAlvAXueDCVEaNh7iPyt0XTsDsMFsAi4xs9n6DcOvp8DLDBa9rfWW\ngJghwhJ4iQKBgQCdZR5QQQJ+ZV5VIPjuwsbjL+1iC+TehSuIgPQV97I7hcCXxhJV\naLgcEpI0a3I7y+nom6NZYwEc7+3Ilmbs+IPuuoTHI/JeL0EwovAWuAnysG5YWjrn\nAtNuJ2dAxrix7RKhxs+Nzw0LOhKzCFo2Qov/1IZLWpb4NhmZBeTExQfOEQKBgQCp\nmkbwQQhHE5mIMLmOflNXPnney1xusSn9TtD0zkF67oPhhdGMJZSC9FekLcZSd4Tt\nxZiilmbp6DUdgwOghTMX0MMqyqGovJ3C3fv8dlCzfbRYRubXfVDgysBEuI5S1kEG\nKl4HaudX9hpwX1v36k7PMJDngCSrm/bGrA+fUSMFkQKBgQDnHnYRit6FIr1IgLoA\nuWEYY/R1cVv5tWtDbHqa/I4+oS+qDA8HNNKVvm8HO8JLRU5f+ZhBQfJVhWbEybOj\nKpTeg0L+wtXEw8Qfb2we1GFJ/LaiXTzeJVttnARJXce+G0U/Ei8EthOCh4PTNawU\nYTt70e4jJwOsG6DZFT8EnM7O7Q==\n-----END PRIVATE KEY-----",
+							"type": "text"
+						},
+						{
+							"key": "cerPEM",
+							"value": "-----BEGIN CERTIFICATE-----\nMIIFsDCCA5igAwIBAgIUMzAwMDEwMDAwMDA1MDAwMDM0MTYwDQYJKoZIhvcNAQEL\nBQAwggErMQ8wDQYDVQQDDAZBQyBVQVQxLjAsBgNVBAoMJVNFUlZJQ0lPIERFIEFE\nTUlOSVNUUkFDSU9OIFRSSUJVVEFSSUExGjAYBgNVBAsMEVNBVC1JRVMgQXV0aG9y\naXR5MSgwJgYJKoZIhvcNAQkBFhlvc2Nhci5tYXJ0aW5lekBzYXQuZ29iLm14MR0w\nGwYDVQQJDBQzcmEgY2VycmFkYSBkZSBjYWxpejEOMAwGA1UEEQwFMDYzNzAxCzAJ\nBgNVBAYTAk1YMRkwFwYDVQQIDBBDSVVEQUQgREUgTUVYSUNPMREwDwYDVQQHDAhD\nT1lPQUNBTjERMA8GA1UELRMIMi41LjQuNDUxJTAjBgkqhkiG9w0BCQITFnJlc3Bv\nbnNhYmxlOiBBQ0RNQS1TQVQwHhcNMjMwNTE4MTE0MzUxWhcNMjcwNTE4MTE0MzUx\nWjCB1zEnMCUGA1UEAxMeRVNDVUVMQSBLRU1QRVIgVVJHQVRFIFNBIERFIENWMScw\nJQYDVQQpEx5FU0NVRUxBIEtFTVBFUiBVUkdBVEUgU0EgREUgQ1YxJzAlBgNVBAoT\nHkVTQ1VFTEEgS0VNUEVSIFVSR0FURSBTQSBERSBDVjElMCMGA1UELRMcRUtVOTAw\nMzE3M0M5IC8gVkFEQTgwMDkyN0RKMzEeMBwGA1UEBRMVIC8gVkFEQTgwMDkyN0hT\nUlNSTDA1MRMwEQYDVQQLEwpTdWN1cnNhbCAxMIIBIjANBgkqhkiG9w0BAQEFAAOC\nAQ8AMIIBCgKCAQEAtmecO6n2GS0zL025gbHGQVxznPDICoXzR2uUngz4DqxVUC/w\n9cE6FxSiXm2ap8Gcjg7wmcZfm85EBaxCx/0J2u5CqnhzIoGCdhBPuhWQnIh5TLgj\n/X6uNquwZkKChbNe9aeFirU/JbyN7Egia9oKH9KZUsodiM/pWAH00PCtoKJ9OBcS\nHMq8Rqa3KKoBcfkg1ZrgueffwRLws9yOcRWLb02sDOPzGIm/jEFicVYt2Hw1qdRE\n5xmTZ7AGG0UHs+unkGjpCVeJ+BEBn0JPLWVvDKHZAQMj6s5Bku35+d/MyATkpOPs\nGT/VTnsouxekDfikJD1f7A1ZpJbqDpkJnss3vQIDAQABox0wGzAMBgNVHRMBAf8E\nAjAAMAsGA1UdDwQEAwIGwDANBgkqhkiG9w0BAQsFAAOCAgEAFaUgj5PqgvJigNMg\ntrdXZnbPfVBbukAbW4OGnUhNrA7SRAAfv2BSGk16PI0nBOr7qF2mItmBnjgEwk+D\nTv8Zr7w5qp7vleC6dIsZFNJoa6ZndrE/f7KO1CYruLXr5gwEkIyGfJ9NwyIagvHH\nMszzyHiSZIA850fWtbqtythpAliJ2jF35M5pNS+YTkRB+T6L/c6m00ymN3q9lT1r\nB03YywxrLreRSFZOSrbwWfg34EJbHfbFXpCSVYdJRfiVdvHnewN0r5fUlPtR9stQ\nHyuqewzdkyb5jTTw02D2cUfL57vlPStBj7SEi3uOWvLrsiDnnCIxRMYJ2UA2ktDK\nHk+zWnsDmaeleSzonv2CHW42yXYPCvWi88oE1DJNYLNkIjua7MxAnkNZbScNw01A\n6zbLsZ3y8G6eEYnxSTRfwjd8EP4kdiHNJftm7Z4iRU7HOVh79/lRWB+gd171s3d/\nmI9kte3MRy6V8MMEMCAnMboGpaooYwgAmwclI2XZCczNWXfhaWe0ZS5PmytD/GDp\nXzkX0oEgY9K/uYo5V77NdZbGAjmyi8cE2B2ogvyaN2XfIInrZPgEffJ4AB7kFA2m\nwesdLOCh0BLD9itmCve3A1FGR4+stO2ANUoiI3w3Tv2yQSg4bjeDlJ08lXaaFCLW\n2peEXMXjQUk7fmpb5MNuOUTW6BE=\n-----END CERTIFICATE-----",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://dev.timbradorxpress.mx/api/rest/servicio/timbrarTXT",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"timbradorxpress",
+						"mx"
+					],
+					"path": [
+						"api",
+						"rest",
+						"servicio",
+						"timbrarTXT"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "timbrarTXT2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "apikey",
+							"value": "93edc4af66b84c938f66a56ca0596205",
+							"type": "text"
+						},
+						{
+							"key": "txtB64",
+							"value": "Q09NUFJPQkFOVEV8NC4wfExDfExDMTUzfDIwMjMtMDQtMTdUMDA6MTY6Mzl8Mjh8MzAwMDEwMDAwMDA1MDAwMDM0MTZ8Ti9BfDY2MzguNzl8fE1YTnwxfDc3MDEuMDB8SXwwMXxQVUV8NzIzNzB8fApJTkZPUk1BQ0lPTkdMT0JBTHx8fHwKQ0ZESVJFTEFDSU9OQURPU3wwfHwKRU1JU09SfEVLVTkwMDMxNzNDOXxFU0NVRUxBIEtFTVBFUiBVUkdBVEV8NjAxfHwKUkVDRVBUT1J8WEFYWDAxMDEwMTAwMHxQdWJsaWNvIGVuIEdlbmVyYWx8NzIzNzB8fHw2MTZ8UzAxfApDT05DRVBUT1N8MXwKQ09OQ0VQVE98MDEwMTAxMDF8fDF8SDg3fFBJRVpBfDI3MDYgIFRBTlFVRSBFU1RBQ0lPTkFSSU8gMThPIExUU3w2NjM4Ljc5fDY2MzguNzl8fDAyfApJTVBVRVNUT1NDT05DRVBUT3wxfDB8ClRSQVNMQURPQ09OQ0VQVE98NjYzOC43OXwwMDJ8VGFzYXwwLjE2MDAwMHwxMDYyLjIxfApBQ1VFTlRBVEVSQ0VST1N8fHx8fApJTkZPUk1BQ0lPTkFEVUFORVJBfDB8CkNVRU5UQVBSRURJQUx8MHwKSU1QVUVTVE9TfDF8MHwxMDYyLjIxfHwKVFJBU0xBRE98NjYzOC43OXwwMDJ8VGFzYXwwLjE2MDAwMHwxMDYyLjIxfApDT1JSRU98fApDQU1QT1NfRVhUUkF8MXwKQ0FNUE9fRVhUUkF8dGlwb0NvbXByb2JhbnRlfEZBQ1RVUkF8",
+							"type": "text"
+						},
+						{
+							"key": "keyPEM",
+							"value": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC2Z5w7qfYZLTMv\nTbmBscZBXHOc8MgKhfNHa5SeDPgOrFVQL/D1wToXFKJebZqnwZyODvCZxl+bzkQF\nrELH/Qna7kKqeHMigYJ2EE+6FZCciHlMuCP9fq42q7BmQoKFs171p4WKtT8lvI3s\nSCJr2gof0plSyh2Iz+lYAfTQ8K2gon04FxIcyrxGprcoqgFx+SDVmuC559/BEvCz\n3I5xFYtvTawM4/MYib+MQWJxVi3YfDWp1ETnGZNnsAYbRQez66eQaOkJV4n4EQGf\nQk8tZW8ModkBAyPqzkGS7fn538zIBOSk4+wZP9VOeyi7F6QN+KQkPV/sDVmkluoO\nmQmeyze9AgMBAAECggEAM8vEL6UZvxh4umwFy3Bh7dmE8wHkrChRZuyDrUXdgr0p\nFLYoZIDUMA2p9cqF6jEudaCEbgZIzAOMiVfbNtMB42tY/vNpLlk8ZK5JFXxeLjUK\nzOBVR/ybF+c1FjS4v6KpynQhlbvWDK84Veo97AZkbZjt9PZz4I+5oUYc8OAHTd+b\nNgL6r7SnudH/2p7rI9kMFp3h9oov+H91IguFn4SF0aVMPiLMUVUYA3QpvIA03c7A\ncY8tloFArpPkpa1yyZ7ToFx3mPsYNxyn4Ud3lx0PHJ0ulUjPBVoi+ewFLHG0Z8HS\n2CdBe+7ptS0u1e58+RsX5tlf61xGwlHzMbfqyrBrQQKBgQDp/VO5GmFSzvIlrCJg\nX3R6f+YWraYqqL4uND56Y5q+MaPE2lAEzYKkGdHotiYu3Ta6picBo8BamMQBC93r\nmiwJYBHZWih56Xb/lSdV1GGHUbNCCqhR78EabVgbNj8vWYaCRezXFjMdnG5dTYsn\nNsMtvV6/dBXxoLpJWi7YCM6QlQKBgQDHkBNQ1DNUvpSMeICd7OgUTiQKSGViMRKE\nBoARNGE5f6ZbCACY69gSDs/OdZUqq6gboCu4VNWrl0/mOZrhkVJEicDKcahDuM6R\n5q3EPcv/XhonAlvAXueDCVEaNh7iPyt0XTsDsMFsAi4xs9n6DcOvp8DLDBa9rfWW\ngJghwhJ4iQKBgQCdZR5QQQJ+ZV5VIPjuwsbjL+1iC+TehSuIgPQV97I7hcCXxhJV\naLgcEpI0a3I7y+nom6NZYwEc7+3Ilmbs+IPuuoTHI/JeL0EwovAWuAnysG5YWjrn\nAtNuJ2dAxrix7RKhxs+Nzw0LOhKzCFo2Qov/1IZLWpb4NhmZBeTExQfOEQKBgQCp\nmkbwQQhHE5mIMLmOflNXPnney1xusSn9TtD0zkF67oPhhdGMJZSC9FekLcZSd4Tt\nxZiilmbp6DUdgwOghTMX0MMqyqGovJ3C3fv8dlCzfbRYRubXfVDgysBEuI5S1kEG\nKl4HaudX9hpwX1v36k7PMJDngCSrm/bGrA+fUSMFkQKBgQDnHnYRit6FIr1IgLoA\nuWEYY/R1cVv5tWtDbHqa/I4+oS+qDA8HNNKVvm8HO8JLRU5f+ZhBQfJVhWbEybOj\nKpTeg0L+wtXEw8Qfb2we1GFJ/LaiXTzeJVttnARJXce+G0U/Ei8EthOCh4PTNawU\nYTt70e4jJwOsG6DZFT8EnM7O7Q==\n-----END PRIVATE KEY-----",
+							"type": "text"
+						},
+						{
+							"key": "cerPEM",
+							"value": "-----BEGIN CERTIFICATE-----\nMIIFsDCCA5igAwIBAgIUMzAwMDEwMDAwMDA1MDAwMDM0MTYwDQYJKoZIhvcNAQEL\nBQAwggErMQ8wDQYDVQQDDAZBQyBVQVQxLjAsBgNVBAoMJVNFUlZJQ0lPIERFIEFE\nTUlOSVNUUkFDSU9OIFRSSUJVVEFSSUExGjAYBgNVBAsMEVNBVC1JRVMgQXV0aG9y\naXR5MSgwJgYJKoZIhvcNAQkBFhlvc2Nhci5tYXJ0aW5lekBzYXQuZ29iLm14MR0w\nGwYDVQQJDBQzcmEgY2VycmFkYSBkZSBjYWxpejEOMAwGA1UEEQwFMDYzNzAxCzAJ\nBgNVBAYTAk1YMRkwFwYDVQQIDBBDSVVEQUQgREUgTUVYSUNPMREwDwYDVQQHDAhD\nT1lPQUNBTjERMA8GA1UELRMIMi41LjQuNDUxJTAjBgkqhkiG9w0BCQITFnJlc3Bv\nbnNhYmxlOiBBQ0RNQS1TQVQwHhcNMjMwNTE4MTE0MzUxWhcNMjcwNTE4MTE0MzUx\nWjCB1zEnMCUGA1UEAxMeRVNDVUVMQSBLRU1QRVIgVVJHQVRFIFNBIERFIENWMScw\nJQYDVQQpEx5FU0NVRUxBIEtFTVBFUiBVUkdBVEUgU0EgREUgQ1YxJzAlBgNVBAoT\nHkVTQ1VFTEEgS0VNUEVSIFVSR0FURSBTQSBERSBDVjElMCMGA1UELRMcRUtVOTAw\nMzE3M0M5IC8gVkFEQTgwMDkyN0RKMzEeMBwGA1UEBRMVIC8gVkFEQTgwMDkyN0hT\nUlNSTDA1MRMwEQYDVQQLEwpTdWN1cnNhbCAxMIIBIjANBgkqhkiG9w0BAQEFAAOC\nAQ8AMIIBCgKCAQEAtmecO6n2GS0zL025gbHGQVxznPDICoXzR2uUngz4DqxVUC/w\n9cE6FxSiXm2ap8Gcjg7wmcZfm85EBaxCx/0J2u5CqnhzIoGCdhBPuhWQnIh5TLgj\n/X6uNquwZkKChbNe9aeFirU/JbyN7Egia9oKH9KZUsodiM/pWAH00PCtoKJ9OBcS\nHMq8Rqa3KKoBcfkg1ZrgueffwRLws9yOcRWLb02sDOPzGIm/jEFicVYt2Hw1qdRE\n5xmTZ7AGG0UHs+unkGjpCVeJ+BEBn0JPLWVvDKHZAQMj6s5Bku35+d/MyATkpOPs\nGT/VTnsouxekDfikJD1f7A1ZpJbqDpkJnss3vQIDAQABox0wGzAMBgNVHRMBAf8E\nAjAAMAsGA1UdDwQEAwIGwDANBgkqhkiG9w0BAQsFAAOCAgEAFaUgj5PqgvJigNMg\ntrdXZnbPfVBbukAbW4OGnUhNrA7SRAAfv2BSGk16PI0nBOr7qF2mItmBnjgEwk+D\nTv8Zr7w5qp7vleC6dIsZFNJoa6ZndrE/f7KO1CYruLXr5gwEkIyGfJ9NwyIagvHH\nMszzyHiSZIA850fWtbqtythpAliJ2jF35M5pNS+YTkRB+T6L/c6m00ymN3q9lT1r\nB03YywxrLreRSFZOSrbwWfg34EJbHfbFXpCSVYdJRfiVdvHnewN0r5fUlPtR9stQ\nHyuqewzdkyb5jTTw02D2cUfL57vlPStBj7SEi3uOWvLrsiDnnCIxRMYJ2UA2ktDK\nHk+zWnsDmaeleSzonv2CHW42yXYPCvWi88oE1DJNYLNkIjua7MxAnkNZbScNw01A\n6zbLsZ3y8G6eEYnxSTRfwjd8EP4kdiHNJftm7Z4iRU7HOVh79/lRWB+gd171s3d/\nmI9kte3MRy6V8MMEMCAnMboGpaooYwgAmwclI2XZCczNWXfhaWe0ZS5PmytD/GDp\nXzkX0oEgY9K/uYo5V77NdZbGAjmyi8cE2B2ogvyaN2XfIInrZPgEffJ4AB7kFA2m\nwesdLOCh0BLD9itmCve3A1FGR4+stO2ANUoiI3w3Tv2yQSg4bjeDlJ08lXaaFCLW\n2peEXMXjQUk7fmpb5MNuOUTW6BE=\n-----END CERTIFICATE-----",
+							"type": "text"
+						},
+						{
+							"key": "plantilla",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://dev.timbradorxpress.mx/api/rest/servicio/timbrarTXT2",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"timbradorxpress",
+						"mx"
+					],
+					"path": [
+						"api",
+						"rest",
+						"servicio",
+						"timbrarTXT2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "consultarCFDI",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "apikey",
+							"value": "93edc4af66b84c938f66a56ca0596205",
+							"type": "text"
+						},
+						{
+							"key": "uuid",
+							"value": "8cbea5ca-10dc-4ec8-9643-aba53e6598cd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://dev.timbradorxpress.mx/api/rest/servicio/consultarCFDI",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"timbradorxpress",
+						"mx"
+					],
+					"path": [
+						"api",
+						"rest",
+						"servicio",
+						"consultarCFDI"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

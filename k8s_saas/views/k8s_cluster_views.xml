@@ -8,18 +8,31 @@
         <field name="arch" type="xml">
             <form string="Kubernetes Cluster">
                 <header>
-                    <button name="action_test_connection" type="object" string="Probar Conexión"
+                    <button name="action_test_connection" type="object" string="Probar Conexion"
                             class="oe_highlight" invisible="state == 'connected'"/>
-                    <button name="action_test_connection" type="object" string="Verificar Conexión"
+                    <button name="action_test_connection" type="object" string="Verificar Conexion"
                             invisible="state != 'connected'"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,connected"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button name="action_view_instances" type="object" class="oe_stat_button" icon="fa-server">
-                            <field name="instance_count" widget="statinfo" string="Instancias"/>
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="running_count"/>/<field name="instance_count"/>
+                                </span>
+                                <span class="o_stat_text">Instancias</span>
+                            </div>
+                        </button>
+                        <button name="action_view_templates" type="object" class="oe_stat_button" icon="fa-file-code-o">
+                            <span class="o_stat_text">Templates</span>
+                        </button>
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
                         </button>
                     </div>
+                    <widget name="web_ribbon" title="Predeterminado" bg_color="text-bg-success"
+                            invisible="not is_default"/>
                     <widget name="web_ribbon" title="Error" bg_color="text-bg-danger" invisible="state != 'error'"/>
                     <div class="oe_title">
                         <h1>
@@ -27,27 +40,31 @@
                         </h1>
                     </div>
                     <group>
-                        <group string="Conexión">
-                            <field name="connection_type"/>
-                            <field name="api_server" invisible="connection_type != 'direct'"/>
-                            <field name="api_token" password="True" invisible="connection_type != 'direct'"/>
-                            <field name="default_namespace"/>
+                        <group string="Identificacion">
+                            <field name="code"/>
+                            <field name="is_default"/>
+                            <field name="sequence"/>
                         </group>
-                        <group string="SSH Tunnel" invisible="connection_type != 'ssh_tunnel'">
-                            <field name="ssh_host"/>
-                            <field name="ssh_port"/>
-                            <field name="ssh_user"/>
-                            <field name="ssh_password" password="True"/>
+                        <group string="Conexion">
+                            <field name="connection_type"/>
+                            <field name="default_namespace"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Kubeconfig" name="kubeconfig" invisible="connection_type != 'kubeconfig'">
-                            <field name="kubeconfig" widget="ace" options="{'mode': 'yaml'}"/>
+                            <field name="kubeconfig" widget="ace" options="{'mode': 'yaml'}"
+                                   placeholder="Pegue aqui el contenido de su archivo kubeconfig..."/>
                         </page>
-                        <page string="Base de Datos" name="database">
+                        <page string="Conexion Directa" name="direct" invisible="connection_type != 'direct'">
+                            <group>
+                                <field name="api_server" placeholder="https://kubernetes.local:6443"/>
+                                <field name="api_token" password="True"/>
+                            </group>
+                        </page>
+                        <page string="PostgreSQL" name="database">
                             <group>
                                 <group>
-                                    <field name="db_host"/>
+                                    <field name="db_host" placeholder="postgres.default.svc"/>
                                     <field name="db_port"/>
                                 </group>
                                 <group>
@@ -58,19 +75,29 @@
                         </page>
                         <page string="Cloudflare" name="cloudflare">
                             <group>
-                                <field name="cloudflare_tunnel_id"/>
-                                <field name="cloudflare_zone"/>
+                                <group>
+                                    <field name="cloudflare_enabled"/>
+                                    <field name="cloudflare_domain" placeholder="tudominio.com"
+                                           invisible="not cloudflare_enabled"/>
+                                    <field name="cloudflare_tunnel_token" password="True"
+                                           invisible="not cloudflare_enabled"/>
+                                </group>
+                                <group invisible="not cloudflare_enabled">
+                                    <field name="cloudflare_configmap_name"/>
+                                    <field name="cloudflare_configmap_namespace"/>
+                                    <field name="cloudflare_deployment_name"/>
+                                </group>
                             </group>
                         </page>
-                        <page string="Recursos por Defecto" name="defaults">
+                        <page string="Recursos Default" name="defaults">
                             <group>
                                 <group>
                                     <field name="odoo_image"/>
-                                    <field name="default_workers"/>
+                                    <field name="default_cpu_limit"/>
                                 </group>
                                 <group>
                                     <field name="default_memory_limit"/>
-                                    <field name="default_cpu_limit"/>
+                                    <field name="default_storage_size"/>
                                 </group>
                             </group>
                         </page>
@@ -79,6 +106,9 @@
                                 <field name="last_check"/>
                                 <field name="connection_error" readonly="1" invisible="not connection_error"/>
                             </group>
+                        </page>
+                        <page string="Descripcion" name="description">
+                            <field name="description" placeholder="Notas sobre este cluster..."/>
                         </page>
                     </notebook>
                 </sheet>
@@ -93,15 +123,18 @@
         <field name="model">k8s.cluster</field>
         <field name="arch" type="xml">
             <list string="Clusters">
+                <field name="sequence" widget="handle"/>
                 <field name="name"/>
-                <field name="connection_type"/>
-                <field name="default_namespace"/>
-                <field name="instance_count"/>
-                <field name="last_check"/>
+                <field name="code"/>
+                <field name="is_default" widget="boolean"/>
+                <field name="cloudflare_domain"/>
+                <field name="running_count" string="Activas"/>
+                <field name="instance_count" string="Total"/>
                 <field name="state" widget="badge"
                        decoration-success="state == 'connected'"
                        decoration-danger="state == 'error'"
                        decoration-info="state == 'draft'"/>
+                <field name="last_check"/>
             </list>
         </field>
     </record>
@@ -113,9 +146,15 @@
         <field name="arch" type="xml">
             <search string="Clusters">
                 <field name="name"/>
+                <field name="code"/>
                 <separator/>
                 <filter string="Conectados" name="connected" domain="[('state', '=', 'connected')]"/>
                 <filter string="Con Error" name="error" domain="[('state', '=', 'error')]"/>
+                <separator/>
+                <filter string="Archivados" name="inactive" domain="[('active', '=', False)]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_state" string="Estado" context="{'group_by': 'state'}"/>
+                </group>
             </search>
         </field>
     </record>
@@ -131,7 +170,8 @@
                 Configurar tu primer cluster Kubernetes
             </p>
             <p>
-                Conecta tu cluster para desplegar instancias Odoo automáticamente.
+                Conecta tu cluster para desplegar instancias Odoo automaticamente.
+                Puedes tener multiples clusters (local, produccion, etc.)
             </p>
         </field>
     </record>

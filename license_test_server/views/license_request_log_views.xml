@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vista Form -->
+    <record id="license_request_log_form" model="ir.ui.view">
+        <field name="name">license.request.log.form</field>
+        <field name="model">license.request.log</field>
+        <field name="arch" type="xml">
+            <form string="Log de Solicitud" create="0" edit="0">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Información General">
+                            <field name="request_date"/>
+                            <field name="ip_address"/>
+                            <field name="state" widget="badge"
+                                   decoration-success="state == 'success'"
+                                   decoration-danger="state == 'error'"
+                                   decoration-warning="state == 'simulated_error'"/>
+                        </group>
+                        <group string="Base de Datos">
+                            <field name="db_uuid"/>
+                            <field name="db_name"/>
+                            <field name="web_base_url" widget="url"/>
+                            <field name="odoo_version"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Usuarios">
+                            <field name="nbr_users"/>
+                            <field name="nbr_active_users"/>
+                            <field name="nbr_share_users"/>
+                        </group>
+                        <group string="Licencia">
+                            <field name="enterprise_code_received"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Módulos Instalados" name="apps">
+                            <field name="apps_installed" readonly="1"/>
+                        </page>
+                        <page string="Solicitud Raw" name="raw_request">
+                            <field name="raw_request" readonly="1" widget="ace" options="{'mode': 'json'}"/>
+                        </page>
+                        <page string="Respuesta Raw" name="raw_response">
+                            <field name="raw_response" readonly="1" widget="ace" options="{'mode': 'json'}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista Tree -->
+    <record id="license_request_log_tree" model="ir.ui.view">
+        <field name="name">license.request.log.tree</field>
+        <field name="model">license.request.log</field>
+        <field name="arch" type="xml">
+            <list string="Solicitudes" create="0" edit="0" default_order="request_date desc">
+                <field name="request_date"/>
+                <field name="db_name"/>
+                <field name="db_uuid"/>
+                <field name="nbr_users"/>
+                <field name="nbr_active_users"/>
+                <field name="enterprise_code_received"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'success'"
+                       decoration-danger="state == 'error'"
+                       decoration-warning="state == 'simulated_error'"/>
+                <field name="ip_address"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Acción -->
+    <record id="license_request_log_action" model="ir.actions.act_window">
+        <field name="name">Solicitudes Recibidas</field>
+        <field name="res_model">license.request.log</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No hay solicitudes de licencia registradas
+            </p>
+            <p>
+                Las solicitudes aparecerán aquí cuando Odoo contacte al servidor de prueba.
+            </p>
+        </field>
+    </record>
+</odoo>

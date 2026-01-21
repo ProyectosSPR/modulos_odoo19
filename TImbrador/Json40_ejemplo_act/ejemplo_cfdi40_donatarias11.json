@@ -1,0 +1,82 @@
+{
+  "Comprobante": {
+    "Version": "4.0",
+    "Serie": "DON",
+    "Folio": "1",
+    "Fecha": "2023-04-18T11:11:11",
+    "FormaPago": "01",
+    "NoCertificado": "30001000000500003416",
+    "CondicionesDePago": "NA",
+    "SubTotal": "1.00",
+    "Moneda": "MXN",
+    "TipoCambio": "1",
+    "Total": "1.16",
+    "TipoDeComprobante": "I",
+    "Exportacion": "01",
+    "MetodoPago": "PUE",
+    "LugarExpedicion": "45079",
+    "Emisor": {
+      "Rfc": "EKU9003173C9",
+      "Nombre": "ESCUELA KEMPER URGATE",
+      "RegimenFiscal": "601"
+    },
+    "Receptor": {
+      "Rfc": "XAXX010101000",
+      "Nombre": "Publico en General",
+      "DomicilioFiscalReceptor": "45079",
+      "RegimenFiscalReceptor": "616",
+      "UsoCFDI": "S01"
+    },
+    "Conceptos": [
+      {
+        "ClaveProdServ": "01010101",
+        "NoIdentificacion": "00001",
+        "Cantidad": "1",
+        "ClaveUnidad": "F52",
+        "Unidad": "TONELADA",
+        "Descripcion": "ACERO",
+        "ValorUnitario": "1.00",
+        "Importe": "1.00",
+        "ObjetoImp": "02",
+        "Impuestos":
+        {
+          "Traslados": [
+            {
+              "Base": "1.00",
+              "Impuesto": "002",
+              "TipoFactor": "Tasa",
+              "TasaOCuota": "0.160000",
+              "Importe": "0.16"
+            }
+          ]
+        }
+      }
+    ],
+    "Impuestos": {
+      "TotalImpuestosTrasladados": "0.16",
+      "Traslados": [
+        {
+          "Base": "1.00",
+          "Impuesto": "002",
+          "TipoFactor": "Tasa",
+          "TasaOCuota": "0.160000",
+          "Importe": "0.16"
+        }
+      ]
+    },
+    "Complemento": [
+      {
+        "Donatarias": {
+          "version": "1.1",
+          "noAutorizacion": "325-SAT-28-I-(21)-4109",
+          "fechaAutorizacion": "2020-06-23",
+          "leyenda": "Este comprobante ampara un donativo, el cual será destinado por la donataria a los fines propios de su objeto social. En el caso de que los bienes donados hayan sido deducidos previamente para los efectos de impuestos sobre la renta, este donativo no es deducible. La reproducción no autorizada de este comprobante constituye un delito en los términos de las disposiciones fiscales Efectos Fiscales al Pago"
+        }
+      }
+    ]
+  },
+  "CamposPDF": {
+    "tipoComprobante": "FACTURA",
+    "Comentarios": "Ninguno."
+  }
+}

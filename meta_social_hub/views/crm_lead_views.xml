@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend CRM Lead Form View -->
+    <record id="crm_lead_view_form_inherit_meta" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit.meta.social.hub</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <!-- Add button to open conversation -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_meta_conversation" type="object"
+                        class="oe_stat_button" icon="fa-comments"
+                        invisible="not meta_conversation_id">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Conversation</span>
+                    </div>
+                </button>
+            </xpath>
+
+            <!-- Add Meta fields -->
+            <xpath expr="//field[@name='source_id']" position="after">
+                <field name="meta_conversation_id" readonly="1" groups="meta_social_hub.group_meta_social_user"/>
+                <field name="meta_channel_type" readonly="1" widget="badge" invisible="not meta_conversation_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add to Lead List View -->
+    <record id="crm_lead_view_list_inherit_meta" model="ir.ui.view">
+        <field name="name">crm.lead.list.inherit.meta.social.hub</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_leads"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list" position="inside">
+                <field name="meta_channel_type" widget="badge" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add filter to search -->
+    <record id="crm_lead_view_search_inherit_meta" model="ir.ui.view">
+        <field name="name">crm.lead.search.inherit.meta.social.hub</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_leads_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <separator/>
+                <filter string="From Meta Channels" name="from_meta"
+                        domain="[('meta_conversation_id', '!=', False)]"/>
+                <filter string="From WhatsApp" name="from_whatsapp"
+                        domain="[('meta_channel_type', '=', 'whatsapp')]"/>
+                <filter string="From Messenger" name="from_messenger"
+                        domain="[('meta_channel_type', '=', 'facebook_messenger')]"/>
+                <filter string="From Instagram" name="from_instagram"
+                        domain="[('meta_channel_type', '=', 'instagram')]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

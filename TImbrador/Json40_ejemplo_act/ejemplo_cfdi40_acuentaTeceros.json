@@ -1,0 +1,172 @@
+{
+  "Comprobante": {
+    "Version": "4.0",
+    "Serie": "LC",
+    "Folio": "LC030",
+    "Fecha": "2025-01-09T12:00:00",
+    "FormaPago": "03",
+    "NoCertificado": "30001000000500003416",
+    "CondicionesDePago": "NA",
+    "SubTotal": "3.00",
+    "Moneda": "MXN",
+    "TipoCambio": "1",
+    "Total": "3.36",
+    "TipoDeComprobante": "I",
+    "Exportacion": "01",
+    "MetodoPago": "PUE",
+    "Descuento":"0.00",
+    "LugarExpedicion": "90000",
+    "CfdiRelacionados": {
+      "TipoRelacion": "04",
+      "CfdiRelacionado": [
+        "df117db8-1446-47c4-b70f-46a25d8df051"
+        ]
+    },
+    "Emisor": {
+      "Rfc": "EKU9003173C9",
+      "Nombre": "ESCUELA KEMPER URGATE",
+      "RegimenFiscal": "601"
+    },
+    "Receptor": {
+      "Rfc": "XAXX010101000",
+      "Nombre": "Publico en General",
+      "DomicilioFiscalReceptor": "90000",
+      "RegimenFiscalReceptor": "616",
+      "UsoCFDI": "S01"
+    },
+    "Conceptos": [
+      {
+        "ClaveProdServ": "01010101",
+        "Cantidad": "1",
+        "NoIdentificacion":"LV-12548-LV0561",
+        "ClaveUnidad": "F52",
+        "Unidad": "TONELADA",
+        "Descripcion": "ACERO",
+        "ValorUnitario": "1.00",
+        "Importe": "1.00",
+        "Descuento":"0.00",
+        "ObjetoImp": "02",
+        "Impuestos":
+        {
+          "Traslados": [
+            {
+              "Base": "1.00",
+              "Impuesto": "002",
+              "TipoFactor": "Tasa",
+              "TasaOCuota": "0.160000",
+              "Importe": "0.16"
+            }
+          ],
+          "Retenciones": [
+            {
+              "Base": "1.00",
+              "Impuesto": "002",
+              "TipoFactor": "Tasa",
+              "TasaOCuota": "0.040000",
+              "Importe": "0.04"
+            }
+          ]
+        },
+        "ACuentaTerceros":{
+          "RfcACuentaTerceros":"KIJ0906199R1",
+          "NombreACuentaTerceros":"KERNEL INDUSTIA JUGUETERA",
+          "RegimenFiscalACuentaTerceros":"601",
+          "DomicilioFiscalACuentaTerceros":"83420"
+        }
+      },
+      {
+        "ClaveProdServ": "01010101",
+        "Cantidad": "1",
+        "NoIdentificacion":"LV-12548-LV0562",
+        "ClaveUnidad": "F52",
+        "Unidad": "TONELADA",
+        "Descripcion": "ACERO 2",
+        "ValorUnitario": "1.00",
+        "Importe": "1.00",
+        "ObjetoImp": "02",
+        "Impuestos":
+        {
+          "Traslados": [
+            {
+              "Base": "1.00",
+              "Impuesto": "002",
+              "TipoFactor": "Tasa",
+              "TasaOCuota": "0.160000",
+              "Importe": "0.16"
+            }
+          ],
+          "Retenciones": [
+            {
+              "Base": "1.00",
+              "Impuesto": "002",
+              "TipoFactor": "Tasa",
+              "TasaOCuota": "0.040000",
+              "Importe": "0.04"
+            }
+          ]
+        },
+        "ACuentaTerceros":{
+          "RfcACuentaTerceros":"KIJ0906199R1",
+          "NombreACuentaTerceros":"KERNEL INDUSTIA JUGUETERA",
+          "RegimenFiscalACuentaTerceros":"601",
+          "DomicilioFiscalACuentaTerceros":"83420"
+        }
+      },
+      {
+        "ClaveProdServ": "01010101",
+        "Cantidad": "1",
+        "NoIdentificacion":"LV-12548-LV0563",
+        "ClaveUnidad": "F52",
+        "Unidad": "TONELADA",
+        "Descripcion": "ACERO 3",
+        "ValorUnitario": "1.00",
+        "Importe": "1.00",
+        "ObjetoImp": "02",
+        "Impuestos":
+        {
+          "Traslados": [
+            {
+              "Base": "1.00",
+              "Impuesto": "002",
+              "TipoFactor": "Tasa",
+              "TasaOCuota": "0.160000",
+              "Importe": "0.16"
+            }
+          ],
+          "Retenciones": [
+            {
+              "Base": "1.00",
+              "Impuesto": "002",
+              "TipoFactor": "Tasa",
+              "TasaOCuota": "0.040000",
+              "Importe": "0.04"
+            }
+          ]
+        }
+      }
+    ],
+    "Impuestos": {
+      "TotalImpuestosRetenidos": "0.12",
+      "TotalImpuestosTrasladados": "0.48",
+      "Retenciones": [
+        {
+          "Impuesto": "002",
+          "Importe": "0.12"
+        }
+      ],
+      "Traslados": [
+        {
+          "Base": "3.00",
+          "Impuesto": "002",
+          "TipoFactor": "Tasa",
+          "TasaOCuota": "0.160000",
+          "Importe": "0.48"
+        }
+      ]
+    }
+  },
+  "CamposPDF": {
+    "tipoComprobante": "FACTURA",
+    "Comentarios": "Aquí van los comentarios de la factura"
+  }
+}

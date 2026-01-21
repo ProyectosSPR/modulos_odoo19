@@ -24,6 +24,63 @@ class N8nPortal(CustomerPortal):
 
         return values
 
+    def _get_workflow_or_redirect(self, workflow_id):
+        """Helper para obtener workflow validando permisos"""
+        partner = request.env.user.partner_id
+        workflow = request.env['n8n.workflow.instance'].sudo().browse(workflow_id)
+        if not workflow.exists() or workflow.partner_id.id != partner.id:
+            return None
+        return workflow
+
+    # ==================
+    # DASHBOARD
+    # ==================
+
+    @http.route(['/my/n8n/dashboard'], type='http', auth='user', website=True)
+    def portal_n8n_dashboard(self, **kw):
+        """Dashboard con estadísticas generales"""
+        partner = request.env.user.partner_id
+        Workflow = request.env['n8n.workflow.instance'].sudo()
+
+        workflows = Workflow.search([('partner_id', '=', partner.id)])
+
+        # Actualizar estadísticas de todos los workflows sincronizados
+        for wf in workflows.filtered(lambda w: w.state == 'synced'):
+            try:
+                wf.action_refresh_stats()
+            except Exception:
+                pass
+
+        # Calcular estadísticas globales
+        total_workflows = len(workflows)
+        synced_workflows = len(workflows.filtered(lambda w: w.state == 'synced'))
+        pending_workflows = len(workflows.filtered(lambda w: w.state == 'pending'))
+        active_workflows = len(workflows.filtered(lambda w: w.is_active))
+
+        total_executions = sum(workflows.mapped('total_executions'))
+        successful_executions = sum(workflows.mapped('successful_executions'))
+        failed_executions = sum(workflows.mapped('failed_executions'))
+
+        # Últimas ejecuciones (de todos los workflows)
+        recent_workflows = workflows.filtered(
+            lambda w: w.last_execution_date
+        ).sorted('last_execution_date', reverse=True)[:5]
+
+        values = {
+            'page_name': 'n8n_dashboard',
+            'workflows': workflows,
+            'total_workflows': total_workflows,
+            'synced_workflows': synced_workflows,
+            'pending_workflows': pending_workflows,
+            'active_workflows': active_workflows,
+            'total_executions': total_executions,
+            'successful_executions': successful_executions,
+            'failed_executions': failed_executions,
+            'recent_workflows': recent_workflows,
+        }
+
+        return request.render('n8n_sales.portal_n8n_dashboard', values)
+
     # ==================
     # LISTA DE WORKFLOWS
     # ==================
@@ -295,4 +352,129 @@ class N8nPortal(CustomerPortal):
 
         except Exception as e:
             _logger.error(f"Error aplicando extensión {workflow_id}: {e}")
+            return request.redirect(f'/my/n8n/{workflow_id}?error={str(e)[:100]}')
+
+    # ==================
+    # ACTIVAR/DESACTIVAR WORKFLOW
+    # ==================
+
+    @http.route(['/my/n8n/<int:workflow_id>/activate'],
+                type='http', auth='user', website=True, methods=['POST'], csrf=True)
+    def portal_activate_workflow(self, workflow_id, **post):
+        """Activar workflow en N8N"""
+        workflow = self._get_workflow_or_redirect(workflow_id)
+        if not workflow:
+            return request.redirect('/my/n8n')
+
+        try:
+            workflow.action_activate_workflow()
+            return request.redirect(f'/my/n8n/{workflow_id}?success=activated')
+        except Exception as e:
+            _logger.error(f"Error activando workflow {workflow_id}: {e}")
+            return request.redirect(f'/my/n8n/{workflow_id}?error={str(e)[:100]}')
+
+    @http.route(['/my/n8n/<int:workflow_id>/deactivate'],
+                type='http', auth='user', website=True, methods=['POST'], csrf=True)
+    def portal_deactivate_workflow(self, workflow_id, **post):
+        """Desactivar workflow en N8N"""
+        workflow = self._get_workflow_or_redirect(workflow_id)
+        if not workflow:
+            return request.redirect('/my/n8n')
+
+        try:
+            workflow.action_deactivate_workflow()
+            return request.redirect(f'/my/n8n/{workflow_id}?success=deactivated')
+        except Exception as e:
+            _logger.error(f"Error desactivando workflow {workflow_id}: {e}")
+            return request.redirect(f'/my/n8n/{workflow_id}?error={str(e)[:100]}')
+
+    # ==================
+    # EDITAR CONFIGURACIÓN
+    # ==================
+
+    @http.route(['/my/n8n/<int:workflow_id>/edit'],
+                type='http', auth='user', website=True, methods=['GET'])
+    def portal_edit_workflow(self, workflow_id, **kw):
+        """Formulario para editar configuración del workflow"""
+        workflow = self._get_workflow_or_redirect(workflow_id)
+        if not workflow:
+            return request.redirect('/my/n8n')
+
+        values = {
+            'workflow': workflow,
+            'page_name': 'n8n_edit_workflow',
+            'error': kw.get('error'),
+            'success': kw.get('success'),
+        }
+
+        return request.render('n8n_sales.portal_n8n_edit_workflow', values)
+
+    @http.route(['/my/n8n/<int:workflow_id>/edit'],
+                type='http', auth='user', website=True, methods=['POST'], csrf=True)
+    def portal_edit_workflow_submit(self, workflow_id, **post):
+        """Guardar configuración editada"""
+        workflow = self._get_workflow_or_redirect(workflow_id)
+        if not workflow:
+            return request.redirect('/my/n8n')
+
+        try:
+            vals = {
+                'custom_name': post.get('custom_name', '').strip() or False,
+                'notes': post.get('notes', '').strip() or False,
+            }
+            workflow.portal_update_settings(vals)
+            return request.redirect(f'/my/n8n/{workflow_id}?success=updated')
+        except Exception as e:
+            _logger.error(f"Error actualizando workflow {workflow_id}: {e}")
+            return request.redirect(f'/my/n8n/{workflow_id}/edit?error={str(e)[:100]}')
+
+    # ==================
+    # EJECUCIONES
+    # ==================
+
+    @http.route(['/my/n8n/<int:workflow_id>/executions'],
+                type='http', auth='user', website=True)
+    def portal_workflow_executions(self, workflow_id, **kw):
+        """Ver historial de ejecuciones del workflow"""
+        workflow = self._get_workflow_or_redirect(workflow_id)
+        if not workflow:
+            return request.redirect('/my/n8n')
+
+        if workflow.state != 'synced':
+            return request.redirect(f'/my/n8n/{workflow_id}')
+
+        # Refrescar estadísticas
+        try:
+            workflow.action_refresh_stats()
+        except Exception:
+            pass
+
+        # Obtener ejecuciones recientes
+        executions = workflow.get_recent_executions(limit=50)
+
+        values = {
+            'workflow': workflow,
+            'page_name': 'n8n_executions',
+            'executions': executions,
+        }
+
+        return request.render('n8n_sales.portal_n8n_executions', values)
+
+    # ==================
+    # REFRESCAR ESTADÍSTICAS
+    # ==================
+
+    @http.route(['/my/n8n/<int:workflow_id>/refresh'],
+                type='http', auth='user', website=True, methods=['POST'], csrf=True)
+    def portal_refresh_stats(self, workflow_id, **post):
+        """Refrescar estadísticas del workflow"""
+        workflow = self._get_workflow_or_redirect(workflow_id)
+        if not workflow:
+            return request.redirect('/my/n8n')
+
+        try:
+            workflow.action_refresh_stats()
+            return request.redirect(f'/my/n8n/{workflow_id}?success=refreshed')
+        except Exception as e:
+            _logger.error(f"Error refrescando stats {workflow_id}: {e}")
             return request.redirect(f'/my/n8n/{workflow_id}?error={str(e)[:100]}')

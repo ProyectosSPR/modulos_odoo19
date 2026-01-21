@@ -1,0 +1,382 @@
+{
+  "Comprobante": {
+    "Version": "4.0",
+    "Serie": "",
+    "Folio": "",
+    "Fecha": "",
+    "FormaPago": "",
+    "NoCertificado": "",
+    "CondicionesDePago": "",
+    "SubTotal": "",
+    "Descuento": "",
+    "Moneda": "",
+    "TipoCambio": "",
+    "Total": "",
+    "TipoDeComprobante": "",
+    "MetodoPago": "",
+    "Exportacion": "",
+    "LugarExpedicion": "",
+    "Confirmacion": "",
+    "CfdiRelacionados": {
+      "TipoRelacion": "",
+      "CfdiRelacionado": [
+        "UUID-1",
+        "UUID-2",
+        "UUID-N"
+      ]
+    },
+    "Emisor": {
+      "Rfc": "",
+      "Nombre": "",
+      "RegimenFiscal": "",
+      "FacAtrAdquirente": ""
+    },
+    "Receptor": {
+      "Rfc": "",
+      "Nombre": "",
+      "DomicilioFiscalReceptor": "",
+      "ResidenciaFiscal": "",
+      "NumRegIdTrib": "",
+      "RegimenFiscalReceptor": "",
+      "UsoCFDI": ""
+    },
+    "Conceptos": [
+      {
+        "ClaveProdServ": "",
+        "NoIdentificacion": "",
+        "Cantidad": "",
+        "ClaveUnidad": "",
+        "Unidad": "",
+        "Descripcion": "",
+        "ValorUnitario": "",
+        "Importe": "",
+        "Descuento": "",
+        "ObjetoImp": "",
+        "Impuestos": {
+          "Traslados": [
+            {
+              "Base": "",
+              "Impuesto": "",
+              "TipoFactor": "",
+              "TasaOCuota": "",
+              "Importe": ""
+            }
+          ],
+          "Retenciones": [
+            {
+              "Base": "",
+              "Impuesto": "",
+              "TipoFactor": "",
+              "TasaOCuota": "",
+              "Importe": ""
+            }
+          ]
+        },
+        "InformacionAduanera": [
+          "NumeroPedimento-1",
+          "NumeroPedimento-2",
+          "NumeroPedimento-N"
+        ]
+      }
+    ],
+    "Impuestos": {
+      "TotalImpuestosRetenidos": "",
+      "TotalImpuestosTrasladados": "",
+      "Retenciones": [
+        {
+          "Impuesto": "",
+          "Importe": ""
+        }
+      ],
+      "Traslados": [
+        {
+          "Base": "",
+          "Impuesto": "",
+          "TipoFactor": "",
+          "TasaOCuota": "",
+          "Importe": ""
+        }
+      ]
+    },
+    "Complemento": [
+      {
+        "CartaPorte31": {
+          "Version": "3.1",
+          "IdCCP": "",
+          "TranspInternac": "",
+          "EntradaSalidaMerc": "",
+          "PaisOrigenDestino": "",
+          "ViaEntradaSalida": "",
+          "TotalDistRec": "",
+          "RegistroISTMO": "",
+          "UbicacionPoloOrigen": "",
+          "UbicacionPoloDestino": "",
+          "RegimenesAduaneros":{
+            "RegimenAduaneroCCP": [
+              {
+                "RegimenAduanero": "RegimenAduaneroCCP 1"
+              },
+              {
+                "RegimenAduanero": "RegimenAduaneroCCP 2"
+              }
+            ]
+          },
+          "Ubicaciones": {
+            "Ubicacion": [
+              {
+                "TipoUbicacion": "",
+                "IDUbicacion": "",
+                "RFCRemitenteDestinatario": "",
+                "NombreRemitenteDestinatario": "",
+                "NumRegIdTrib": "",
+                "ResidenciaFiscal": "",
+                "NumEstacion": "",
+                "NombreEstacion": "",
+                "NavegacionTrafico": "",
+                "FechaHoraSalidaLlegada": "",
+                "TipoEstacion": "",
+                "DistanciaRecorrida": "",
+                "Domicilio": {
+                  "Calle": "",
+                  "NumeroExterior": "",
+                  "NumeroInterior": "",
+                  "Colonia": "",
+                  "Localidad": "",
+                  "Referencia": "",
+                  "Municipio": "",
+                  "Estado": "",
+                  "Pais": "",
+                  "CodigoPostal": ""
+                }
+              }
+            ]
+          },
+          "Mercancias": {
+            "PesoBrutoTotal": "",
+            "UnidadPeso": "",
+            "PesoNetoTotal": "",
+            "NumTotalMercancias": "",
+            "CargoPorTasacion": "",
+            "LogisticaInversaRecoleccionDevolucion": "",
+            "Mercancia": [
+              {
+                "BienesTransp": "",
+                "ClaveSTCC": "",
+                "Descripcion": "",
+                "Cantidad": "",
+                "ClaveUnidad": "",
+                "Unidad": "",
+                "Dimensiones": "",
+                "MaterialPeligroso": "",
+                "CveMaterialPeligroso": "",
+                "Embalaje": "",
+                "DescripEmbalaje": "",
+                "SectorCOFEPRIS": "",
+                "NombreIngredienteActivo": "",
+                "NomQuimico": "",
+                "DenominacionGenericaProd": "",
+                "DenominacionDistintivaProd": "",
+                "Fabricante": "",
+                "FechaCaducidad": "",
+                "LoteMedicamento": "",
+                "FormaFarmaceutica": "",
+                "CondicionesEspTransp": "",
+                "RegistroSanitarioFolioAutorizacion": "",
+                "PermisoImportacion": "",
+                "FolioImpoVUCEM": "",
+                "NumCAS": "",
+                "RazonSocialEmpImp": "",
+                "NumRegSanPlagCOFEPRIS": "",
+                "DatosFabricante": "",
+                "DatosFormulador": "",
+                "DatosMaquilador": "",
+                "UsoAutorizado": "",
+                "PesoEnKg": "",
+                "ValorMercancia": "",
+                "Moneda": "",
+                "FraccionArancelaria": "",
+                "UUIDComercioExt": "",
+                "TipoMateria": "",
+                "DescripcionMateria": "",
+                "DocumentacionAduanera": [
+                  {
+                    "TipoDocumento": "",
+                    "NumPedimento": "",
+                    "IdentDocAduanero": "",
+                    "RFCImpo": ""
+                  }
+                ],
+                "GuiasIdentificacion": [
+                  {
+                    "NumeroGuiaIdentificacion": "",
+                    "DescripGuiaIdentificacion": "",
+                    "PesoGuiaIdentificacion": ""
+                  }
+                ],
+                "CantidadTransporta": [
+                  {
+                    "Cantidad": "",
+                    "IDOrigen": "",
+                    "IDDestino": "",
+                    "CvesTransporte": ""
+                  }
+                ],
+                "DetalleMercancia": {
+                  "UnidadPesoMerc": "",
+                  "PesoBruto": "",
+                  "PesoNeto": "",
+                  "PesoTara": "",
+                  "NumPiezas": ""
+                }
+              }
+            ],
+            "Autotransporte": {
+              "PermSCT": "",
+              "NumPermisoSCT": "",
+              "IdentificacionVehicular": {
+                "ConfigVehicular": "",
+                "PesoBrutoVehicular": "",
+                "PlacaVM": "",
+                "AnioModeloVM": ""
+              },
+              "Seguros": {
+                "AseguraRespCivil": "",
+                "PolizaRespCivil": "",
+                "AseguraMedAmbiente": "",
+                "PolizaMedAmbiente": "",
+                "AseguraCarga": "",
+                "PolizaCarga": "",
+                "PrimaSeguro": ""
+              },
+              "Remolques": {
+                "Remolque": [
+                  {
+                    "SubTipoRem": "",
+                    "Placa": ""
+                  }
+                ]
+              }
+            },
+            "TransporteMaritimo": {
+              "PermSCT": "",
+              "NumPermisoSCT": "",
+              "NombreAseg": "",
+              "NumPolizaSeguro": "",
+              "TipoEmbarcacion": "",
+              "Matricula": "",
+              "NumeroOMI": "",
+              "AnioEmbarcacion": "",
+              "NombreEmbarc": "",
+              "NacionalidadEmbarc": "",
+              "UnidadesDeArqBruto": "",
+              "TipoCarga": "",
+              "Eslora": "",
+              "Manga": "",
+              "Calado": "",
+              "Puntal": "",
+              "LineaNaviera": "",
+              "NombreAgenteNaviero": "",
+              "NumAutorizacionNaviero": "",
+              "NumViaje": "",
+              "NumConocEmbarc": "",
+              "PermisoTempNavegacion": "",
+              "Contenedor": [
+                {
+                  "TipoContenedor": "",
+                  "MatriculaContenedor": "",
+                  "NumPrecinto": "",
+                  "IdCCPRelacionado": "",
+                  "PlacaVMCCP": "",
+                  "FechaCertificacionCCP": "",
+                  "RemolquesCCP": {
+                    "RemolqueCCP": [
+                      {
+                        "SubTipoRemCCP": "",
+                        "PlacaCCP": ""
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "TransporteAereo": {
+              "PermSCT": "",
+              "NumPermisoSCT": "",
+              "MatriculaAeronave": "",
+              "NombreAseg": "",
+              "NumPolizaSeguro": "",
+              "NumeroGuia": "",
+              "LugarContrato": "",
+              "CodigoTransportista": "",
+              "RFCEmbarcador": "",
+              "NumRegIdTribEmbarc": "",
+              "ResidenciaFiscalEmbarc": "",
+              "NombreEmbarcador": ""
+            },
+            "TransporteFerroviario": {
+              "TipoDeServicio": "",
+              "TipoDeTrafico": "",
+              "NombreAseg": "",
+              "NumPolizaSeguro": "",
+              "DerechosDePaso": [
+                {
+                  "TipoDerechoDePaso": "",
+                  "KilometrajePagado": ""
+                }
+              ],
+              "Carro": [
+                {
+                  "TipoCarro": "",
+                  "MatriculaCarro": "",
+                  "GuiaCarro": "",
+                  "ToneladasNetasCarro": "",
+                  "Contenedor": [
+                    {
+                      "TipoContenedor": "",
+                      "PesoContenedorVacio": "",
+                      "PesoNetoMercancia": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "FiguraTransporte": {
+            "TiposFigura": [
+              {
+                "TipoFigura": "",
+                "RFCFigura": "",
+                "NumLicencia": "",
+                "NombreFigura": "",
+                "NumRegIdTribFigura": "",
+                "ResidenciaFiscalFigura": "",
+                "PartesTransporte": [
+                  "ParteTransporte1",
+                  "ParteTransporte2",
+                  "...",
+                  "ParteTransporteN"
+                ],
+                "Domicilio": {
+                  "Calle": "",
+                  "NumeroExterior": "",
+                  "NumeroInterior": "",
+                  "Colonia": "",
+                  "Localidad": "",
+                  "Referencia": "",
+                  "Municipio": "",
+                  "Estado": "",
+                  "Pais": "",
+                  "CodigoPostal": ""
+                }
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "CamposPDF": {
+    "tipoComprobante": "",
+    "Comentarios": ""
+  }
+}

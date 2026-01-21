@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <!-- Conversation Messages Component Template -->
+    <t t-name="meta_social_hub.ConversationMessages">
+        <div class="o_meta_messages_wrapper h-100 d-flex flex-column">
+            <!-- Loading indicator -->
+            <div t-if="state.loading" class="text-center p-3">
+                <i class="fa fa-spinner fa-spin fa-2x"/>
+            </div>
+
+            <!-- Load more button -->
+            <div t-if="state.hasMore and !state.loading" class="text-center p-2">
+                <button class="btn btn-link" t-on-click="loadMore">
+                    Load older messages...
+                </button>
+            </div>
+
+            <!-- Messages container -->
+            <div class="o_meta_messages_container flex-grow-1 overflow-auto p-3">
+                <t t-foreach="state.messages" t-as="message" t-key="message.id">
+                    <div t-att-class="getMessageClass(message)" class="mb-3">
+                        <div t-attf-class="o_meta_message_bubble p-2 rounded #{message.message_type === 'inbound' ? 'bg-light' : 'bg-primary text-white'}">
+                            <div class="o_meta_message_body" t-raw="message.body"/>
+
+                            <!-- Attachments -->
+                            <div t-if="message.attachment_ids and message.attachment_ids.length" class="o_meta_attachments mt-2">
+                                <span class="badge bg-secondary">
+                                    <i class="fa fa-paperclip me-1"/>
+                                    <t t-esc="message.attachment_ids.length"/> attachment(s)
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Message meta -->
+                        <div class="o_meta_message_meta small text-muted mt-1">
+                            <span t-esc="formatDate(message.create_date)"/>
+                            <span t-if="message.message_type === 'outbound' and message.author_user_id" class="ms-2">
+                                - <t t-esc="message.author_user_id[1]"/>
+                            </span>
+                            <span t-if="message.state" class="ms-2">
+                                <i t-attf-class="fa #{message.state === 'read' ? 'fa-check-double text-primary' : message.state === 'delivered' ? 'fa-check-double' : message.state === 'sent' ? 'fa-check' : message.state === 'failed' ? 'fa-times text-danger' : 'fa-clock-o'}"/>
+                            </span>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </t>
+
+    <!-- Quick Actions Component Template -->
+    <t t-name="meta_social_hub.QuickActions">
+        <div class="o_meta_quick_actions btn-group" role="group">
+            <button type="button" class="btn btn-outline-primary btn-sm" t-on-click="assignToMe" title="Assign to me">
+                <i class="fa fa-user-plus"/> Assign
+            </button>
+            <button type="button" class="btn btn-outline-success btn-sm" t-on-click="createLead" title="Create Lead">
+                <i class="fa fa-filter"/> Lead
+            </button>
+            <button type="button" class="btn btn-outline-warning btn-sm" t-on-click="createTicket" title="Create Ticket">
+                <i class="fa fa-ticket"/> Ticket
+            </button>
+            <button type="button" class="btn btn-outline-info btn-sm" t-on-click="sendProducts" title="Send Products">
+                <i class="fa fa-shopping-cart"/> Products
+            </button>
+        </div>
+    </t>
+
+    <!-- Message Input Template -->
+    <t t-name="meta_social_hub.MessageInput">
+        <div class="o_meta_message_input border-top p-2">
+            <div class="d-flex align-items-end">
+                <div class="flex-grow-1 me-2">
+                    <textarea class="form-control" rows="2" placeholder="Type a message..."
+                              t-model="state.messageText" t-on-keydown="onKeyDown"/>
+                </div>
+                <div class="d-flex flex-column">
+                    <button class="btn btn-link p-1" title="Attach file" t-on-click="onAttach">
+                        <i class="fa fa-paperclip fa-lg"/>
+                    </button>
+                    <button class="btn btn-primary" t-on-click="onSend" t-att-disabled="!state.messageText">
+                        <i class="fa fa-paper-plane"/>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <!-- Conversation Header Template -->
+    <t t-name="meta_social_hub.ConversationHeader">
+        <div class="o_meta_conversation_header d-flex align-items-center p-2 border-bottom">
+            <div class="o_meta_avatar me-2">
+                <img t-if="props.avatar" t-att-src="props.avatar" class="rounded-circle" width="40" height="40"/>
+                <span t-else="" class="o_meta_avatar_placeholder rounded-circle bg-secondary d-flex align-items-center justify-content-center" style="width:40px;height:40px;">
+                    <i class="fa fa-user text-white"/>
+                </span>
+            </div>
+            <div class="flex-grow-1">
+                <h5 class="mb-0" t-esc="props.name"/>
+                <small class="text-muted">
+                    <t t-call="meta_social_hub.ChannelTypeBadge">
+                        <t t-set="type" t-value="props.channelType"/>
+                        <t t-set="label" t-value="props.channelLabel"/>
+                    </t>
+                    <span t-if="props.phone" class="ms-2">
+                        <i class="fa fa-phone me-1"/>
+                        <t t-esc="props.phone"/>
+                    </span>
+                </small>
+            </div>
+            <div class="o_meta_actions">
+                <t t-call="meta_social_hub.QuickActions">
+                    <t t-set="conversationId" t-value="props.conversationId"/>
+                </t>
+            </div>
+        </div>
+    </t>
+
+</templates>

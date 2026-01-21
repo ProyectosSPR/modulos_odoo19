@@ -18,16 +18,16 @@ class ResPartner(models.Model):
             else:
                record.company_cfdi = True
 
-    @api.constrains('vat', 'country_id')
-    def check_vat(self):
+#    @api.constrains('vat', 'country_id')
+#    def check_vat(self):
         # The context key 'no_vat_validation' allows you to store/set a VAT number without doing validations.
         # This is for API pushes from external platforms where you have no control over VAT numbers.
-        if self.env.context.get('no_vat_validation'):
-            return
+#        if self.env.context.get('no_vat_validation'):
+#            return
 
-        for partner in self:
-            country = partner.country_id
-            if partner.vat and self._run_vat_test(partner.vat, country, partner.is_company) is False:
-                partner_label = _("partner [%s]", partner.name)
-                msg = partner._build_vat_error_message(country and country.code.lower() or None, partner.vat, partner_label)
-                raise ValidationError(msg)
+#        for partner in self:
+#            country = partner.country_id
+#            if partner.vat and self._run_vat_test(partner.vat, country, partner.is_company) is False:
+#                partner_label = _("partner [%s]", partner.name)
+#                msg = partner._build_vat_error_message(country and country.code.lower() or None, partner.vat, partner_label)
+#                raise ValidationError(msg)

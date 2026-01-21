@@ -1,4 +1,11 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_k8s_cluster_user,k8s.cluster.user,model_k8s_cluster,group_k8s_user,1,0,0,0
 access_k8s_cluster_manager,k8s.cluster.manager,model_k8s_cluster,group_k8s_manager,1,1,1,1
+access_k8s_manifest_template_user,k8s.manifest.template.user,model_k8s_manifest_template,group_k8s_user,1,0,0,0
+access_k8s_manifest_template_manager,k8s.manifest.template.manager,model_k8s_manifest_template,group_k8s_manager,1,1,1,1
+access_k8s_instance_plan_user,k8s.instance.plan.user,model_k8s_instance_plan,group_k8s_user,1,0,0,0
+access_k8s_instance_plan_manager,k8s.instance.plan.manager,model_k8s_instance_plan,group_k8s_manager,1,1,1,1
 access_k8s_instance_user,k8s.instance.user,model_k8s_instance,group_k8s_user,1,0,0,0
 access_k8s_instance_manager,k8s.instance.manager,model_k8s_instance,group_k8s_manager,1,1,1,1
+access_k8s_instance_manifest_user,k8s.instance.manifest.user,model_k8s_instance_manifest,group_k8s_user,1,0,0,0
+access_k8s_instance_manifest_manager,k8s.instance.manifest.manager,model_k8s_instance_manifest,group_k8s_manager,1,1,1,1

@@ -14,9 +14,9 @@
               action="k8s_instance_action"
               sequence="10"/>
 
-    <!-- Configuración -->
+    <!-- Configuracion -->
     <menuitem id="k8s_saas_menu_config"
-              name="Configuración"
+              name="Configuracion"
               parent="k8s_saas_menu_root"
               sequence="100"
               groups="base.group_system"/>
@@ -26,5 +26,23 @@
               parent="k8s_saas_menu_config"
               action="k8s_cluster_action"
               sequence="10"/>
+
+    <menuitem id="k8s_saas_menu_plans"
+              name="Planes"
+              parent="k8s_saas_menu_config"
+              action="k8s_instance_plan_action"
+              sequence="20"/>
+
+    <menuitem id="k8s_saas_menu_templates"
+              name="Templates de Manifiestos"
+              parent="k8s_saas_menu_config"
+              action="k8s_manifest_template_action"
+              sequence="30"/>
+
+    <menuitem id="k8s_saas_menu_manifests"
+              name="Manifiestos Aplicados"
+              parent="k8s_saas_menu_config"
+              action="k8s_instance_manifest_action"
+              sequence="40"/>
 
 </odoo>

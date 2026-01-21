@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="meta_send_product_wizard_view_form" model="ir.ui.view">
+        <field name="name">meta.send.product.wizard.form</field>
+        <field name="model">meta.send.product.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Send Products">
+                <group>
+                    <group string="Conversation">
+                        <field name="conversation_id" readonly="1"/>
+                        <field name="channel_type" readonly="1" widget="badge"/>
+                    </group>
+                    <group string="Options">
+                        <field name="include_price"/>
+                        <field name="include_image"/>
+                        <field name="include_description"/>
+                        <field name="include_link"/>
+                        <field name="currency_id" invisible="not include_price"/>
+                    </group>
+                </group>
+                <group string="Products">
+                    <field name="product_ids" widget="many2many_tags" nolabel="1"
+                           options="{'no_create': True}" domain="[('sale_ok', '=', True)]"/>
+                </group>
+                <group string="Additional Message">
+                    <field name="message" nolabel="1" placeholder="Add a custom message (optional)..."/>
+                </group>
+                <group string="Preview">
+                    <field name="preview" nolabel="1" readonly="1"/>
+                </group>
+                <footer>
+                    <button name="action_send" type="object" string="Send" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

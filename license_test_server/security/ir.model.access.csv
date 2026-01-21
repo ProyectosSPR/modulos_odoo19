@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_license_test_config_admin,license.test.config.admin,model_license_test_config,base.group_system,1,1,1,1
+access_license_request_log_admin,license.request.log.admin,model_license_request_log,base.group_system,1,1,1,1

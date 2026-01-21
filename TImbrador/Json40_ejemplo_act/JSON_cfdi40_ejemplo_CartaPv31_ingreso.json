@@ -1,0 +1,142 @@
+{
+  "Comprobante": {
+    "Version": "4.0",
+    "Serie": "LCP",
+    "Folio": "LCPD001-0012",
+    "Fecha": "2024-06-26T00:00:59",
+    "FormaPago": "01",
+    "NoCertificado": "30001000000500003416",
+    "SubTotal": "100.00",
+    "Moneda": "MXN",
+    "TipoCambio": "1",
+    "Total": "100.00",
+    "TipoDeComprobante": "I",
+    "MetodoPago": "PUE",
+    "Exportacion": "01",
+    "LugarExpedicion": "20000",
+    "Emisor": {
+      "Rfc": "EKU9003173C9",
+      "Nombre": "ESCUELA KEMPER URGATE",
+      "RegimenFiscal": "601"
+    },
+    "Receptor": {
+      "Rfc": "XAXX010101000",
+      "Nombre": "UNIVERSIDAD ROBOTICA ESPAÑOLA",
+      "DomicilioFiscalReceptor": "20000",
+      "RegimenFiscalReceptor": "616",
+      "UsoCFDI": "S01"
+    },
+    "Conceptos": [
+      {
+        "ClaveProdServ": "78101800",
+        "NoIdentificacion": "UT421511",
+        "Cantidad": "1",
+        "ClaveUnidad": "H87",
+        "Unidad": "Pieza",
+        "Descripcion": "Transporte de carga por carretera",
+        "ValorUnitario": "100.00",
+        "Importe": "100.00",
+        "ObjetoImp": "01"
+      }
+    ],
+    "Complemento": [
+      {
+        "CartaPorte31": {
+          "Version": "3.1",
+          "IdCCP": "CCC98765-FEDC-5678-4321-ABCDEF098765",
+          "TranspInternac": "No",
+          "TotalDistRec": "5",
+          "Ubicaciones": {
+            "Ubicacion": [{
+                "TipoUbicacion": "Origen",
+                "IDUbicacion": "OR123456",
+                "RFCRemitenteDestinatario": "URE180429TM6",
+                "FechaHoraSalidaLlegada": "2023-10-02T18:00:00",
+                "Domicilio": {
+                  "Colonia": "2109",
+                  "Localidad": "05",
+                  "Municipio": "057",
+                  "Estado": "OAX",
+                  "Pais": "MEX",
+                  "CodigoPostal": "70300"
+                }
+              },
+              {
+                "TipoUbicacion": "Destino",
+                "IDUbicacion": "DE123456",
+                "RFCRemitenteDestinatario": "URE180429TM6",
+                "FechaHoraSalidaLlegada": "2023-10-02T19:00:00",
+                "DistanciaRecorrida":"5",
+                "Domicilio": {
+                  "Colonia": "2109",
+                  "Localidad": "05",
+                  "Municipio": "057",
+                  "Estado": "OAX",
+                  "Pais": "MEX",
+                  "CodigoPostal": "70300"
+                }
+              }
+            ]
+          },
+          "Mercancias": {
+            "PesoBrutoTotal": "1",
+            "UnidadPeso": "KGM",
+            "NumTotalMercancias": "1",
+            "Mercancia": [
+              {
+                 "BienesTransp": "10101500",
+                "Descripcion": "Mercancia",
+                "Cantidad": "1.00",
+                "ClaveUnidad": "18",
+                "DenominacionGenericaProd": "Medicamento",
+                "DenominacionDistintivaProd": "Medicamento",
+                "Fabricante": "SW Sapien",
+                "FechaCaducidad": "2024-01-23",
+                "LoteMedicamento": "123456",
+                "FormaFarmaceutica": "01",
+                "CondicionesEspTransp": "03",
+                "RegistroSanitarioFolioAutorizacion": "123456789",
+                "PesoEnKg": "1.00",
+                "CantidadTransporta": [
+                  {
+                    "Cantidad": "1",
+                    "IDOrigen": "OR123456",
+                    "IDDestino": "DE123456"
+                  }
+                ]
+              }
+            ],
+            "Autotransporte": {
+              "PermSCT": "TPAF01",
+              "NumPermisoSCT": "12345",
+              "IdentificacionVehicular": {
+                "ConfigVehicular": "C2",
+                "PesoBrutoVehicular": "100",
+                "PlacaVM": "ABC123",
+                "AnioModeloVM": "2023"
+              },
+              "Seguros": {
+                "AseguraRespCivil": "SW Sapien",
+                "PolizaRespCivil": "12345"
+              }
+            }
+          },
+          "FiguraTransporte": {
+            "TiposFigura": [
+              {
+                "TipoFigura": "01",
+                "RFCFigura": "URE180429TM6",
+                "NumLicencia": "123456789",
+                "NombreFigura": "Nombre Apellido"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "CamposPDF": {
+    "tipoComprobante": "",
+    "Comentarios": ""
+  }
+}

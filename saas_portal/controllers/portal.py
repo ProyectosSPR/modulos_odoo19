@@ -1,6 +1,7 @@
 from odoo import http, _
 from odoo.http import request
 from odoo.addons.portal.controllers.portal import CustomerPortal, pager as portal_pager
+import json
 
 
 class SaaSPortal(CustomerPortal):
@@ -25,6 +26,11 @@ class SaaSPortal(CustomerPortal):
             projects = partner._get_active_projects()
             values['project_count'] = len(projects)
 
+        # Notifications count for badge
+        if 'notification_count' in counters:
+            notifications = partner._get_recent_notifications()
+            values['notification_count'] = len([n for n in notifications if n['type'] in ('danger', 'warning')])
+
         return values
 
     # ==================
@@ -36,10 +42,18 @@ class SaaSPortal(CustomerPortal):
         """SaaS Dashboard with overview of all services"""
         partner = request.env.user.partner_id
 
+        # Basic data
         subscriptions = partner._get_all_subscriptions()
         instances = partner._get_all_k8s_instances()
         appointments = partner._get_upcoming_appointments()
         projects = partner._get_active_projects()
+
+        # Enhanced metrics
+        k8s_metrics = partner._get_k8s_metrics_summary()
+        n8n_summary = partner._get_n8n_workflows_summary()
+        billing_summary = partner._get_billing_summary()
+        notifications = partner._get_recent_notifications()
+        tasks_summary = partner._get_tasks_summary()
 
         values = {
             'subscriptions': subscriptions,
@@ -47,9 +61,58 @@ class SaaSPortal(CustomerPortal):
             'appointments': appointments,
             'projects': projects,
             'page_name': 'saas_dashboard',
+            # Enhanced metrics
+            'k8s_metrics': k8s_metrics,
+            'n8n_summary': n8n_summary,
+            'billing': billing_summary,
+            'notifications': notifications,
+            'tasks': tasks_summary,
         }
 
         return request.render('saas_portal.portal_saas_dashboard', values)
+
+    @http.route(['/my/saas/api/metrics'], type='json', auth='user')
+    def portal_saas_api_metrics(self, **kw):
+        """JSON API endpoint for dashboard metrics (for AJAX refresh)"""
+        partner = request.env.user.partner_id
+
+        k8s_metrics = partner._get_k8s_metrics_summary()
+        n8n_summary = partner._get_n8n_workflows_summary()
+        billing_summary = partner._get_billing_summary()
+
+        return {
+            'k8s': {
+                'total': k8s_metrics['total'],
+                'running': k8s_metrics['running'],
+                'stopped': k8s_metrics['stopped'],
+                'total_cpu': k8s_metrics['total_cpu'],
+                'total_memory': k8s_metrics['total_memory'],
+            },
+            'n8n': {
+                'total': n8n_summary['total'],
+                'active': n8n_summary['active'],
+                'total_executions': n8n_summary['total_executions'],
+                'success_rate': n8n_summary['success_rate'],
+            },
+            'billing': {
+                'pending_amount': billing_summary['pending_amount'],
+                'pending_count': billing_summary['pending_count'],
+                'monthly_recurring': billing_summary['monthly_recurring'],
+            }
+        }
+
+    @http.route(['/my/saas/notifications'], type='http', auth='user', website=True)
+    def portal_saas_notifications(self, **kw):
+        """View all notifications"""
+        partner = request.env.user.partner_id
+        notifications = partner._get_recent_notifications()
+
+        values = {
+            'notifications': notifications,
+            'page_name': 'saas_notifications',
+        }
+
+        return request.render('saas_portal.portal_saas_notifications', values)
 
     # ==================
     # SUBSCRIPTIONS

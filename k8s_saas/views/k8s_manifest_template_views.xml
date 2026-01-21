@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Tree View -->
+    <record id="k8s_manifest_template_view_list" model="ir.ui.view">
+        <field name="name">k8s.manifest.template.list</field>
+        <field name="model">k8s.manifest.template</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="manifest_type" widget="badge"/>
+                <field name="cluster_id"/>
+                <field name="is_global" widget="boolean"/>
+                <field name="detected_variables"/>
+                <field name="active" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="k8s_manifest_template_view_form" model="ir.ui.view">
+        <field name="name">k8s.manifest.template.form</field>
+        <field name="model">k8s.manifest.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_preview_variables" type="object"
+                            string="Ver Variables Disponibles" class="btn-secondary"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="manifest_type"/>
+                            <field name="sequence"/>
+                        </group>
+                        <group>
+                            <field name="cluster_id"/>
+                            <field name="is_global" readonly="1"/>
+                            <field name="detected_variables" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Contenido YAML" name="yaml_content">
+                            <field name="yaml_content" widget="ace" options="{'mode': 'yaml'}"
+                                   placeholder="apiVersion: apps/v1&#10;kind: Deployment&#10;metadata:&#10;  name: {{ instance_name }}&#10;..."/>
+                        </page>
+                        <page string="Descripcion" name="description">
+                            <field name="description" placeholder="Descripcion del template..."/>
+                        </page>
+                        <page string="Planes" name="plans">
+                            <field name="plan_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="code"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="k8s_manifest_template_view_search" model="ir.ui.view">
+        <field name="name">k8s.manifest.template.search</field>
+        <field name="model">k8s.manifest.template</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="manifest_type"/>
+                <field name="cluster_id"/>
+                <filter name="filter_global" string="Globales" domain="[('is_global', '=', True)]"/>
+                <filter name="filter_deployment" string="Deployments" domain="[('manifest_type', '=', 'deployment')]"/>
+                <filter name="filter_service" string="Services" domain="[('manifest_type', '=', 'service')]"/>
+                <filter name="filter_pvc" string="PVCs" domain="[('manifest_type', '=', 'pvc')]"/>
+                <separator/>
+                <filter name="filter_inactive" string="Archivados" domain="[('active', '=', False)]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_type" string="Tipo" context="{'group_by': 'manifest_type'}"/>
+                    <filter name="group_cluster" string="Cluster" context="{'group_by': 'cluster_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="k8s_manifest_template_action" model="ir.actions.act_window">
+        <field name="name">Templates de Manifiestos</field>
+        <field name="res_model">k8s.manifest.template</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="k8s_manifest_template_view_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crear primer template de manifiesto
+            </p>
+            <p>
+                Los templates de manifiestos son archivos YAML de Kubernetes
+                que se aplican automaticamente al crear una instancia.
+                Use variables como {{ instance_name }}, {{ db_name }}, etc.
+            </p>
+        </field>
+    </record>
+
+</odoo>

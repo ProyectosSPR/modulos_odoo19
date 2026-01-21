@@ -1,5 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_n8n_workflow_instance_user,n8n.workflow.instance user access,model_n8n_workflow_instance,base.group_user,1,1,1,1
-access_n8n_workflow_instance_portal,n8n.workflow.instance portal access,model_n8n_workflow_instance,base.group_portal,1,0,0,0
+access_n8n_workflow_instance_portal,n8n.workflow.instance portal access,model_n8n_workflow_instance,base.group_portal,1,1,0,0
 access_n8n_sync_wizard_user,n8n.sync.wizard user access,model_n8n_sync_wizard,base.group_user,1,1,1,1
 access_n8n_sync_wizard_portal,n8n.sync.wizard portal access,model_n8n_sync_wizard,base.group_portal,1,1,1,0

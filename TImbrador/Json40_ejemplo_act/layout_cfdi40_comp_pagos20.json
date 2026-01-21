@@ -1,0 +1,143 @@
+{
+  "Comprobante": {
+    "Version": "4.0",
+    "Serie": "",
+    "Folio": "",
+    "Fecha": "",
+    "NoCertificado": "",
+    "SubTotal": "",
+    "Moneda": "",
+    "Total": "",
+    "TipoDeComprobante": "",
+    "Exportacion": "",
+    "LugarExpedicion": "",
+    "Confirmacion": "",
+    "CfdiRelacionados": {
+      "TipoRelacion": "",
+      "CfdiRelacionado": [
+        "UUID-1",
+        "UUID-2",
+        "UUID-N"
+      ]
+    },
+    "Emisor": {
+      "Rfc": "",
+      "Nombre": "",
+      "RegimenFiscal": ""
+    },
+    "Receptor": {
+      "Rfc": "",
+      "Nombre": "",
+      "DomicilioFiscalReceptor": "",
+      "ResidenciaFiscal": "",
+      "NumRegIdTrib": "",
+      "RegimenFiscalReceptor": "",
+      "UsoCFDI": ""
+    },
+    "Conceptos": [
+      {
+        "ClaveProdServ": "",
+        "Cantidad": "",
+        "ClaveUnidad": "",
+        "Descripcion": "",
+        "ValorUnitario": "",
+        "Importe": "",
+        "ObjetoImp": ""
+      }
+    ],
+    "Complemento": [
+      {
+        "Pagos20": {
+          "Version": "2.0",
+          "Totales": {
+            "TotalRetencionesIVA": "",
+            "TotalRetencionesISR": "",
+            "TotalRetencionesIEPS": "",
+            "TotalTrasladosBaseIVA16": "",
+            "TotalTrasladosImpuestoIVA16": "",
+            "TotalTrasladosBaseIVA8": "",
+            "TotalTrasladosImpuestoIVA8": "",
+            "TotalTrasladosBaseIVA0": "",
+            "TotalTrasladosImpuestoIVA0": "",
+            "TotalTrasladosBaseIVAExento": "",
+            "MontoTotalPagos": ""
+          },
+          "Pago": [
+            {
+              "FechaPago": "",
+              "FormaDePagoP": "",
+              "MonedaP": "",
+              "TipoCambioP": "",
+              "Monto": "",
+              "NumOperacion": "",
+              "RfcEmisorCtaOrd": "",
+              "NomBancoOrdExt": "",
+              "CtaOrdenante": "",
+              "RfcEmisorCtaBen": "",
+              "CtaBeneficiario": "",
+              "TipoCadPago": "",
+              "CertPago": "",
+              "CadPago": "",
+              "SelloPago": "",
+              "DoctoRelacionado": [
+                {
+                  "IdDocumento": "",
+                  "Serie": "",
+                  "Folio": "",
+                  "MonedaDR": "",
+                  "EquivalenciaDR": "",
+                  "NumParcialidad": "",
+                  "ImpSaldoAnt": "",
+                  "ImpPagado": "",
+                  "ImpSaldoInsoluto": "",
+                  "ObjetoImpDR": "",
+                  "ImpuestosDR": {
+                    "RetencionesDR": [
+                      {
+                        "BaseDR": "",
+                        "ImpuestoDR": "",
+                        "TipoFactorDR": "",
+                        "TasaOCuotaDR": "",
+                        "ImporteDR": ""
+                      }
+                    ],
+                    "TrasladosDR": [
+                      {
+                        "BaseDR": "",
+                        "ImpuestoDR": "",
+                        "TipoFactorDR": "",
+                        "TasaOCuotaDR": "",
+                        "ImporteDR": ""
+                      }
+                    ]
+                  }
+                }
+              ],
+              "ImpuestosP": {
+                "RetencionesP": [
+                  {
+                    "ImpuestoP": "",
+                    "ImporteP": ""
+                  }
+                ],
+                "TrasladosP": [
+                  {
+                    "BaseP": "",
+                    "ImpuestoP": "",
+                    "TipoFactorP": "",
+                    "TasaOCuotaP": "",
+                    "ImporteP": ""
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "CamposPDF": {
+    "tipoComprobante": "",
+    "Comentarios": ""
+  }
+}

@@ -11,14 +11,16 @@
                     <button name="action_create_instance" type="object" string="Crear Instancia"
                             invisible="state != 'draft'" class="oe_highlight"/>
                     <button name="action_stop_instance" type="object" string="Detener"
-                            invisible="state != 'running'" confirm="¿Detener esta instancia?"/>
+                            invisible="state != 'running'" confirm="Detener esta instancia?"/>
                     <button name="action_start_instance" type="object" string="Iniciar"
                             invisible="state != 'stopped'" class="oe_highlight"/>
+                    <button name="action_restart_instance" type="object" string="Reiniciar"
+                            invisible="state != 'running'"/>
                     <button name="action_refresh_status" type="object" string="Actualizar Estado"
                             invisible="state in ('draft', 'deleted')"/>
                     <button name="action_delete_instance" type="object" string="Eliminar"
                             invisible="state not in ('running', 'stopped', 'error')"
-                            confirm="¿Eliminar esta instancia? Esta acción no se puede deshacer."
+                            confirm="Eliminar esta instancia? Esta accion no se puede deshacer."
                             class="btn-danger"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,creating,running"/>
                 </header>
@@ -27,6 +29,10 @@
                         <button name="action_open_url" type="object" class="oe_stat_button" icon="fa-external-link"
                                 invisible="not url or state != 'running'">
                             <span class="o_stat_text">Abrir Odoo</span>
+                        </button>
+                        <button name="action_view_manifests" type="object" class="oe_stat_button" icon="fa-file-code-o"
+                                invisible="state == 'draft'">
+                            <span class="o_stat_text">Manifiestos</span>
                         </button>
                     </div>
                     <widget name="web_ribbon" title="Error" bg_color="text-bg-danger" invisible="state != 'error'"/>
@@ -40,52 +46,74 @@
                         </h4>
                     </div>
                     <group>
-                        <group string="General">
+                        <group string="Cliente">
                             <field name="partner_id"/>
+                            <field name="sale_order_id" readonly="1"/>
                             <field name="subscription_id"/>
-                            <field name="cluster_id"/>
-                            <field name="namespace"/>
+                            <field name="managed_by_us"/>
                         </group>
-                        <group string="Acceso">
+                        <group string="Despliegue">
+                            <field name="cluster_id" options="{'no_create': True}"/>
+                            <field name="plan_id" options="{'no_create': True}"/>
                             <field name="subdomain"/>
-                            <field name="technical_name"/>
-                            <field name="odoo_version"/>
+                            <field name="namespace" readonly="1"/>
                         </group>
                     </group>
                     <notebook>
+                        <page string="Recursos" name="resources">
+                            <group>
+                                <group>
+                                    <field name="odoo_image"/>
+                                    <field name="cpu_limit"/>
+                                </group>
+                                <group>
+                                    <field name="memory_limit"/>
+                                    <field name="storage_size"/>
+                                </group>
+                            </group>
+                        </page>
                         <page string="Base de Datos" name="database">
                             <group>
                                 <group>
                                     <field name="db_name"/>
                                     <field name="db_user"/>
-                                    <field name="db_password" password="True"/>
                                 </group>
-                            </group>
-                        </page>
-                        <page string="Recursos" name="resources">
-                            <group>
                                 <group>
-                                    <field name="workers"/>
-                                    <field name="memory_limit"/>
-                                    <field name="cpu_limit"/>
+                                    <field name="db_password" password="True"/>
+                                    <field name="admin_password" password="True"/>
                                 </group>
                             </group>
                         </page>
                         <page string="Kubernetes" name="k8s" invisible="state == 'draft'">
                             <group>
                                 <group>
+                                    <field name="technical_name" readonly="1"/>
                                     <field name="deployment_name"/>
                                     <field name="service_name"/>
-                                    <field name="pod_status"/>
+                                    <field name="pvc_name"/>
                                 </group>
                                 <group>
+                                    <field name="pod_status"/>
                                     <field name="created_date"/>
                                     <field name="last_accessed"/>
                                 </group>
                             </group>
                             <group string="Error" invisible="not error_message">
-                                <field name="error_message" nolabel="1"/>
+                                <field name="error_message" nolabel="1" readonly="1"/>
                             </group>
+                        </page>
+                        <page string="Manifiestos Aplicados" name="manifests" invisible="state == 'draft'">
+                            <field name="applied_manifest_ids" readonly="1">
+                                <list>
+                                    <field name="applied_date"/>
+                                    <field name="manifest_type" widget="badge"/>
+                                    <field name="k8s_resource_name"/>
+                                    <field name="state" widget="badge"
+                                           decoration-success="state == 'applied'"
+                                           decoration-danger="state == 'error'"
+                                           decoration-muted="state == 'deleted'"/>
+                                </list>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>
@@ -103,9 +131,10 @@
                 <field name="name"/>
                 <field name="partner_id"/>
                 <field name="cluster_id"/>
+                <field name="plan_id"/>
                 <field name="subdomain"/>
-                <field name="odoo_version"/>
                 <field name="pod_status"/>
+                <field name="managed_by_us" widget="boolean"/>
                 <field name="state" widget="badge"
                        decoration-success="state == 'running'"
                        decoration-warning="state in ('creating', 'stopped')"
@@ -130,10 +159,15 @@
                 <field name="url"/>
                 <field name="state"/>
                 <field name="pod_status"/>
+                <field name="cluster_id"/>
+                <field name="plan_id"/>
                 <templates>
                     <t t-name="card">
                         <field class="fw-bold fs-5" name="name"/>
                         <field name="partner_id"/>
+                        <div class="text-muted small">
+                            <field name="cluster_id"/> / <field name="plan_id"/>
+                        </div>
                         <div class="text-muted small" t-if="record.url.raw_value">
                             <field name="subdomain"/>
                         </div>
@@ -157,17 +191,20 @@
                 <field name="name"/>
                 <field name="partner_id"/>
                 <field name="cluster_id"/>
+                <field name="plan_id"/>
                 <field name="subdomain"/>
                 <separator/>
-                <filter string="En Ejecución" name="running" domain="[('state', '=', 'running')]"/>
+                <filter string="En Ejecucion" name="running" domain="[('state', '=', 'running')]"/>
                 <filter string="Detenidas" name="stopped" domain="[('state', '=', 'stopped')]"/>
                 <filter string="Con Error" name="error" domain="[('state', '=', 'error')]"/>
                 <separator/>
+                <filter string="Administradas" name="managed" domain="[('managed_by_us', '=', True)]"/>
                 <filter string="No Eliminadas" name="not_deleted" domain="[('state', '!=', 'deleted')]"/>
                 <separator/>
-                <group>
+                <group expand="0" string="Agrupar por">
                     <filter string="Estado" name="group_state" context="{'group_by': 'state'}"/>
                     <filter string="Cluster" name="group_cluster" context="{'group_by': 'cluster_id'}"/>
+                    <filter string="Plan" name="group_plan" context="{'group_by': 'plan_id'}"/>
                     <filter string="Cliente" name="group_partner" context="{'group_by': 'partner_id'}"/>
                 </group>
             </search>
@@ -180,13 +217,14 @@
         <field name="res_model">k8s.instance</field>
         <field name="view_mode">kanban,list,form</field>
         <field name="search_view_id" ref="k8s_instance_view_search"/>
-        <field name="context">{'search_default_not_deleted': 1}</field>
+        <field name="context">{'search_default_not_deleted': 1, 'search_default_managed': 1}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Crear tu primera instancia Odoo
             </p>
             <p>
-                Despliega instancias Odoo automáticamente en tu cluster Kubernetes.
+                Despliega instancias Odoo automaticamente en tu cluster Kubernetes.
+                Selecciona el cluster y plan, y el sistema hara el resto.
             </p>
         </field>
     </record>

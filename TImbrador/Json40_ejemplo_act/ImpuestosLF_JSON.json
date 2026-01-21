@@ -1,0 +1,93 @@
+{
+    "Comprobante":
+    {
+        "Version": "4.0",
+        "Serie": "M",
+        "Folio": "8",
+        "Fecha": "2022-01-04T13:04:00",
+        "FormaPago": "01",
+        "NoCertificado": "30001000000400002434",
+        "CondicionesDePago": "NA",
+        "SubTotal": "100.00",
+        "Moneda": "MXN",
+        "TipoCambio": "1",
+        "Total": "116.02",
+        "TipoDeComprobante": "I",
+        "Exportacion": "01",
+        "MetodoPago": "PUE",
+        "LugarExpedicion": "76010",
+        "InformacionGlobal": {
+          "Periodicidad": "01",
+          "Meses": "05",
+          "Año": "2021"
+        },
+        "Emisor": {
+            "Rfc": "EKU9003173C9",
+            "Nombre": "ESCUELA KEMPER URGATE",
+            "RegimenFiscal": "601"
+        },
+        "Receptor": {
+            "Rfc": "XIA190128J61",
+            "Nombre": "XENON INDUSTRIAL ARTICLES",
+            "DomicilioFiscalReceptor": "45601",
+            "RegimenFiscalReceptor": "601",
+            "UsoCFDI": "G03"
+        },
+        "Conceptos": [{
+            "ClaveProdServ": "90111501",
+            "NoIdentificacion": "1",
+            "Cantidad": "1",
+            "ClaveUnidad": "E48",
+            "Unidad": "Servicio",
+            "Descripcion": "HABITACION",
+            "ValorUnitario": "100.00",
+            "Importe": "100.00",
+            "ObjetoImp": "02",
+            "Impuestos": {
+                "Traslados": [{
+                    "Base": "100.00",
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "16.00"
+                }]
+            }
+        }],
+        "Impuestos": {
+            "TotalImpuestosTrasladados": "16.00",
+            "Traslados": [{
+                "Base": "100.00",
+                "Impuesto": "002",
+                "TipoFactor": "Tasa",
+                "TasaOCuota": "0.160000",
+                "Importe": "16.00"
+            }]
+        },
+        "Complemento": [{
+            "ImpuestosLocales": {
+                "version": "1.0",
+                "TotaldeRetenciones":"0.00",
+                "TotaldeTraslados": "0.02",
+                "TrasladosLocales": [{
+                    "ImpLocTrasladado": "ISH",
+                    "TasadeTraslado": "0.02",
+                    "Importe": "0.02"
+                }]
+            }
+        }],
+        "Addenda": [
+          {
+            "KNRECEPCION": {
+              "Tipo": {
+                "FacturasKN": {
+                  "Purchase_Order": "3215",
+                  "FileNumber_GL": "15",
+                  "Branch_Centre": "centro centro",
+                  "TransportRef": "s"
+                }
+              }
+            }
+          }
+        ]
+    }
+}

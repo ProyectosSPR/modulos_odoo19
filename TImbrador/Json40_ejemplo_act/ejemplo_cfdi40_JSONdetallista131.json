@@ -1,0 +1,164 @@
+{
+    "Comprobante":
+    {
+        "Version": "4.0",
+        "Serie": "DEV",
+        "Folio": "dev-90-001",
+        "Fecha": "2025-02-03T11:11:11",
+        "FormaPago": "03",
+        "NoCertificado": "30001000000500003416",
+        "CondicionesDePago": "NA",
+        "SubTotal": "1.00",
+        "Moneda": "MXN",
+        "TipoCambio": "1",
+        "Total": "1.12",
+        "TipoDeComprobante": "I",
+        "Exportacion": "01",
+        "MetodoPago": "PUE",
+        "LugarExpedicion": "72000",
+        "Emisor":
+        {
+            "Rfc": "EKU9003173C9",
+            "Nombre": "ESCUELA KEMPER URGATE",
+            "RegimenFiscal": "601"
+        },
+        "Receptor":
+        {
+            "Rfc": "XAXX010101000",
+            "Nombre": "UNIVERSIDAD ROBOTICA ESPAÑOLA",
+            "DomicilioFiscalReceptor": "72000",
+            "RegimenFiscalReceptor": "616",
+            "UsoCFDI": "S01"
+        },
+        "Conceptos":
+        [
+            {
+                "ClaveProdServ": "01010101",
+                "NoIdentificacion": "miclave",
+                "Cantidad": "1",
+                "ClaveUnidad": "F52",
+                "Unidad": "TONELADA",
+                "Descripcion": "ACERO",
+                "ValorUnitario": "1.00",
+                "Importe": "1.00",
+                "ObjetoImp": "02",
+                "Impuestos":
+                {
+                    "Traslados":
+                    [
+                        {
+                            "Base": "1.00",
+                            "Impuesto": "002",
+                            "TipoFactor": "Tasa",
+                            "TasaOCuota": "0.160000",
+                            "Importe": "0.16"
+                        }
+                    ],
+                    "Retenciones":
+                    [
+                        {
+                            "Base": "1.00",
+                            "Impuesto": "002",
+                            "TipoFactor": "Tasa",
+                            "TasaOCuota": "0.040000",
+                            "Importe": "0.04"
+                        }
+                    ]
+                }
+            }
+        ],
+        "Impuestos":
+        {
+            "TotalImpuestosRetenidos": "0.04",
+            "TotalImpuestosTrasladados": "0.16",
+            "Retenciones":
+            [
+                {
+                    "Impuesto": "002",
+                    "Importe": "0.04"
+                }
+            ],
+            "Traslados":
+            [
+                {
+                    "Base": "1.00",
+                    "Impuesto": "002",
+                    "TipoFactor": "Tasa",
+                    "TasaOCuota": "0.160000",
+                    "Importe": "0.16"
+                }
+            ]
+        },
+        "Complemento":
+        [
+            {
+                "detallista":
+                {
+                    "type": "SimpleInvoiceType",
+                    "contentVersion": "1.3.1",
+                    "documentStructureVersion": "AMC8.1",
+                    "documentStatus": "ORIGINAL",
+                    "requestForPaymentIdentification":
+                    {
+                        "entityType": "INVOICE"
+                    },
+                    "specialInstruction":
+                    [
+                        {
+                            "code": "ZZZ",
+                            "text":
+                            [
+                                "Dosciento sesenta pesos 00/100 m.n."
+                            ]
+                        }
+                    ],
+                    "orderIdentification":
+                    {
+                        "referenceIdentification":
+                        [
+                            {
+                                "_referenceIdentification": "3",
+                                "type": "ON"
+                            }
+                        ],
+                        "ReferenceDate": "2012-01-01"
+                    },
+                    "AdditionalInformation":
+                    {
+                        "referenceIdentification":
+                        [
+                            {
+                                "_referenceIdentification": "2",
+                                "type": "ATZ"
+                            }
+                        ]
+                    },
+                    "DeliveryNote":
+                    {
+                        "referenceIdentification":
+                        [
+                            "1"
+                        ],
+                        "ReferenceDate": "2022-01-01"
+                    },
+                    "buyer":
+                    {
+                        "gln": "7504000107903",
+                        "contactInformation":
+                        {
+                            "personOrDepartmentName":
+                            {
+                                "text": "0101"
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    },
+    "CamposPDF":
+    {
+        "tipoComprobante": "FACTURA",
+        "Comentarios": "Aquí van los comentarios de la factura."
+    }
+}
